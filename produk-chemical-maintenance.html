@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemical Maintenance - Karmand Industrial</title>
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Physical Properties Modern Styling */
+        .physical-props-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .prop-item {
+            background: linear-gradient(135deg, rgba(2, 206, 203, 0.08), rgba(5, 55, 78, 0.05));
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(2, 206, 203, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prop-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .prop-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(2, 206, 203, 0.2);
+            border-color: var(--accent);
+        }
+
+        .prop-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .prop-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .prop-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.3rem;
+        }
+
+        .prop-value {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #05374e;
+            line-height: 1.3;
+        }
+
+        .prop-highlight {
+            background: linear-gradient(135deg, rgba(2, 206, 203, 0.15), rgba(5, 55, 78, 0.08));
+            border: 2px solid rgba(2, 206, 203, 0.4);
+        }
+
+        .props-section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(2, 206, 203, 0.2);
+        }
+
+        .props-section-header h4 {
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin: 0;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .props-section-icon {
+            font-size: 1.3rem;
+        }
+        .product-price {
+            font-size: 1.44rem;
+            font-weight: 900;
+            color: var(--accent);
+            /* margin: 1rem 0 0.5rem 0; */
+            padding: 0.2rem 1rem;
+            background: linear-gradient(135deg, rgba(2, 206, 203, 0.1), rgba(5, 55, 78, 0.05));
+            border-radius: 12px;
+            border: 2px solid rgba(2, 206, 203, 0.3);
+            text-align: center;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-price::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(2, 206, 203, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .product-card-compact:hover .product-price::before {
+            left: 100%;
+        }
+
+        .product-price::after {
+
+            margin-left: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .physical-props-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 0.8rem;
+            }
+
+            .prop-item {
+                padding: 0.8rem;
+            }
+
+            .prop-value {
+                font-size: 0.9rem;
+            }
+             .product-price {
+                font-size: 1.3rem;
+                padding: 0.6rem 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo"><img src="logo-karmand.png" alt="Karmand Industrial" class="logo-img"></a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Beranda</a></li>
+                <li class="dropdown-menu">
+                    <a href="#" class="dropdown-toggle active">Katalog Produk</a>
+                    <ul class="dropdown">
+                        <li><a href="produk-cold-galvanize.html">Cold Galvanize & Coating</a></li>
+                        <li><a href="produk-chemical-maintenance.html" class="active">Chemical Maintenance</a></li>
+                        <li><a href="produk-water-treatment.html">Chemical Water Treatment</a></li>
+                        <li><a href="produk-fabrikasi-frp.html">Fabrikasi FRP & Rubber Lining</a></li>
+                        <li><a href="produk-chemical-auxiliaries.html">Chemical Auxiliaries</a></li>
+                    </ul>
+                </li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="karir.html">Karir</a></li>
+                <li><a href="kontak.html">Hubungi Kami</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Product Section -->
+    <section class="product-page page-section">
+        <div class="section-container">
+            <h2 class="section-title">Chemical Maintenance</h2>
+            <p class="section-subtitle">Solusi Pemeliharaan Peralatan dan Sistem Industri</p>
+
+            <div class="product-intro">
+                <p>Produk-produk chemical maintenance kami dirancang untuk memelihara, membersihkan, dan melindungi
+                    peralatan industri Anda. Dari pembersih hingga pelumas khusus, kami menyediakan solusi lengkap untuk
+                    meningkatkan efisiensi dan umur pakai peralatan.</p>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card-compact" onclick="openProductModal(
+                    'Karmand Rust Converter K. 413 CP', 
+                    'Karmand – K. 413 CP adalah rust converter sekaligus primer untuk besi yang bereaksi kuat menutup korosi. Hasil akhir coklat kehitaman, keras namun lentur, dengan daya lekat sangat baik pada metal dan cat finishing. Dapat digunakan untuk cat sintetis maupun epoxy, diaplikasikan langsung tanpa pengencer dengan kuas atau spray.',
+                    'Kombinasi special acrylic resin, pigment dan weather resistant agent.',
+                    '<div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🔬</span><h4>Sifat Fisik</h4></div><div class=\'physical-props-grid\'><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>💧</span><div class=\'prop-label\'>Bentuk</div><div class=\'prop-value\'>Cair</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🎨</span><div class=\'prop-label\'>Warna</div><div class=\'prop-value\'>Abu-abu susu</div></div><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>⚖️</span><div class=\'prop-label\'>Berat Jenis</div><div class=\'prop-value\'>±1,01</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🌊</span><div class=\'prop-label\'>Kelarutan</div><div class=\'prop-value\'>Larut dalam air</div></div></div></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>📋</span><h4>Petunjuk Pemakaian</h4></div><ul style=\'list-style: none; padding: 0;\'><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>1.</span> Bersihkan permukaan besi dari karat yang tebal, oli atau minyak dengan degreaser atau rust remover atau cukup diamplas.</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>2.</span> Kuaskan atau dengan air spray langsung pada permukaan besi dengan ketebalan antara 20 – 25 mikron.</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>3.</span> Biarkan sampai ± 24 jam agar kering sempurna, kemudian dapat dilakukan coating (finish).</li></ul></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🔒</span><h4>Pengamanan</h4></div><p style=\'padding: 1rem; background: rgba(255, 193, 7, 0.1); border-left: 4px solid #ffc107; border-radius: 4px; margin: 0;\'>Simpan barang ini ditempat yang sejuk dan kering.</p></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>📦</span><h4>Kemasan</h4></div><p style=\'font-weight: 600; color: #05374e;\'>Tersedia dalam kemasan 30 Lt per pail</p></div>',
+                    'Tersedia dalam kemasan 30 Lt per pail',
+                    'Konversi karat pada besi, persiapan permukaan sebelum coating, maintenance struktur baja, perbaikan tangki, peralatan industri',
+                    'Pail 30 Liter',
+                    'https://tokopedia.link/karmand-rustconverter', 
+                    'https://shopee.co.id/karmand-rustconverter',
+                    null)">
+                    <div class="product-image-wrapper">
+                        <img src="Karmand-Rust-Converter.png" alt="Karmand Rust Converter K. 413 CP" class="product-image">
+                        <div class="product-icon-fallback" style="display:none;">🧪</div>
+                    </div>
+                    <h3>Karmand Rust Converter K. 413 CP</h3>
+                    <p>Pengubah karat menjadi permukaan yang siap untuk coating, mencegah korosi lebih lanjut.</p>
+                    <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20**Karmand%20Rust%20Converter%20K.%20413%20CP**.%20Bisa%20tolong%20berikan%20informasi%20harga%20dan%20detail%20lebih%20lanjut%3F"   
+                        target="_blank" class="product-price"
+                        style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(18, 140, 126, 0.05)); border-color: rgba(37, 211, 102, 0.3); color: #25d366; text-decoration: none; display: block; cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.3)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">💬 Chat For The
+                        Price</a>
+                    <div class="click-info">Klik untuk detail →</div>
+                </div>
+
+                <div class="product-card-compact" onclick="openProductModal(
+                    'Karmand Insulating Varnish (Clear) K-103 IC', 
+                    'Karmand – K. 103 IC adalah bahan yang secara khusus diformulasi untuk mengisolasi alat-alat listrik yang tahan terhadap uap air, panas, olie / grease dan sinar matahari. Bahan ini biasa dipakai untuk mengisolasi kumparan kawat dynamo pada motor-motor listrik. Tahan terhadap tegangan tinggi.Terdapat dua jenis produk yaitu Clear (jernih) dan Red (merah). Masing-masing dipakai sesuai dengan keperluan.',
+                    ' Kombinasi resin, plastisizer, dan solvent.',
+                    '<div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🔬</span><h4>Sifat Fisik</h4></div><div class=\'physical-props-grid\'><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>💧</span><div class=\'prop-label\'>Bentuk</div><div class=\'prop-value\'>Cair</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🎨</span><div class=\'prop-label\'>Warna</div><div class=\'prop-value\'>Jernih</div></div><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>⚖️</span><div class=\'prop-label\'>Berat Jenis</div><div class=\'prop-value\'>±1,0</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🌊</span><div class=\'prop-label\'>Kelarutan</div><div class=\'prop-value\'>Larut dalam air</div></div></div></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>📋</span><h4>Petunjuk Pemakaian</h4></div><ul style=\'list-style: none; padding: 0;\'><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>1.</span> Dalam Can Spray: Kocok kaleng terlebih dahulu, kemudian langsung semprotkan pada medan yang akan di isolasi pada jarak antara 10 – 15 cm. </li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>2.</span> Dalam bentuk cair: Dengan dikuaskan langsung pada medan yang akan di isolasi, jika terlalu pekat dapat diencerkan dengan Karmand – Thinner IV. Kering sentuh ± 15 – 20 menit, sehingga dapat dilakukan penebalan lapisan.Kering sempurna ± 2 – 3 jam.</li></ul></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🔒</span><h4>Pengamanan</h4></div><p style=\'padding: 1rem; background: rgba(255, 193, 7, 0.1); border-left: 4px solid #ffc107; border-radius: 4px; margin: 0;\'>Simpan barang ini ditempat yang sejuk dan kering.</p></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>📦</span><h4>Kemasan</h4></div><p style=\'font-weight: 600; color: #05374e;\'>Tersedia dalam kemasan 30 Lt per pail</p></div>',
+                    'Tersedia dalam kemasan 30 Lt per pail',
+                    'Konversi karat pada besi, persiapan permukaan sebelum coating, maintenance struktur baja, perbaikan tangki, peralatan industri',
+                    'Pail 30 Liter',
+                    'https://tokopedia.link/karmand-rustconverter', 
+                    'https://shopee.co.id/karmand-rustconverter',
+                    null)">
+                    <div class="product-image-wrapper">
+                        <img src="Karmand_K_103IC.png" alt="Karmand Rust Converter K. 413 CP" class="product-image">
+                        <div class="product-icon-fallback" style="display:none;">🧪</div>
+                    </div>
+                    <h3>Karmand Insulating Varnish (Clear) K-103 IC</h3>
+                    <p>Karmand – K. 103 IC adalah bahan isolasi listrik tahan panas, air, oli, dan tegangan tinggi, digunakan untuk kumparan dynamo motor listrik. Tersedia Clear dan Red.</p>
+                    <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20**Karmand%20Insulating%20Varnish%20(Clear)%20K-103%20IC**.%20Bisa%20tolong%20berikan%20informasi%20harga%20dan%20detail%20lebih%20lanjut%3F"
+                        target="_blank" class="product-price"
+                        style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(18, 140, 126, 0.05)); border-color: rgba(37, 211, 102, 0.3); color: #25d366; text-decoration: none; display: block; cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.3)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">💬 Chat For The
+                        Price</a>
+                    <div class="click-info">Klik untuk detail →</div>
+                </div>
+
+                <div class="product-card-compact" onclick="openProductModal(
+                    'Karmand Insulating Varnish (Red) K-103 IR', 
+                    'Karmand – K. 103 IR adalah bahan yang secara khusus diformulasi untuk mengisolasi alat-alat listrik yang tahan terhadap uap air, panas, olie / grease dan sinar matahari. Bahan ini biasa dipakai untuk mengisolasi kumparan kawat dynamo pada motor-motor listrik. Tahan terhadap tegangan tinggi.Terdapat dua jenis produk yaitu Clear (jernih) dan Red (merah). Masing-masing dipakai sesuai dengan keperluan.',
+                    ' Kombinasi resin, plastisizer, dan solvent.',
+                    '<div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🔬</span><h4>Sifat Fisik</h4></div><div class=\'physical-props-grid\'><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>💧</span><div class=\'prop-label\'>Bentuk</div><div class=\'prop-value\'>Cair</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🎨</span><div class=\'prop-label\'>Warna</div><div class=\'prop-value\'>Jernih</div></div><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>⚖️</span><div class=\'prop-label\'>Berat Jenis</div><div class=\'prop-value\'>±1,0</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🌊</span><div class=\'prop-label\'>Kelarutan</div><div class=\'prop-value\'>Larut dalam air</div></div></div></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>📋</span><h4>Petunjuk Pemakaian</h4></div><ul style=\'list-style: none; padding: 0;\'><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>1.</span> Dalam Can Spray: Kocok kaleng terlebih dahulu, kemudian langsung semprotkan pada medan yang akan di isolasi pada jarak antara 10 – 15 cm. </li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>2.</span> Dalam bentuk cair: Dengan dikuaskan langsung pada medan yang akan di isolasi, jika terlalu pekat dapat diencerkan dengan Karmand – Thinner IV. Kering sentuh ± 15 – 20 menit, sehingga dapat dilakukan penebalan lapisan.Kering sempurna ± 2 – 3 jam.</li></ul></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🔒</span><h4>Pengamanan</h4></div><p style=\'padding: 1rem; background: rgba(255, 193, 7, 0.1); border-left: 4px solid #ffc107; border-radius: 4px; margin: 0;\'>Simpan barang ini ditempat yang sejuk dan kering.</p></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>📦</span><h4>Kemasan</h4></div><p style=\'font-weight: 600; color: #05374e;\'>Tersedia dalam kemasan 30 Lt per pail</p></div>',
+                    'Tersedia dalam kemasan 30 Lt per pail',
+                    'Konversi karat pada besi, persiapan permukaan sebelum coating, maintenance struktur baja, perbaikan tangki, peralatan industri',
+                    'Pail 30 Liter',
+                    'https://tokopedia.link/karmand-rustconverter', 
+                    'https://shopee.co.id/karmand-rustconverter',
+                    null)">
+                    <div class="product-image-wrapper">
+                        <img src="Karmand_K_103IC.png" alt="Karmand Rust Converter K. 413 CP" class="product-image">
+                        <div class="product-icon-fallback" style="display:none;">🧪</div>
+                    </div>
+                    <h3>Karmand Insulating Varnish (Red) K-103 IR</h3>
+                    <p>Karmand – K. 103 IR adalah bahan isolasi listrik yang tahan air, panas, oli, sinar matahari, dan tegangan tinggi, digunakan untuk kumparan dynamo motor listrik. Tersedia dalam bentuk Can Spray dan Cair.</p>
+                    <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20**Karmand%20Insulating%20Varnish%20(Red)%20K-103%20IR**.%20Bisa%20tolong%20berikan%20informasi%20harga%20dan%20detail%20lebih%20lanjut%3F"
+                        target="_blank" class="product-price"
+                        style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(18, 140, 126, 0.05)); border-color: rgba(37, 211, 102, 0.3); color: #25d366; text-decoration: none; display: block; cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.3)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">💬 Chat For The
+                        Price</a>
+                    <div class="click-info">Klik untuk detail →</div>
+                </div>
+                
+                <div class="product-card-compact" onclick="openProductModal(
+                    'Karmand Drain Opener K-203 D', 
+                    'Karmand – K. 203 D adalah bahan yang secara khusus diformulasi untuk membersihkan saluran pembuangan yang tersumbat akibat lemak, sisa makanan, kertas, tinja, dan kotoran lainnya. Dengan formulasi kuat, produk ini efektif mengatasi penyumbatan pada pipa saluran air di gedung bertingkat.',
+                    'Bahan aktif yang bereaksi dengan lemak, bahan – bahan dari cellulose, dan inhibitor.',
+                    '<div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🔬</span><h4>Sifat Fisik</h4></div><div class=\'physical-props-grid\'><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>💧</span><div class=\'prop-label\'>Bentuk</div><div class=\'prop-value\'>Cair</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🎨</span><div class=\'prop-label\'>Warna</div><div class=\'prop-value\'>Cokelat</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🧪</span><div class=\'prop-label\'>pH</div><div class=\'prop-value\'>Asam</div></div></div></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>📋</span><h4>Petunjuk Pemakaian</h4></div><ul style=\'list-style: none; padding: 0;\'><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>1.</span> Tuangkan bahan ini secukupnya pada bagian – bagian saluran yang  terbuka, yang banyak dilewati kotoran.</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>2.</span> Jumlah pemberian tergantung banyak sedikitnya kotoran.</li> <li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>3.</span> Untuk menjaga kelancaran aliran hendaknya secara periodic pemberian  bahan ini perlu dilakukan.</li></ul></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🔒</span><h4>Pengamanan</h4></div><p style=\'padding: 1rem; background: rgba(255, 193, 7, 0.1); border-left: 4px solid #ffc107; border-radius: 4px; margin: 0;\'>Simpan barang ini ditempat yang sejuk dan kering.</p></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>📦</span><h4>Kemasan</h4></div><p style=\'font-weight: 600; color: #05374e;\'>Tersedia dalam kemasan 30 Lt per pail</p></div>',
+                    'Tersedia dalam kemasan jerigen 20 liter.',
+                    'Pail 30 Liter',
+                    'https://tokopedia.link/karmand-rustconverter', 
+                    'https://shopee.co.id/karmand-rustconverter',
+                    null)">
+                    <div class="product-image-wrapper">
+                        <img src="Karmand_K_103IC.png" alt="Karmand Drain Opener K-203 D" class="product-image">
+                        <div class="product-icon-fallback" style="display:none;">🧪</div>
+                    </div>
+                    <h3>Karmand Drain Opener K-203 D</h3>
+                    <p>Karmand – K. 203 D Bahan ini diformulasikan untuk menghancurkan lemak, sisa makanan, kertas, tinja, dan kotoran lain penyebab penyumbatan pipa, sehingga aliran saluran kembali lancar, khususnya pada gedung bertingkat.</p>
+                    <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20**Karmand%20Drain%20Opener%20K-203%20D**.%20Bisa%20tolong%20berikan%20informasi%20harga%20dan%20detail%20lebih%20lanjut%3F"
+                        target="_blank" class="product-price"
+                        style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(18, 140, 126, 0.05)); border-color: rgba(37, 211, 102, 0.3); color: #25d366; text-decoration: none; display: block; cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.3)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">💬 Chat For The
+                        Price</a>
+                    <div class="click-info">Klik untuk detail →</div>
+                </div>
+
+                <div class="product-card-compact" onclick="openProductModal(
+                    'Karmand Electric Contact Cleaner K. 111 CF', 
+                    'Karmand – K. 111 CF adalah bahan pembersih kontak listrik yang dirancang khusus untuk membersihkan kontak listrik yang terkontaminasi oleh debu, minyak, dan kotoran lainnya. Bahan ini sangat efektif dalam menghilangkan kontaminasi yang menyebabkan resistansi tinggi dan kegagalan pada sistem listrik.',
+                    ' Kombinasi pelarut, bahan aktif, dan zat pengemulsi.',
+                    '<div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🔬</span><h4>Sifat Fisik</h4></div><div class=\'physical-props-grid\'><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>💧</span><div class=\'prop-label\'>Bentuk</div><div class=\'prop-value\'>Cair</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🎨</span><div class=\'prop-label\'>Warna</div><div class=\'prop-value\'>Jernih</div></div><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>⚖️</span><div class=\'prop-label\'>Berat Jenis</div><div class=\'prop-value\'>±1,0</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🌊</span><div class=\'prop-label\'>Kelarutan</div><div class=\'prop-value\'>Larut dalam air</div></div></div></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>📋</span><h4>Petunjuk Pemakaian</h4></div><ul style=\'list-style: none; padding: 0;\'><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>1.</span> Gunakan dengan menyemprotkan langsung pada kontak listrik yang akan dibersihkan.</li></ul></div>',
+                    'Tersedia dalam kemasan 30 Lt per pail',
+                    'Konversi karat pada besi, persiapan permukaan sebelum coating, maintenance struktur baja, perbaikan tangki, peralatan industri',
+                    'Pail 30 Liter',
+                    'https://tokopedia.link/karmand-rustconverter', 
+                    'https://shopee.co.id/karmand-rustconverter',
+                    null)">
+                    <div class="product-image-wrapper">
+                        <img src="Karmand_K_103IC.png" alt="Karmand Rust Converter K. 413 CP" class="product-image">
+                        <div class="product-icon-fallback" style="display:none;">🧪</div>
+                    </div>
+                    <h3>Karmand Electric Contact Cleaner K. 111 CF</h3>
+                    <p>Karmand – K. 111 CF adalah bahan pembersih kontak listrik yang dirancang khusus untuk membersihkan kontak listrik yang terkontaminasi oleh debu, minyak, dan kotoran lainnya. Bahan ini sangat efektif dalam menghilangkan kontaminasi yang menyebabkan resistansi tinggi dan kegagalan pada sistem listrik.</p>
+                    <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20**Karmand%20Electric%20Contact%20Cleaner%20K.%20111%20CF**.%20Bisa%20tolong%20berikan%20informasi%20harga%20dan%20detail%20lebih%20lanjut%3F"
+                        target="_blank" class="product-price"
+                        style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(18, 140, 126, 0.05)); border-color: rgba(37, 211, 102, 0.3); color: #25d366; text-decoration: none; display: block; cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.3)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">💬 Chat For The
+                        Price</a>
+                    <div class="click-info">Klik untuk detail →</div>
+                </div>
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">💬 Chat For The
+                        Price</a>
+                    <div class="click-info">Klik untuk detail →</div>
+                </div>
+
+                <div class="product-card-compact" onclick="openProductModal(
+                    'Karmand Corrosion Inhibitor CI-100', 
+                    'Inhibitor korosi yang melindungi sistem internal dari korosi dengan membentuk lapisan protektif pada permukaan logam. Formula multi-metal protection untuk berbagai jenis logam dalam satu sistem.',
+                    'Organic inhibitor, dispersant, pH buffer, anti-foam',
+                    'Bentuk: Cairan | Warna: Amber | pH: 9-10 | Dosage: 50-200 ppm | Compatible: Multi-metal systems',
+                    'Dosis awal: 100-200 ppm. Maintenance: 50-100 ppm. Tambahkan ke sistem melalui feed pump atau manual dosing. Monitor dengan corrosion coupon atau inline monitoring. Adjust pH sistem ke 8,5-9,5 untuk performa optimal.',
+                    'Sistem cooling water, heating system, hydraulic system, closed loop systems, chilled water system',
+                    'Jerigen 25L, Drum 200L, IBC 1000L',
+                    'https://tokopedia.link/karmand-ci100', 
+                    'https://shopee.co.id/karmand-ci100',
+                    null)">
+                    <div class="product-icon">🛡️</div>
+                    <h3>Karmand Corrosion Inhibitor CI-100</h3>
+                    <p>Inhibitor korosi untuk proteksi jangka panjang sistem internal.</p>
+                    <div class="click-info">Klik untuk detail →</div>
+                </div>
+
+                <div class="product-card-compact" onclick="openProductModal(
+                    'Karmand Metal Cleaner & Protector MCP-400', 
+                    'Produk dua-in-one yang membersihkan sekaligus melindungi permukaan logam dari oksidasi dan korosi. Memberikan finish mengkilap dan lapisan protektif hydrophobic.',
+                    'Solvent blend, protective wax, corrosion inhibitor, polish compound',
+                    'Bentuk: Cairan | Warna: Putih susu | Flash Point: >60°C | Protection Period: 3-6 bulan indoor | Buffable: Yes',
+                    'Aplikasikan dengan kain lembut atau spray. Gosok hingga bersih dan mengkilap. Untuk proteksi maksimal, aplikasikan tipis dan rata. Tidak perlu bilas. Re-apply setiap 3-6 bulan atau sesuai kebutuhan. Coverage: 1L untuk 20-30 m².',
+                    'Stainless steel equipment, aluminum surface, copper pipes, brass fittings, chrome parts',
+                    'Botol spray 500ml, Jerigen 5L, 20L',
+                    'https://tokopedia.link/karmand-mcp400', 
+                    'https://shopee.co.id/karmand-mcp400',
+                    null)">
+                    <div class="product-icon">🧪</div>
+                    <h3>Karmand Metal Cleaner & Protector MCP-400</h3>
+                    <p>Pembersih dan pelindung logam 2-in-1 untuk finish mengkilap tahan lama.</p>
+                    <div class="click-info">Klik untuk detail →</div>
+                </div>
+
+                <div class="product-card-compact" onclick="openProductModal(
+                    'Karmand Foam Cleaner FC-600', 
+                    'Pembersih berbusa untuk aplikasi vertikal yang memberikan waktu kontak lebih lama dan pembersihan lebih efektif. Formula cling-on yang menempel pada permukaan vertikal.',
+                    'Alkaline detergent, foam stabilizer, surfactant blend, corrosion inhibitor',
+                    'Bentuk: Cairan | Warna: Biru | pH: 11-12 | Foam Stability: High | Rinsability: Excellent',
+                    'Spray pada permukaan dari jarak 20-30 cm. Biarkan foam bekerja 5-10 menit (jangan biarkan kering). Bilas dengan air bertekanan. Untuk kotoran berat, gunakan brush sebelum bilas. Dilusi: 1:5 hingga 1:20 tergantung aplikasi.',
+                    'Dinding tangki, panel vertikal, peralatan besar, food processing equipment, pharmaceutical equipment',
+                    'Botol spray 1L, Jerigen 5L, 20L',
+                    'https://tokopedia.link/karmand-fc600', 
+                    'https://shopee.co.id/karmand-fc600',
+                    null)">
+                    <div class="product-icon">🌊</div>
+                    <h3>Karmand Foam Cleaner FC-600</h3>
+                    <p>Pembersih berbusa untuk pembersihan vertikal yang efektif dan menyeluruh.</p>
+                    <div class="click-info">Klik untuk detail →</div>
+                </div>
+
+                <div class="product-card-compact" onclick="openProductModal(
+                    'Karmand Anti-Seize Compound AS-1000', 
+                    'Compound anti-galling yang mencegah pengelasan dingin pada thread dan permukaan logam yang bergesekan. Tahan suhu ekstrem dan tekanan tinggi.',
+                    'Copper powder, graphite, mineral oil, extreme pressure additives',
+                    'Bentuk: Pasta | Warna: Tembaga | Temperature Range: -40°C to 1000°C | Torque Reduction: 25-30% | Salt Spray: 500+ hours',
+                    'Aplikasikan tipis dan merata pada thread atau permukaan kontak. Untuk bolt/nut, aplikasi pada 60-75% panjang thread. Jangan over-apply karena dapat mengubah torque specification. Re-apply setiap disassembly.',
+                    'Thread assembly high temp, bolt & nut exhaust system, flange gasket area, high temperature joints, stainless steel fasteners',
+                    'Tube 50g, 250g, Kaleng 500g, 1kg',
+                    'https://tokopedia.link/karmand-as1000', 
+                    'https://shopee.co.id/karmand-as1000',
+                    null)">
+                    <div class="product-icon">🔬</div>
+                    <h3>Karmand Anti-Seize Compound AS-1000</h3>
+                    <p>Anti-seize compound untuk mencegah galling pada suhu dan tekanan ekstrem.</p>
+                    <div class="click-info">Klik untuk detail →</div>
+                </div>
+
+                <div class="product-card-compact" onclick="openProductModal(
+                    'Karmand Passivation Chemical PC-SS', 
+                    'Kimia passivasi untuk stainless steel yang meningkatkan ketahanan korosi dengan membentuk lapisan oksida chromium. Memenuhi standar ASTM A967.',
+                    'Nitric acid based, accelerator, corrosion test indicator',
+                    'Bentuk: Cairan | Warna: Bening | Concentration: 20-25% HNO3 | Standard: ASTM A967 | Process Time: 30-60 menit',
+                    'Bersihkan permukaan dari oli dan kontaminan. Celup atau sirkulasi pada suhu 50-60°C selama 30-60 menit. Bilas menyeluruh dengan deionized water. Test dengan copper sulfate atau salt spray. pH neutralisasi sebelum disposal.',
+                    'Stainless steel fabrication, pharmaceutical equipment, food processing equipment, medical devices, clean room equipment',
+                    'Jerigen 20L, Drum 200L',
+                    'https://tokopedia.link/karmand-pcss', 
+                    'https://shopee.co.id/karmand-pcss',
+                    null)">
+                    <div class="product-icon">⚗️</div>
+                    <h3>Karmand Passivation Chemical PC-SS</h3>
+                    <p>Kimia passivasi stainless steel sesuai standar ASTM A967.</p>
+                    <div class="click-info">Klik untuk detail →</div>
+                </div>
+            </div>
+
+            <!-- Product Detail Modal -->
+            <div id="productModal" class="modal">
+                <div class="modal-content product-modal-content">
+                    <span class="close-modal" onclick="closeProductModal()">&times;</span>
+                    <div class="modal-product-header">
+                        <div class="modal-product-icon" id="modalIcon">🧪</div>
+                        <h3 id="modalProductName">Product Name</h3>
+                    </div>
+                    <div class="modal-product-body">
+                        <div class="modal-section">
+                            <h4>Deskripsi Produk</h4>
+                            <p id="modalProductDescription">Product description goes here...</p>
+                        </div>
+
+                        <div class="modal-section">
+                            <h4>Komposisi</h4>
+                            <p id="modalComposition">Composition goes here...</p>
+                        </div>
+
+                        <div id="modalPhysicalPropertiesContainer"></div>
+
+                        <!-- <div class="modal-section">
+                            <h4>Kemasan</h4>
+                            <p id="modalUsage">Usage instructions go here...</p>
+                        </div> -->
+
+                        <div class="modal-purchase">
+                            <h4>Beli Produk Ini:</h4>
+                            <div class="purchase-buttons">
+                                <a id="whatsappLink" href="#" target="_blank" class="purchase-btn whatsapp-btn">
+                                    <span>💬</span> WhatsApp
+                                </a>
+                                <a id="tokopediaLink" href="#" target="_blank" class="purchase-btn tokopedia-btn">
+                                    <span>🛒</span> Tokopedia
+                                </a>
+                                <a id="shopeeLink" href="#" target="_blank" class="purchase-btn shopee-btn">
+                                    <span>🛍️</span> Shopee
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-cta">
+                <h3>Butuh Konsultasi Produk?</h3>
+                <p>Tim teknis kami siap membantu Anda memilih produk yang tepat untuk kebutuhan spesifik Anda.</p>
+                <a href="kontak.html" class="cta-button">Hubungi Kami</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">Karmand<span> Industrial</span></div>
+                    <p class="footer-description">Solusi kimia inovatif untuk masa depan industri Anda. Kami berkomitmen
+                        memberikan produk berkualitas tinggi dan layanan profesional.</p>
+                    <div class="footer-contact">
+                        <p><strong>Email:</strong> karmandandalan.com</p>
+                        <p><strong>Telepon:</strong> +62 813-5346-8612</p>
+                        <p><strong>Alamat:</strong> Jl. Jemursari II No.8, Jemur Wonosari, Kec. Wonocolo, Surabaya, Jawa
+                            Timur 60237</p>
+                    </div>
+                </div>
+
+                <div class="footer-map">
+                    <h4>Lokasi Kami</h4>
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.298770611649!2d112.7452629!3d-7.3202979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb00acfb4ce1%3A0x9047767f9cfb265d!2sPT%20Karmand%20Mitra%20Andalan!5e0!3m2!1sid!2sid!4v1767950973684!5m2!1sid!2sid"
+                            width="100%" height="250" style="border:0; border-radius: 10px;" allowfullscreen=""
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-text">© 2026 Karmand Industrial. All rights reserved.</div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook">FB</a>
+                    <a href="#" aria-label="Twitter">TW</a>
+                    <a href="#" aria-label="Instagram">IG</a>
+                    <a href="#" aria-label="LinkedIn">LI</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Override the openProductModal function to handle HTML content properly
+        window.openProductModal = function (name, description, composition, physicalProps, usage, applications, packaging, tokopediaLink, shopeeLink, imagePath) {
+            const modal = document.getElementById('productModal');
+
+            // Get the icon/image from the clicked card
+            const cards = document.querySelectorAll('.product-card-compact');
+            let productIcon = '🧪';
+            let hasImage = false;
+            let imgSrc = null;
+
+            cards.forEach(card => {
+                if (card.querySelector('h3').textContent === name) {
+                    const img = card.querySelector('.product-image');
+                    if (img && img.style.display !== 'none' && img.complete) {
+                        imgSrc = img.src;
+                        hasImage = true;
+                    } else {
+                        const icon = card.querySelector('.product-icon, .product-icon-fallback'); if (icon) productIcon = icon.textContent;
+                    }
+                }
+            });
+
+            // Set modal icon/image
+            const modalIcon = document.getElementById('modalIcon');
+            if (imagePath) {
+                modalIcon.innerHTML = `<img src="${imagePath}" alt="${name}" style="max-width: 100%; max-height: 100%; object-fit: contain;">`;
+            } else if (hasImage && imgSrc) {
+                modalIcon.innerHTML = `<img src="${imgSrc}" alt="${name}" style="max-width: 100%; max-height: 100%; object-fit: contain;">`;
+            } else {
+                modalIcon.textContent = productIcon;
+            }
+
+            // Set modal content
+            document.getElementById('modalProductName').textContent = name;
+            document.getElementById('modalProductDescription').textContent = description;
+            document.getElementById('modalComposition').textContent = composition;
+
+            // Handle physicalProps - can be HTML or text
+            const physicalPropsContainer = document.getElementById('modalPhysicalPropertiesContainer');
+            if (physicalProps.startsWith('<')) {
+                // It's HTML content
+                physicalPropsContainer.innerHTML = physicalProps;
+            } else {
+                // It's plain text - wrap in modal-section
+                physicalPropsContainer.innerHTML = `<div class="modal-section"><h4>Sifat Fisik</h4><p>${physicalProps}</p></div>`;
+            }
+
+            // document.getElementById('modalUsage').textContent = usage;
+
+            // Create WhatsApp message
+            const waMessage = encodeURIComponent(`Halo, saya tertarik dengan produk *${name}*. Bisa tolong berikan informasi lebih lanjut?`);
+            const waNumber = '6281353468612';
+            const waLink = `https://wa.me/${waNumber}?text=${waMessage}`;
+
+            // Set purchase links
+            document.getElementById('whatsappLink').href = waLink;
+            document.getElementById('tokopediaLink').href = tokopediaLink;
+            document.getElementById('shopeeLink').href = shopeeLink;
+
+            // Show modal
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        };
+
+        function closeProductModal() {
+            const modal = document.getElementById('productModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function (event) {
+            const modal = document.getElementById('productModal');
+            if (event.target == modal) {
+                closeProductModal();
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                closeProductModal();
+            }
+        });
+    </script>

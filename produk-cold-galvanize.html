@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cold Galvanize & Coating - Karmand Industrial</title>
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Calculator Section Styles */
+        .calculator-section {
+            background: linear-gradient(135deg, rgba(5, 55, 78, 0.05), rgba(2, 206, 203, 0.05));
+            border: 2px solid rgba(2, 206, 203, 0.3);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+        }
+
+        .calculator-section h4 {
+            font-size: 1.2rem;
+            color: #05374e;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .calculator-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(2, 206, 203, 0.2);
+        }
+
+        .calc-tab {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: #6c757d;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .calc-tab:hover {
+            color: var(--accent);
+            background: rgba(2, 206, 203, 0.05);
+        }
+
+        .calc-tab.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+            font-weight: 800;
+        }
+
+        .calculator-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .calculator-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .calc-description {
+            font-size: 0.95rem;
+            color: #6c757d;
+            margin-bottom: 1.5rem;
+            padding: 0.75rem;
+            background: rgba(2, 206, 203, 0.08);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .calc-input-group {
+            margin-bottom: 1rem;
+        }
+
+        .calc-input-group label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #05374e;
+            margin-bottom: 0.4rem;
+        }
+
+        .calc-input-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid rgba(5, 55, 78, 0.15);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Nunito', sans-serif;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        .calc-input-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(2, 206, 203, 0.1);
+        }
+
+        .calc-input-group input::placeholder {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+        }
+
+        .calc-button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #02cecb 0%, #00a8a6 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Nunito', sans-serif;
+            margin-top: 0.5rem;
+            box-shadow: 0 4px 15px rgba(2, 206, 203, 0.3);
+        }
+
+        .calc-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(2, 206, 203, 0.4);
+        }
+
+        .calc-button:active {
+            transform: translateY(0);
+        }
+
+        .calc-result {
+            margin-top: 1.5rem;
+            min-height: 50px;
+        }
+
+        .result-success {
+            background: linear-gradient(135deg, rgba(2, 206, 203, 0.1), rgba(5, 55, 78, 0.05));
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid rgba(2, 206, 203, 0.3);
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-success h5 {
+            font-size: 1.1rem;
+            color: #05374e;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(2, 206, 203, 0.2);
+        }
+
+        .result-item:last-of-type {
+            border-bottom: none;
+        }
+
+        .result-item.highlight {
+            background: rgba(2, 206, 203, 0.15);
+            padding: 0.75rem 1rem;
+            margin: 0.5rem -0.5rem;
+            border-radius: 8px;
+            border-bottom: none;
+        }
+
+        .result-label {
+            font-weight: 600;
+            color: #05374e;
+            font-size: 0.95rem;
+        }
+
+        .result-value {
+            font-weight: 800;
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .result-note {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 3px solid #ffc107;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #856404;
+            font-weight: 600;
+        }
+
+        .error {
+            color: #dc3545;
+            padding: 1rem;
+            background: rgba(220, 53, 69, 0.1);
+            border-radius: 8px;
+            border-left: 3px solid #dc3545;
+            font-weight: 600;
+        }
+
+        /* Physical Properties Modern Styling */
+        .physical-props-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .prop-item {
+            background: linear-gradient(135deg, rgba(2, 206, 203, 0.08), rgba(5, 55, 78, 0.05));
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(2, 206, 203, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prop-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .prop-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(2, 206, 203, 0.2);
+            border-color: var(--accent);
+        }
+
+        .prop-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .prop-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .prop-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.3rem;
+        }
+
+        .prop-value {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #05374e;
+            line-height: 1.3;
+        }
+
+        .prop-highlight {
+            background: linear-gradient(135deg, rgba(2, 206, 203, 0.15), rgba(5, 55, 78, 0.08));
+            border: 2px solid rgba(2, 206, 203, 0.4);
+        }
+
+        .props-section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(2, 206, 203, 0.2);
+        }
+
+        .props-section-header h4 {
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin: 0;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .props-section-icon {
+            font-size: 1.3rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--accent);
+            margin: 1rem 0 0.5rem 0;
+            padding: 0.8rem 1.2rem;
+            background: linear-gradient(135deg, rgba(2, 206, 203, 0.1), rgba(5, 55, 78, 0.05));
+            border-radius: 12px;
+            border: 2px solid rgba(2, 206, 203, 0.3);
+            text-align: center;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-price::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(2, 206, 203, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .product-card-compact:hover .product-price::before {
+            left: 100%;
+        }
+
+        .product-price::after {
+
+            margin-left: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .calculator-section {
+                padding: 1rem;
+            }
+
+            .calc-tab {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .calculator-tabs {
+                gap: 0.3rem;
+            }
+
+            .result-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.3rem;
+            }
+
+            .result-value {
+                font-size: 1.2rem;
+            }
+
+            .physical-props-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 0.8rem;
+            }
+
+            .prop-item {
+                padding: 0.8rem;
+            }
+
+            .prop-value {
+                font-size: 0.9rem;
+            }
+
+            .product-price {
+                font-size: 1.3rem;
+                padding: 0.6rem 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo"><img src="logo-karmand.png" alt="Karmand Industrial" class="logo-img"></a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Beranda</a></li>
+                <li class="dropdown-menu">
+                    <a href="#" class="dropdown-toggle active">Katalog Produk</a>
+                    <ul class="dropdown">
+                        <li><a href="produk-cold-galvanize.html" class="active">Cold Galvanize & Coating</a></li>
+                        <li><a href="produk-chemical-maintenance.html">Chemical Maintenance</a></li>
+                        <li><a href="produk-water-treatment.html">Chemical Water Treatment</a></li>
+                        <li><a href="produk-fabrikasi-frp.html">Fabrikasi FRP & Rubber Lining</a></li>
+                        <li><a href="produk-chemical-auxiliaries.html">Chemical Auxiliaries</a></li>
+                    </ul>
+                </li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="karir.html">Karir</a></li>
+                <li><a href="kontak.html">Hubungi Kami</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Product Section -->
+    <section class="product-page page-section">
+        <div class="section-container">
+            <h2 class="section-title">Cold Galvanize & Coating For Industry</h2>
+            <p class="section-subtitle">Perlindungan Anti Korosi Berkualitas Tinggi</p>
+
+            <div class="product-intro">
+                <p>Kami menyediakan berbagai produk cold galvanizing dan coating berkualitas tinggi yang dirancang
+                    khusus untuk melindungi permukaan logam dari korosi dan kerusakan lingkungan. Produk-produk kami
+                    telah terbukti efektif di berbagai industri.</p>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card-compact" onclick="openProductModal(
+                    'Karmand Cold Galvanize K 404 CG - Pail 20Kg', 
+                    'Cat pelindung 1 komponen dengan kandungan Zinc hingga 95% untuk perlindungan anti karat pada semua jenis besi. Banyak digunakan untuk struktur baja, perpipaan, tangki, tiang PJU, peralatan kapal, otomotif, industri, offshore, hingga PLTU dan PLN. Sebelum aplikasi, pastikan permukaan bersih dari karat, minyak, dan gemuk.',
+                    'Zinc dust 95%, organic resin binder, solvent system',
+                    '<div class=\'modal-section\'><h4>Kelebihan Produk</h4><ul style=\'list-style: none; padding: 0;\'><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>✓</span> Kandungan zinc hingga 95%</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>✓</span> Perlindungan katodik optimal</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>✓</span> Ketahanan terhadap cuaca ekstrem</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>✓</span> Mudah diaplikasikan</li></ul></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🔬</span><h4>Sifat Fisik</h4></div><div class=\'physical-props-grid\'><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>🧪</span><div class=\'prop-label\'>Bahan Dasar</div><div class=\'prop-value\'>Special Resin</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🎨</span><div class=\'prop-label\'>Warna</div><div class=\'prop-value\'>Perak Aluminium</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🔢</span><div class=\'prop-label\'>Komponen</div><div class=\'prop-value\'>1 Komponen</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>⚖️</span><div class=\'prop-label\'>Specific Gravity</div><div class=\'prop-value\'>1.1</div></div><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>⏱️</span><div class=\'prop-label\'>Kering Sentuh</div><div class=\'prop-value\'>30 menit</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>⏰</span><div class=\'prop-label\'>Kering Sempurna</div><div class=\'prop-value\'>24 jam</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>📊</span><div class=\'prop-label\'>Theoritical conerage</div><div class=\'prop-value\'>150 gr/m²</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>📏</span><div class=\'prop-label\'>DFT (Wet/Dry)</div><div class=\'prop-value\'>75/37 microns</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>💧</span><div class=\'prop-label\'>Nonvolatile</div><div class=\'prop-value\'>49.2%</div></div></div></div>',
+                    'Produk ini dapat diaplikasikan dengan spray, airless, maupun brush (kuas), dengan pengencer Karmand Thinner CG.',
+                    'Struktur baja, jembatan, tangki penyimpanan, tower transmisi, peralatan industri offshore',
+                    'Kaleng 1 kg, 5 kg, Pail 20 kg',
+                    'https://tokopedia.link/karmand-zinc', 
+                    'https://shopee.co.id/karmand-zinc',
+                    null)">
+                    <div class="product-image-wrapper">
+                        <img src="K_galvanize_404_drum.jpg" alt="Karmand Cold Galvanize K 404 CG - 20kg"
+                            class="product-image">
+                        <div class="product-icon-fallback" style="display:none;">🧪</div>
+                    </div>
+                    <h3>Karmand Cold Galvanize K 404 CG - Pail 20Kg</h3>
+                    <p>Karmand 404 CG dapat digunakan untuk memperbaiki system galvanis system panas dengan dikuas atau
+                        dispray sebagai cold galvanize.</p>
+                    <div class="product-price">Rp 850.000</div>
+                    <div class="click-info">Klik untuk detail →</div>
+                </div>
+
+                <div class="product-card-compact" onclick="openProductModal(
+                    'Karmand Cold Galvanize K 404 CG - 5KG', 
+                    'Cat pelindung 1 komponen dengan kandungan Zinc hingga 95% yang efektif melindungi semua jenis besi dari korosi. Banyak digunakan untuk struktur baja, perpipaan, tangki baja, tiang PJU, peralatan kapal, otomotif, industri, offshore, hingga PLTU dan PLN. Sebelum aplikasi, bersihkan permukaan metal dari karat, minyak, dan gemuk menggunakan thinner atau solvent, sikat kawat, sander, atau sand blasting.',
+                    '',
+                    '<div class=\'modal-section\'><h4>Kelebihan Produk</h4><ul style=\'list-style: none; padding: 0;\'><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>✓</span> Tingkat kelekatan (bonding) yang tinggi terhadap metal</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>✓</span> Memperbaiki system Hot Dip Galvanize</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>✓</span> Pelindung karat serbaguna</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>✓</span> Sebagai primer coating</li></ul></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🔬</span><h4>Sifat Fisik</h4></div><div class=\'physical-props-grid\'><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>🧪</span><div class=\'prop-label\'>Bahan Dasar</div><div class=\'prop-value\'>Special resin</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🎨</span><div class=\'prop-label\'>Warna</div><div class=\'prop-value\'>Perak Aluminium</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🔢</span><div class=\'prop-label\'>Komponen</div><div class=\'prop-value\'>1 Komponen</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>⚖️</span><div class=\'prop-label\'>Specific Gravity</div><div class=\'prop-value\'>1:1</div></div><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>⏱️</span><div class=\'prop-label\'>Kering Sentuh</div><div class=\'prop-value\'>15 menit pada temperature ruang</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>⏰</span><div class=\'prop-label\'>Kering sempurna</div><div class=\'prop-value\'>8 Jam</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>📊</span><div class=\'prop-label\'>Theoritical conerage</div><div class=\'prop-value\'>150 gr/m²</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>📏</span><div class=\'prop-label\'>DFT (WET/DRY)</div><div class=\'prop-value\'>100/50 microns</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>💧</span><div class=\'prop-label\'>Nonvolatile</div><div class=\'prop-value\'>49.2%</div></div></div></div>',
+                    'Produk ini dapat diaplikasikan dengan spray, airless, maupun brush (kuas), dengan pengencer Karmand Thinner CG.',
+                    'Pipa, tangki kimia, lantai industri, peralatan proses, water treatment facility',
+                    'Set 5 kg, 20 kg',
+                    'https://tokopedia.link/karmand-epoxy', 
+                    'https://shopee.co.id/karmand-epoxy',
+                    null)">
+                    <div class="product-image-wrapper">
+                        <img src="K_galvanize_404_5kg.png" alt="Karmand Surfactant SN-01" class="product-image">
+                        <div class="product-icon-fallback" style="display:none;">🧪</div>
+                    </div>
+                    <h3>Karmand Cold Galvanize K 404 CG - 5KG</h3>
+                    <p>Karmand 404 CG dapat digunakan untuk memperbaiki system galvanis system panas dengan dikuas atau
+                        dispray sebagai cold galvanize.</p>
+                    <div class="product-price">Rp 250.000</div>
+                    <div class="click-info">Klik untuk detail →</div>
+                </div>
+                
+                <div class="product-card-compact" onclick="openProductModal(
+                    'Karmand Cold Galvanize K 404 CG - 1KG', 
+                    'Cat pelindung 1 komponen dengan kandungan Zinc hingga 95% yang efektif melindungi semua jenis besi dari korosi. Banyak digunakan untuk struktur baja, perpipaan, tangki baja, tiang PJU, peralatan kapal, otomotif, industri, offshore, hingga PLTU dan PLN. Sebelum aplikasi, bersihkan permukaan metal dari karat, minyak, dan gemuk menggunakan thinner atau solvent, sikat kawat, sander, atau sand blasting.',
+                    '',
+                    '<div class=\'modal-section\'><h4>Kelebihan Produk</h4><ul style=\'list-style: none; padding: 0;\'><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>✓</span> Tingkat kelekatan (bonding) yang tinggi terhadap metal</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>✓</span> Memperbaiki system Hot Dip Galvanize</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>✓</span> Pelindung karat serbaguna</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>✓</span> Sebagai primer coating</li></ul></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🔬</span><h4>Sifat Fisik</h4></div><div class=\'physical-props-grid\'><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>🧪</span><div class=\'prop-label\'>Bahan Dasar</div><div class=\'prop-value\'>Special resin</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🎨</span><div class=\'prop-label\'>Warna</div><div class=\'prop-value\'>Perak Aluminium</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🔢</span><div class=\'prop-label\'>Komponen</div><div class=\'prop-value\'>1 Komponen</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>⚖️</span><div class=\'prop-label\'>Specific Gravity</div><div class=\'prop-value\'>1:1</div></div><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>⏱️</span><div class=\'prop-label\'>Kering Sentuh</div><div class=\'prop-value\'>15 menit pada temperature ruang</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>⏰</span><div class=\'prop-label\'>Kering sempurna</div><div class=\'prop-value\'>8 Jam</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>📊</span><div class=\'prop-label\'>Theoritical conerage</div><div class=\'prop-value\'>150 gr/m²</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>📏</span><div class=\'prop-label\'>DFT (WET/DRY)</div><div class=\'prop-value\'>100/50 microns</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>💧</span><div class=\'prop-label\'>Nonvolatile</div><div class=\'prop-value\'>49.2%</div></div></div></div>',
+                    'Produk ini dapat diaplikasikan dengan spray, airless, maupun brush (kuas), dengan pengencer Karmand Thinner CG.',
+                    'Pipa, tangki kimia, lantai industri, peralatan proses, water treatment facility',
+                    'Set 5 kg, 20 kg',
+                    'https://tokopedia.link/karmand-epoxy', 
+                    'https://shopee.co.id/karmand-epoxy',
+                    null)">
+                    <div class="product-image-wrapper">
+                        <img src="K_galvanize_404_1kg.png" alt="Karmand Surfactant SN-01" class="product-image">
+                        <div class="product-icon-fallback" style="display:none;">🧪</div>
+                    </div>
+                    <h3>Karmand Cold Galvanize K 404 CG - 1KG</h3>
+                    <p>Karmand 404 CG dapat digunakan untuk memperbaiki system galvanis system panas dengan dikuas atau
+                        dispray sebagai cold galvanize.</p>
+                    <div class="product-price">Rp 170.000</div>
+                    <div class="click-info">Klik untuk detail →</div>
+                </div>
+
+                <div class="product-card-compact" onclick="openProductModal(
+                    'Karmand Surfacer Base Coat EP-02FD', 
+                    'Karmand Surfacer Base Coat EP-02FD adalah cat pelapis dasar berbasis epoxy 1 komponen dengan kandungan zinc hingga 95% yang efektif melindungi semua jenis besi dari korosi. Banyak digunakan untuk struktur baja, perpipaan, tangki baja, tiang PJU, peralatan kapal, otomotif, industri, offshore, hingga PLTU dan PLN. Sebelum aplikasi, bersihkan permukaan metal dari karat, minyak, dan gemuk menggunakan thinner atau solvent, sikat kawat, sander, atau sand blasting.',
+                    '',
+                    '<div class=\'modal-section\'><h4>Kelebihan Produk</h4><ul style=\'list-style: none; padding: 0;\'><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>✓</span> Cat pelapis dasar berbasis epoxy 1 komponen</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>✓</span> Kandungan zinc hingga 95%</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>✓</span> Efektif melindungi semua jenis besi dari korosi</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>✓</span> Cocok untuk struktur baja, perpipaan, dan tangki</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>✓</span> Aplikasi luas: industri, offshore, PLTU, dan PLN</li></ul></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🔬</span><h4>Sifat Fisik</h4></div><div class=\'physical-props-grid\'><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>🧪</span><div class=\'prop-label\'>Bahan Dasar</div><div class=\'prop-value\'>Epoxy 1 Komponen</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>⚡</span><div class=\'prop-label\'>Kandungan Zinc</div><div class=\'prop-value\'>Hingga 95%</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🎨</span><div class=\'prop-label\'>Warna</div><div class=\'prop-value\'>Abu-abu/Grey</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🔢</span><div class=\'prop-label\'>Komponen</div><div class=\'prop-value\'>1 Komponen</div></div><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>⏱️</span><div class=\'prop-label\'>Kering Sentuh</div><div class=\'prop-value\'>20-30 menit</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>⏰</span><div class=\'prop-label\'>Kering Sempurna</div><div class=\'prop-value\'>12-24 Jam</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>📊</span><div class=\'prop-label\'>Daya Sebar</div><div class=\'prop-value\'>8-10 m²/liter</div></div><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>📏</span><div class=\'prop-label\'>DFT (Wet/Dry)</div><div class=\'prop-value\'>80-100/40-50 microns</div></div></div></div>',
+                    'Produk ini dapat diaplikasikan dengan spray, airless, maupun brush (kuas), dengan pengencer Karmand Thinner CG.',
+                    'Pipa, tangki kimia, lantai industri, peralatan proses, water treatment facility',
+                    'Set 5 kg, 20 kg',
+                    'https://tokopedia.link/karmand-epoxy', 
+                    'https://shopee.co.id/karmand-epoxy',
+                    null)">
+                    <div class="product-image-wrapper">
+                        <img src="Karmand-Surfaces-EP-02FD.png" alt="Karmand Surfacer Base Coat EP-02FD" class="product-image">
+                        <div class="product-icon-fallback" style="display:none;">🧪</div>
+                    </div>
+                    <h3>Karmand Surfacer Base Coat EP-02FD</h3>
+                    <p>Karmand Surfacer Base Coat EP-02FD adalah surfacer base coat yang digunakan untuk memperbaiki permukaan logam sebelum dilakukan finishing coating.</p>
+                    <div class="product-price">Rp 170.000</div>
+                    <div class="click-info">Klik untuk detail →</div>
+                </div>
+
+                <div class="product-card-compact">
+                    <div class="product-image-wrapper">
+                        <img src="Karmand-Cat-NC-5Kg.png" alt="Karmand Cat NC 5Kg" class="product-image">
+                        <div class="product-icon-fallback" style="display:none;">🧪</div>
+                    </div>
+                    <h3>Karmand Cat NC 5Kg</h3>
+                    <p>Karmand Cat NC 5Kg adalah cat nitrocellulose yang cepat kering, warna cerah, dan hasil akhir
+                        halus, cocok untuk kayu dan logam.</p>
+                    <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20*Karmand%20Cat%20NC%205Kg*.%20Bisa%20tolong%20berikan%20informasi%20harga%20dan%20detail%20lebih%20lanjut%3F"
+                        target="_blank" class="product-price"
+                        style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(18, 140, 126, 0.05)); border-color: rgba(37, 211, 102, 0.3); color: #25d366; text-decoration: none; display: block; cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.3)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">💬 Chat For The
+                        Price</a>
+                    <div class="click-info" onclick="openProductModal(
+                        'Karmand Cat NC 5Kg', 
+                        'Karmand Cat NC 5Kg adalah cat berbasis NC (Nitrocellulose) berkualitas untuk hasil akhir halus dan mengkilap. Cocok digunakan pada permukaan kayu dan logam, dengan daya sebar baik serta cepat kering, sehingga efisien untuk pekerjaan profesional. Memberikan warna yang tajam dan tampilan rapi untuk berbagai kebutuhan finishing.',
+                        'Polyurethane resin, UV stabilizer, pigment, solvent',
+                        '<div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🔥</span><h4>Data Bahaya Kebakaran dan Ledakan</h4></div><p style=\'padding: 1rem; background: rgba(255, 107, 107, 0.1); border-left: 4px solid #ff6b6b; border-radius: 4px; margin: 1rem 0;\'>Bahan mudah terbakar, jangan disimpan di bawah sinar matahari langsung atau di dekat api. Gunakan ventilasi yang memadai.</p></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🛡️</span><h4>Pencegahan Paparan</h4></div><div class=\'physical-props-grid\'><div class=\'prop-item\'><span class=\'prop-icon\'>👁️</span><div class=\'prop-label\'>Perlindungan Mata</div><div class=\'prop-value\'>Tidak diperlukan dalam penggunaan normal</div></div><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>😷</span><div class=\'prop-label\'>Perlindungan Pernapasan</div><div class=\'prop-value\'>Diperlukan</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🧤</span><div class=\'prop-label\'>Perlindungan Tangan</div><div class=\'prop-value\'>Tidak diperlukan dalam penggunaan normal</div></div></div></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>📦</span><h4>Penanganan & Penyimpanan</h4></div><ul style=\'list-style: none; padding: 0;\'><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>•</span> Simpan wadah dalam keadaan tertutup rapat.</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>•</span> Jauhkan dari panas dan api.</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>•</span> Simpan di tempat sejuk dan kering.</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>•</span> Gunakan ventilasi yang memadai.</li></ul></div>',
+                        'Aplikasikan sebagai top coat di atas primer atau mid coat. Mix ratio 4:1 (resin:hardener). Pot life 6-8 jam. Theoritical conerage: 1 liter untuk 8-10 m² per coat.',
+                        'Eksterior bangunan, struktur offshore, peralatan outdoor, automotive coating',
+                        'Set 5 kg, 20 kg',
+                        'https://tokopedia.link/karmand-pu', 
+                        'https://shopee.co.id/karmand-pu',
+                        null)" style="cursor: pointer;">Klik untuk detail →
+                    </div>
+                </div>
+
+                <div class="product-card-compact">
+                    <div class="product-image-wrapper">
+                        <img src="Karmand-Cat-NC-1Kg.png" alt="Karmand Cat NC 1Kg" class="product-image">
+                        <div class="product-icon-fallback" style="display:none;">🧪</div>
+                    </div>
+                    <h3>Karmand Cat NC 1Kg</h3>
+                    <p>Karmand Cat NC 1Kg adalah cat nitrocellulose yang cepat kering, warna cerah, dan hasil akhir
+                        halus, cocok untuk kayu dan logam.</p>
+                    <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20*Karmand%20Cat%20NC%201Kg*.%20Bisa%20tolong%20berikan%20informasi%20harga%20dan%20detail%20lebih%20lanjut%3F"
+                        target="_blank" class="product-price"
+                        style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(18, 140, 126, 0.05)); border-color: rgba(37, 211, 102, 0.3); color: #25d366; text-decoration: none; display: block; cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.3)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">💬 Chat For The
+                        Price</a>
+                    <div class="click-info" onclick="openProductModal(
+                        'Karmand Cat NC 1Kg', 
+                        'Karmand Cat NC 1Kg adalah cat berbasis NC (Nitrocellulose) berkualitas untuk hasil akhir halus dan mengkilap. Cocok digunakan pada permukaan kayu dan logam, dengan daya sebar baik serta cepat kering, sehingga efisien untuk pekerjaan profesional. Memberikan warna yang tajam dan tampilan rapi untuk berbagai kebutuhan finishing.',
+                        'Polyurethane resin, UV stabilizer, pigment, solvent',
+                        '<div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🔥</span><h4>Data Bahaya Kebakaran dan Ledakan</h4></div><p style=\'padding: 1rem; background: rgba(255, 107, 107, 0.1); border-left: 4px solid #ff6b6b; border-radius: 4px; margin: 1rem 0;\'>Bahan mudah terbakar, jangan disimpan di bawah sinar matahari langsung atau di dekat api. Gunakan ventilasi yang memadai.</p></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🛡️</span><h4>Pencegahan Paparan</h4></div><div class=\'physical-props-grid\'><div class=\'prop-item\'><span class=\'prop-icon\'>👁️</span><div class=\'prop-label\'>Perlindungan Mata</div><div class=\'prop-value\'>Tidak diperlukan dalam penggunaan normal</div></div><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>😷</span><div class=\'prop-label\'>Perlindungan Pernapasan</div><div class=\'prop-value\'>Diperlukan</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🧤</span><div class=\'prop-label\'>Perlindungan Tangan</div><div class=\'prop-value\'>Tidak diperlukan dalam penggunaan normal</div></div></div></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>📦</span><h4>Penanganan & Penyimpanan</h4></div><ul style=\'list-style: none; padding: 0;\'><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>•</span> Simpan wadah dalam keadaan tertutup rapat.</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>•</span> Jauhkan dari panas dan api.</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>•</span> Simpan di tempat sejuk dan kering.</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>•</span> Gunakan ventilasi yang memadai.</li></ul></div>',
+                        'Aplikasikan sebagai top coat di atas primer atau mid coat. Mix ratio 4:1 (resin:hardener). Pot life 6-8 jam. Theoritical conerage: 1 liter untuk 8-10 m² per coat.',
+                        'Eksterior bangunan, struktur offshore, peralatan outdoor, automotive coating',
+                        'Set 5 kg, 20 kg',
+                        'https://tokopedia.link/karmand-pu', 
+                        'https://shopee.co.id/karmand-pu',
+                        null)" style="cursor: pointer;">Klik untuk detail →
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Detail Modal -->
+            <div id="productModal" class="modal">
+                <div class="modal-content product-modal-content">
+                    <span class="close-modal" onclick="closeProductModal()">&times;</span>
+                    <div class="modal-product-header">
+                        <div class="modal-product-icon" id="modalIcon">🧪</div>
+                        <h3 id="modalProductName">Product Name</h3>
+                    </div>
+                    <div class="modal-product-body">
+                        <div class="modal-section">
+                            <h4>Deskripsi Produk</h4>
+                            <p id="modalProductDescription">Product description goes here...</p>
+                        </div>
+
+                        <!-- <div class="modal-section">
+                            <h4>Komposisi</h4>
+                            <p id="modalComposition">Composition goes here...</p>
+                        </div> -->
+
+                        <div id="modalPhysicalPropertiesContainer"></div>
+
+                        <div class="modal-section">
+                            <h4>Aplikasi & Pengenceran</h4>
+                            <p id="modalUsage">Usage instructions go here...</p>
+                        </div>
+
+                        <div class="modal-section calculator-section">
+                            <h4>🧮 Kalkulator Perhitungan</h4>
+                            <div class="calculator-tabs">
+                                <button class="calc-tab active" onclick="switchCalcTab('tank')">Volume Tangki</button>
+                                <button class="calc-tab" onclick="switchCalcTab('circle')">Luas Lingkaran</button>
+                            </div>
+
+                            <!-- Tank Calculator -->
+                            <div id="tankCalculator" class="calculator-content active">
+                                <p class="calc-description">Hitung volume tangki silinder</p>
+                                <div class="calc-input-group">
+                                    <label>Jari-jari Tangki (r) - centimeter:</label>
+                                    <input type="number" id="tankRadius" step="0.1" min="0" placeholder="Contoh: 250">
+                                </div>
+                                <div class="calc-input-group">
+                                    <label>Tinggi Tangki (t) - centimeter:</label>
+                                    <input type="number" id="tankHeight" step="0.1" min="0" placeholder="Contoh: 500">
+                                </div>
+                                <button class="calc-button" onclick="calculateTank()">Hitung</button>
+                                <div id="tankResult" class="calc-result"></div>
+                            </div>
+
+                            <!-- Circle Calculator -->
+                            <div id="circleCalculator" class="calculator-content">
+                                <p class="calc-description">Hitung luas lingkaran</p>
+                                <div class="calc-input-group">
+                                    <label>Jari-jari Lingkaran (r) - centimeter:</label>
+                                    <input type="number" id="circleRadius" step="0.1" min="0" placeholder="Contoh: 100">
+                                </div>
+                                <button class="calc-button" onclick="calculateCircle()">Hitung</button>
+                                <div id="circleResult" class="calc-result"></div>
+                            </div>
+                        </div>
+
+                        <div class="modal-purchase">
+                            <h4>Beli Produk Ini:</h4>
+                            <div class="purchase-buttons">
+                                <a id="whatsappLink" href="#" target="_blank" class="purchase-btn whatsapp-btn">
+                                    <span>💬</span> WhatsApp
+                                </a>
+                                <a id="tokopediaLink" href="#" target="_blank" class="purchase-btn tokopedia-btn">
+                                    <span>🛒</span> Tokopedia
+                                </a>
+                                <a id="shopeeLink" href="#" target="_blank" class="purchase-btn shopee-btn">
+                                    <span>🛍️</span> Shopee
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-cta">
+                <h3>Butuh Konsultasi Produk?</h3>
+                <p>Tim teknis kami siap membantu Anda memilih produk yang tepat untuk kebutuhan spesifik Anda.</p>
+                <a href="kontak.html" class="cta-button">Hubungi Kami</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">Karmand<span> Industrial</span></div>
+                    <p class="footer-description">Solusi kimia inovatif untuk masa depan industri Anda. Kami berkomitmen
+                        memberikan produk berkualitas tinggi dan layanan profesional.</p>
+                    <div class="footer-contact">
+                        <p><strong>Email:</strong> karmandandalan.com</p>
+                        <p><strong>Telepon:</strong> +62 813-5346-8612</p>
+                        <p><strong>Alamat:</strong> Jl. Jemursari II No.8, Jemur Wonosari, Kec. Wonocolo, Surabaya, Jawa
+                            Timur 60237</p>
+                    </div>
+                </div>
+
+                <div class="footer-map">
+                    <h4>Lokasi Kami</h4>
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.298770611649!2d112.7452629!3d-7.3202979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb00acfb4ce1%3A0x9047767f9cfb265d!2sPT%20Karmand%20Mitra%20Andalan!5e0!3m2!1sid!2sid!4v1767950973684!5m2!1sid!2sid"
+                            width="100%" height="250" style="border:0; border-radius: 10px;" allowfullscreen=""
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-text">© 2026 Karmand Industrial. All rights reserved.</div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook">FB</a>
+                    <a href="#" aria-label="Twitter">TW</a>
+                    <a href="#" aria-label="Instagram">IG</a>
+                    <a href="#" aria-label="LinkedIn">LI</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Override the openProductModal function to handle HTML content properly
+        window.openProductModal = function (name, description, composition, physicalProps, usage, applications, packaging, tokopediaLink, shopeeLink, imagePath) {
+            const modal = document.getElementById('productModal');
+
+            // Get the icon/image from the clicked card
+            const cards = document.querySelectorAll('.product-card-compact');
+            let productIcon = '🧪';
+            let hasImage = false;
+            let imgSrc = null;
+
+            cards.forEach(card => {
+                if (card.querySelector('h3').textContent === name) {
+                    const img = card.querySelector('.product-image');
+                    if (img && img.style.display !== 'none' && img.complete) {
+                        imgSrc = img.src;
+                        hasImage = true;
+                    } else {
+                        const icon = card.querySelector('.product-icon, .product-icon-fallback');
+                        if (icon) productIcon = icon.textContent;
+                    }
+                }
+            });
+
+            // Set modal icon/image
+            const modalIcon = document.getElementById('modalIcon');
+
+            // Prioritas: imagePath parameter > imgSrc dari card > icon emoji
+            if (imagePath) {
+                modalIcon.innerHTML = `<img src="${imagePath}" alt="${name}" style="max-width: 100%; max-height: 100%; object-fit: contain;">`;
+            } else if (hasImage && imgSrc) {
+                modalIcon.innerHTML = `<img src="${imgSrc}" alt="${name}" style="max-width: 100%; max-height: 100%; object-fit: contain;">`;
+            } else {
+                modalIcon.textContent = productIcon;
+            }
+
+            // Set modal content
+            document.getElementById('modalProductName').textContent = name;
+            document.getElementById('modalProductDescription').textContent = description;
+            // document.getElementById('modalComposition').textContent = composition;
+
+            // Handle physicalProps - can be HTML or text
+            const physicalPropsContainer = document.getElementById('modalPhysicalPropertiesContainer');
+            if (physicalProps.startsWith('<')) {
+                // It's HTML content
+                physicalPropsContainer.innerHTML = physicalProps;
+            } else {
+                // It's plain text - wrap in modal-section
+                physicalPropsContainer.innerHTML = `<div class="modal-section"><h4>Sifat Fisik</h4><p>${physicalProps}</p></div>`;
+            }
+
+            document.getElementById('modalUsage').textContent = usage;
+
+            // Create WhatsApp message
+            const waMessage = encodeURIComponent(`Halo, saya tertarik dengan produk *${name}*. Bisa tolong berikan informasi lebih lanjut?`);
+            const waNumber = '6281353468612';
+            const waLink = `https://wa.me/${waNumber}?text=${waMessage}`;
+
+            // Set purchase links
+            document.getElementById('whatsappLink').href = waLink;
+            document.getElementById('tokopediaLink').href = tokopediaLink;
+            document.getElementById('shopeeLink').href = shopeeLink;
+
+            // Show modal
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        };
+
+        // Calculator Functions
+        function switchCalcTab(type) {
+            // Switch active tab
+            const tabs = document.querySelectorAll('.calc-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Switch calculator content
+            const calculators = document.querySelectorAll('.calculator-content');
+            calculators.forEach(calc => calc.classList.remove('active'));
+
+            if (type === 'tank') {
+                document.getElementById('tankCalculator').classList.add('active');
+            } else {
+                document.getElementById('circleCalculator').classList.add('active');
+            }
+        }
+
+        function calculateTank() {
+            const radiusCm = parseFloat(document.getElementById('tankRadius').value);
+            const heightCm = parseFloat(document.getElementById('tankHeight').value);
+
+            if (!radiusCm || !heightCm) {
+                document.getElementById('tankResult').innerHTML =
+                    '<p class="error">⚠️ Mohon isi semua field dengan benar!</p>';
+                return;
+            }
+
+            const pi = 3.14159;
+
+            // Konversi cm ke meter
+            const radiusM = radiusCm / 100;
+            const heightM = heightCm / 100;
+
+            // Volume tangki: V = π × r² × t (dalam m³)
+            const volumeM3 = pi * radiusM * radiusM * heightM;
+
+            // Volume dalam cm³
+            const volumeCm3 = pi * radiusCm * radiusCm * heightCm;
+
+            // Luas permukaan silinder (dinding + 2 tutup): 2πr² + 2πrt
+            const surfaceAreaCm2 = (2 * pi * radiusCm * radiusCm) + (2 * pi * radiusCm * heightCm);
+            const surfaceAreaM2 = surfaceAreaCm2 / 10000;
+
+            document.getElementById('tankResult').innerHTML = `
+                <div class="result-success">
+                    <h5>📊 Hasil Perhitungan:</h5>
+                    <div class="result-item highlight">
+                        <span class="result-label">Volume Tangki (V = π × r² × t):</span>
+                        <span class="result-value">${volumeCm3.toFixed(2)} cm³</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Volume dalam meter kubik:</span>
+                        <span class="result-value">${volumeM3.toFixed(4)} m³</span>
+                    </div>
+                    <div class="result-item highlight">
+                        <span class="result-label">Luas Permukaan Total:</span>
+                        <span class="result-value">${surfaceAreaCm2.toFixed(2)} cm²</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Luas dalam meter persegi:</span>
+                        <span class="result-value">${surfaceAreaM2.toFixed(4)} m²</span>
+                    </div>
+                    <p class="result-note">💡 Luas permukaan = dinding + 2 tutup (2πr² + 2πrt)</p>
+                </div>
+            `;
+        }
+
+        function calculateCircle() {
+            const radiusCm = parseFloat(document.getElementById('circleRadius').value);
+
+            if (!radiusCm) {
+                document.getElementById('circleResult').innerHTML =
+                    '<p class="error">⚠️ Mohon isi jari-jari dengan benar!</p>';
+                return;
+            }
+
+            const pi = 3.14159;
+
+            // Konversi cm ke meter
+            const radiusM = radiusCm / 100;
+
+            // Luas lingkaran: L = π × r²
+            const areaCm2 = pi * radiusCm * radiusCm;
+            const areaM2 = pi * radiusM * radiusM;
+
+            // Keliling lingkaran: K = 2 × π × r
+            const circumferenceCm = 2 * pi * radiusCm;
+            const circumferenceM = 2 * pi * radiusM;
+
+            document.getElementById('circleResult').innerHTML = `
+                <div class="result-success">
+                    <h5>📊 Hasil Perhitungan:</h5>
+                    <div class="result-item highlight">
+                        <span class="result-label">Luas Lingkaran (L = π × r²):</span>
+                        <span class="result-value">${areaCm2.toFixed(2)} cm²</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Luas dalam meter persegi:</span>
+                        <span class="result-value">${areaM2.toFixed(4)} m²</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Keliling Lingkaran (K = 2πr):</span>
+                        <span class="result-value">${circumferenceCm.toFixed(2)} cm</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Keliling dalam meter:</span>
+                        <span class="result-value">${circumferenceM.toFixed(4)} m</span>
+                    </div>
+                    <p class="result-note">💡 Hubungi kami untuk konsultasi kebutuhan cat yang sesuai</p>
+                </div>
+            `;
+        }
+
+        function closeProductModal() {
+            const modal = document.getElementById('productModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function (event) {
+            const modal = document.getElementById('productModal');
+            if (event.target == modal) {
+                closeProductModal();
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                closeProductModal();
+            }
+        });
+    </script>
+</body>
+
+</html>

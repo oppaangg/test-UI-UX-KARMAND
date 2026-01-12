@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Karmand Industrial</title>
+
+    <link rel="shortcut icon" href="/logo.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Portfolio Modal Styles */
+        .portfolio-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .portfolio-modal-content {
+            background: #fff;
+            margin: 3% auto;
+            padding: 0;
+            width: 90%;
+            max-width: 900px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .portfolio-modal-header {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .portfolio-modal-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .portfolio-modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(5, 55, 78, 0.9));
+        }
+
+        .portfolio-modal-title {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            color: white;
+            z-index: 1;
+        }
+
+        .portfolio-modal-title h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .portfolio-modal-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--accent);
+            color: #000;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .close-portfolio-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2;
+            transition: all 0.3s ease;
+            font-size: 1.8rem;
+            color: #05374e;
+            font-weight: bold;
+            border: none;
+        }
+
+        .close-portfolio-modal:hover {
+            background: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        .portfolio-modal-body {
+            padding: 2.5rem;
+        }
+
+        .portfolio-detail-section {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(2, 206, 203, 0.2);
+        }
+
+        .portfolio-detail-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .portfolio-detail-section h3 {
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .portfolio-detail-section p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-detail-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .portfolio-detail-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1rem;
+            color: #6c757d;
+            border-bottom: 1px solid rgba(2, 206, 203, 0.1);
+        }
+
+        .portfolio-detail-list li:last-child {
+            border-bottom: none;
+        }
+
+        .portfolio-detail-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .portfolio-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .portfolio-spec-item {
+            padding: 1.5rem;
+            background: rgba(2, 206, 203, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .portfolio-spec-label {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-spec-value {
+            font-size: 1.1rem;
+            color: #05374e;
+            font-weight: 800;
+        }
+
+        .portfolio-cta-modal {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(2, 206, 203, 0.1), rgba(5, 55, 78, 0.05));
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .portfolio-cta-modal h4 {
+            font-size: 1.3rem;
+            color: #05374e;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .portfolio-cta-modal p {
+            margin-bottom: 1.5rem;
+            color: #6c757d;
+        }
+
+        .portfolio-cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #02cecb 0%, #00a8a6 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 800;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(2, 206, 203, 0.3);
+        }
+
+        .portfolio-cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(2, 206, 203, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .portfolio-modal-content {
+                width: 95%;
+                margin: 5% auto;
+            }
+
+            .portfolio-modal-header {
+                height: 250px;
+            }
+
+            .portfolio-modal-title h2 {
+                font-size: 1.5rem;
+            }
+
+            .portfolio-modal-body {
+                padding: 1.5rem;
+            }
+
+            .portfolio-specs {
+                grid-template-columns: 1fr;
+            }
+
+            .close-portfolio-modal {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo"><img src="logo-karmand.png" alt="Karmand Industrial" class="logo-img"></a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Beranda</a></li>
+                <li class="dropdown-menu">
+                    <a href="#" class="dropdown-toggle">Katalog Produk</a>
+                    <ul class="dropdown">
+                        <li><a href="produk-cold-galvanize.html">Cold Galvanize & Coating</a></li>
+                        <li><a href="produk-chemical-maintenance.html">Chemical Maintenance</a></li>
+                        <li><a href="produk-water-treatment.html">Chemical Water Treatment</a></li>
+                        <li><a href="produk-fabrikasi-frp.html">Fabrikasi FRP & Rubber Lining</a></li>
+                        <li><a href="produk-chemical-auxiliaries.html">Chemical Auxiliaries</a></li>
+                    </ul>
+                </li>
+                <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="karir.html">Karir</a></li>
+                <li><a href="kontak.html">Hubungi Kami</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio page-section">
+        <div class="section-container">
+            <h2 class="section-title">Portfolio Kami</h2>
+            <p class="section-subtitle">Proyek-Proyek yang Telah Kami Selesaikan dengan Sukses</p>
+
+            <div class="product-intro">
+                <p>Karmand Industrial telah dipercaya oleh berbagai perusahaan besar di Indonesia untuk menyediakan
+                    solusi kimia industri. Berikut adalah beberapa proyek yang telah kami kerjakan dengan hasil yang
+                    memuaskan.</p>
+            </div>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-item" onclick="openPortfolioModal('pertamina')">
+                    <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=800&h=600&fit=crop"
+                        alt="Storage Tank Coating" class="portfolio-image">
+                    <div class="portfolio-overlay"></div>
+                    <div class="portfolio-content">
+                        <h3>Coating & Painting Project - PT Pertamina</h3>
+                        <p>Aplikasi cold galvanize coating untuk storage tank 500,000 liter dengan hasil yang memuaskan
+                            dan tahan korosi maksimal.</p>
+                        <span class="portfolio-tag">Cold Galvanize</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" onclick="openPortfolioModal('hotel')">
+                    <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=800&h=600&fit=crop"
+                        alt="Water Treatment System" class="portfolio-image">
+                    <div class="portfolio-overlay"></div>
+                    <div class="portfolio-content">
+                        <h3>Water Treatment System - Hotel Bintang Lima</h3>
+                        <p>Instalasi sistem water treatment lengkap dengan RO system, boiler treatment, dan cooling
+                            tower chemical untuk hotel dengan 500 kamar.</p>
+                        <span class="portfolio-tag">Water Treatment</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" onclick="openPortfolioModal('semen')">
+                    <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&h=600&fit=crop"
+                        alt="Industrial Maintenance" class="portfolio-image">
+                    <div class="portfolio-overlay"></div>
+                    <div class="portfolio-content">
+                        <h3>Industrial Maintenance - Pabrik Semen</h3>
+                        <p>Program maintenance tahunan menggunakan chemical degreaser, rust remover, dan lubricant
+                            khusus untuk peralatan produksi semen.</p>
+                        <span class="portfolio-tag">Maintenance</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" onclick="openPortfolioModal('chemical')">
+                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&h=600&fit=crop"
+                        alt="FRP Tank" class="portfolio-image">
+                    <div class="portfolio-overlay"></div>
+                    <div class="portfolio-content">
+                        <h3>FRP Tank Fabrication - Chemical Plant</h3>
+                        <p>Fabrikasi dan instalasi FRP tank kapasitas 50,000 liter untuk penyimpanan asam sulfat dengan
+                            rubber lining acid resistant.</p>
+                        <span class="portfolio-tag">FRP & Rubber Lining</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" onclick="openPortfolioModal('suramadu')">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop"
+                        alt="Bridge Coating" class="portfolio-image">
+                    <div class="portfolio-overlay"></div>
+                    <div class="portfolio-content">
+                        <h3>Bridge Coating Project - Jembatan Suramadu</h3>
+                        <p>Aplikasi epoxy coating dan polyurethane top coat untuk perlindungan struktur baja jembatan
+                            dari korosi lingkungan laut.</p>
+                        <span class="portfolio-tag">Epoxy Coating</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" onclick="openPortfolioModal('mall')">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop"
+                        alt="Cooling Tower" class="portfolio-image">
+                    <div class="portfolio-overlay"></div>
+                    <div class="portfolio-content">
+                        <h3>Cooling Tower Treatment - Mall & Office Building</h3>
+                        <p>Program water treatment untuk 5 unit cooling tower dengan kapasitas total 2000 RT, mencakup
+                            scale & corrosion control.</p>
+                        <span class="portfolio-tag">Cooling Tower</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" onclick="openPortfolioModal('electroplating')">
+                    <img src="https://images.unsplash.com/photo-1565008576549-57569a49371d?w=800&h=600&fit=crop"
+                        alt="FRP Ducting" class="portfolio-image">
+                    <div class="portfolio-overlay"></div>
+                    <div class="portfolio-content">
+                        <h3>FRP Ducting System - Electroplating Factory</h3>
+                        <p>Instalasi sistem ducting FRP lengkap untuk exhaust fume dari proses electroplating dengan
+                            panjang total 150 meter.</p>
+                        <span class="portfolio-tag">FRP Ducting</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" onclick="openPortfolioModal('mining')">
+                    <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=800&h=600&fit=crop"
+                        alt="Mining Equipment" class="portfolio-image">
+                    <div class="portfolio-overlay"></div>
+                    <div class="portfolio-content">
+                        <h3>Equipment Maintenance - Mining Company</h3>
+                        <p>Penyediaan chemical maintenance lengkap termasuk heavy duty lubricant dan corrosion inhibitor
+                            untuk peralatan tambang.</p>
+                        <span class="portfolio-tag">Chemical Supply</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" onclick="openPortfolioModal('marine')">
+                    <img src="https://images.unsplash.com/photo-1563789031959-4c02bcb41319?w=800&h=600&fit=crop"
+                        alt="Ship Coating" class="portfolio-image">
+                    <div class="portfolio-overlay"></div>
+                    <div class="portfolio-content">
+                        <h3>Marine Coating - Kapal Tanker</h3>
+                        <p>Aplikasi zinc-rich primer dan epoxy coating untuk kapal tanker 5000 DWT dengan ketahanan
+                            korosi air laut superior.</p>
+                        <span class="portfolio-tag">Marine Coating</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-cta">
+                <h3>Tertarik Bekerja Sama dengan Kami?</h3>
+                <p>Hubungi kami untuk diskusi lebih lanjut tentang kebutuhan proyek Anda.</p>
+                <a href="kontak.html" class="cta-button">Hubungi Kami</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Modal -->
+    <div id="portfolioModal" class="portfolio-modal">
+        <div class="portfolio-modal-content">
+            <div class="portfolio-modal-header">
+                <img id="modalImage" src="" alt="" class="portfolio-modal-image">
+                <div class="portfolio-modal-overlay"></div>
+                <button class="close-portfolio-modal" onclick="closePortfolioModal()">&times;</button>
+                <div class="portfolio-modal-title">
+                    <h2 id="modalTitle"></h2>
+                    <span class="portfolio-modal-tag" id="modalTag"></span>
+                </div>
+            </div>
+            <div class="portfolio-modal-body" id="modalBody">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">Karmand<span> Industrial</span></div>
+                    <p class="footer-description">Solusi kimia inovatif untuk masa depan industri Anda. Kami berkomitmen
+                        memberikan produk berkualitas tinggi dan layanan profesional.</p>
+                    <div class="footer-contact">
+                        <p><strong>Email:</strong> karmandandalan.com</p>
+                        <p><strong>Telepon:</strong> +62 813-5346-8612</p>
+                        <p><strong>Alamat:</strong> Jl. Jemursari II No.8, Jemur Wonosari, Kec. Wonocolo, Surabaya, Jawa
+                            Timur 60237</p>
+                    </div>
+                </div>
+
+                <div class="footer-map">
+                    <h4>Lokasi Kami</h4>
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.298770611649!2d112.7452629!3d-7.3202979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb00acfb4ce1%3A0x9047767f9cfb265d!2sPT%20Karmand%20Mitra%20Andalan!5e0!3m2!1sid!2sid!4v1767950973684!5m2!1sid!2sid"
+                            width="100%" height="250" style="border:0; border-radius: 10px;" allowfullscreen=""
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-text">© 2026 Karmand Industrial. All rights reserved.</div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook">FB</a>
+                    <a href="#" aria-label="Twitter">TW</a>
+                    <a href="#" aria-label="Instagram">IG</a>
+                    <a href="#" aria-label="LinkedIn">LI</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Portfolio data
+        const portfolioData = {
+            pertamina: {
+                title: "Coating & Painting Project - PT Pertamina",
+                tag: "Cold Galvanize",
+                image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=800&h=600&fit=crop",
+                client: "PT Pertamina (Persero)",
+                location: "Balikpapan, Kalimantan Timur",
+                duration: "6 Bulan",
+                value: "Rp 2,5 Miliar",
+                description: "Proyek coating komprehensif untuk storage tank bahan bakar minyak dengan kapasitas 500,000 liter. Aplikasi menggunakan zinc-rich primer sebagai base coat dilanjutkan dengan epoxy intermediate dan polyurethane top coat untuk perlindungan maksimal terhadap korosi.",
+                scope: [
+                    "Surface preparation dengan sandblasting SA 2.5",
+                    "Aplikasi zinc-rich primer 75 micron DFT",
+                    "Epoxy intermediate coat 125 micron DFT",
+                    "Polyurethane top coat 50 micron DFT",
+                    "Quality control dan inspection setiap layer",
+                    "Final touch-up dan commissioning"
+                ],
+                challenges: "Proyek dilakukan pada storage tank yang masih beroperasi dengan waktu shutdown terbatas. Tim kami berhasil menyelesaikan dengan sistem rotasi dan koordinasi ketat dengan operasional client.",
+                results: [
+                    "Coating system tahan hingga 15+ tahun",
+                    "Zero defect pada final inspection",
+                    "Penyelesaian 2 minggu lebih cepat dari jadwal",
+                    "Client satisfaction rating: 9.5/10"
+                ]
+            },
+            hotel: {
+                title: "Water Treatment System - Hotel Bintang Lima",
+                tag: "Water Treatment",
+                image: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=800&h=600&fit=crop",
+                client: "Grand Hotel & Resort",
+                location: "Jakarta Selatan",
+                duration: "4 Bulan",
+                value: "Rp 1,8 Miliar",
+                description: "Instalasi sistem water treatment terintegrasi untuk hotel dengan 500 kamar. Sistem mencakup RO plant untuk air minum, boiler treatment untuk steam generation, dan cooling tower chemical program untuk HVAC system.",
+                scope: [
+                    "Design dan instalasi RO plant kapasitas 50 m³/hari",
+                    "Boiler chemical dosing system untuk 2 unit boiler 5 ton/jam",
+                    "Cooling tower treatment untuk 5 unit CT total 2000 RT",
+                    "Automated monitoring dan control system",
+                    "Training operator dan maintenance team",
+                    "1 tahun service contract dan chemical supply"
+                ],
+                challenges: "Instalasi dilakukan pada hotel yang sedang beroperasi penuh. Koordinasi dengan berbagai departemen dan zero downtime operation menjadi prioritas utama.",
+                results: [
+                    "Water quality memenuhi standar WHO dan PERMENKES",
+                    "Energy saving 20% pada boiler operation",
+                    "Cooling tower efficiency meningkat 15%",
+                    "ROI tercapai dalam 18 bulan"
+                ]
+            },
+            semen: {
+                title: "Industrial Maintenance - Pabrik Semen",
+                tag: "Maintenance",
+                image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&h=600&fit=crop",
+                client: "PT Semen Indonesia",
+                location: "Gresik, Jawa Timur",
+                duration: "Contract Tahunan",
+                value: "Rp 3,2 Miliar/tahun",
+                description: "Program maintenance tahunan komprehensif untuk pabrik semen dengan kapasitas produksi 2 juta ton per tahun. Mencakup supply chemical maintenance dan technical support untuk seluruh peralatan produksi.",
+                scope: [
+                    "Supply industrial degreaser untuk rotary kiln cleaning",
+                    "Rust remover dan metal treatment untuk preventive maintenance",
+                    "Heavy duty lubricant untuk crusher dan conveyor system",
+                    "Corrosion inhibitor untuk closed cooling system",
+                    "Scale remover untuk heat exchanger maintenance",
+                    "Technical consultation dan training program"
+                ],
+                challenges: "Pabrik beroperasi 24/7 dengan scheduled maintenance yang sangat ketat. Chemical harus bekerja efektif dalam waktu singkat dengan minimal downtime.",
+                results: [
+                    "Equipment availability meningkat dari 85% ke 92%",
+                    "Maintenance cost turun 18% year-on-year",
+                    "Unplanned downtime berkurang 40%",
+                    "Contract diperpanjang untuk 3 tahun berikutnya"
+                ]
+            },
+            chemical: {
+                title: "FRP Tank Fabrication - Chemical Plant",
+                tag: "FRP & Rubber Lining",
+                image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&h=600&fit=crop",
+                client: "PT Kimia Farma",
+                location: "Cilegon, Banten",
+                duration: "8 Bulan",
+                value: "Rp 1,5 Miliar",
+                description: "Fabrikasi, instalasi, dan commissioning FRP storage tank untuk asam sulfat 98% konsentrasi dengan kapasitas 50,000 liter. Tank dilengkapi dengan rubber lining neoprene untuk proteksi double layer.",
+                scope: [
+                    "Design engineering sesuai ASME RTP-1",
+                    "Fabrikasi FRP tank dengan vinyl ester resin",
+                    "Rubber lining neoprene 6mm thickness",
+                    "Complete with piping, instrumentation, dan safety features",
+                    "Foundation design dan civil work coordination",
+                    "Testing, commissioning, dan operator training"
+                ],
+                challenges: "Handling asam sulfat konsentrasi tinggi memerlukan material selection yang tepat dan workmanship yang sempurna. Zero tolerance untuk defect atau leak.",
+                results: [
+                    "Tank lulus semua testing termasuk hydrostatic dan vacuum test",
+                    "Spark test 100% pass dengan 25 kV",
+                    "Commissioning sukses tanpa issue",
+                    "Client memberikan referensi untuk 3 proyek serupa"
+                ]
+            },
+            suramadu: {
+                title: "Bridge Coating Project - Jembatan Suramadu",
+                tag: "Epoxy Coating",
+                image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop",
+                client: "Kementerian PUPR",
+                location: "Surabaya - Madura",
+                duration: "12 Bulan",
+                value: "Rp 8,5 Miliar",
+                description: "Proyek maintenance coating untuk Jembatan Suramadu sepanjang 5,4 km. Fokus pada proteksi struktur baja dari korosi lingkungan laut yang sangat korosif dengan sistem coating 3-layer.",
+                scope: [
+                    "Surface preparation high pressure water jetting",
+                    "Rust converter application pada area berkarat",
+                    "Zinc-rich epoxy primer 100 micron DFT",
+                    "Epoxy intermediate 150 micron DFT",
+                    "Polyurethane top coat UV resistant 60 micron DFT",
+                    "Quality assurance dan dokumentasi lengkap"
+                ],
+                challenges: "Pekerjaan di ketinggian dengan kondisi angin laut yang kencang. Safety menjadi prioritas utama dengan zero accident policy. Koordinasi dengan traffic management untuk minimal disruption.",
+                results: [
+                    "Total area coated: 45,000 m²",
+                    "Zero accident selama 12 bulan proyek",
+                    "Coating warranty: 10 tahun",
+                    "Penghargaan Best Safety Performance dari client"
+                ]
+            },
+            mall: {
+                title: "Cooling Tower Treatment - Mall & Office Building",
+                tag: "Cooling Tower",
+                image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop",
+                client: "PT Ciputra Development",
+                location: "Jakarta Pusat",
+                duration: "Service Contract 3 Tahun",
+                value: "Rp 450 Juta/tahun",
+                description: "Program water treatment komprehensif untuk sistem cooling tower di mixed-use building (mall dan office tower). Fokus pada scale control, corrosion inhibition, dan microbiological control untuk efisiensi operasional maksimal.",
+                scope: [
+                    "Initial system audit dan water analysis",
+                    "Chemical dosing program custom sesuai kebutuhan sistem",
+                    "Regular monitoring dan reporting bulanan",
+                    "On-site service dan emergency support 24/7",
+                    "Annual system optimization review",
+                    "Training untuk in-house maintenance team"
+                ],
+                challenges: "Sistem cooling tower yang kompleks dengan variasi load tergantung musim dan occupancy. Memerlukan penyesuaian chemical program secara berkala untuk hasil optimal.",
+                results: [
+                    "Reduction in scale formation by 30%",
+                    "Corrosion rates maintained below 0.1 mm/year",
+                    "Microbial counts consistently within acceptable limits",
+                    "Client renewal for another 3-year contract"
+                ]
+            },
+            electroplating: {
+                title: "FRP Ducting System - Electroplating Factory",
+                tag: "FRP Ducting",
+                image: "https://images.unsplash.com/photo-1565008576549-57569a49371d?w=800&h=600&fit=crop",
+                client: "PT Electroplating Nusantara",
+                location: "Bandung, Jawa Barat",
+                duration: "5 Bulan",
+                value: "Rp 900 Juta",
+                description: "Desain, fabrikasi, dan instalasi sistem ducting FRP untuk exhaust fume dari proses electroplating. Sistem dirancang untuk tahan terhadap korosi asam dan uap kimia yang dihasilkan selama proses produksi.",
+                scope: [
+                    "Custom design ducting layout sesuai pabrik existing",
+                    "Fabrikasi ducting FRP dengan resin vinyl ester",
+                    "Installation lengkap dengan support structure dan sealing",
+                    "Integration dengan existing ventilation system",
+                    "Testing airflow dan fume extraction efficiency",
+                    "Operator training dan maintenance guidelines"
+                ],
+                challenges: "Ruang terbatas di pabrik existing memerlukan solusi desain yang inovatif. Selain itu, instalasi harus dilakukan tanpa mengganggu proses produksi yang sedang berjalan.",
+                results: [
+                    "Ducting system berfungsi optimal dengan airflow 5000 m³/jam",
+                    "Zero leakage pada semua sambungan ducting",
+                    "Peningkatan kualitas udara kerja di area produksi",
+                    "Client satisfaction rating: 9/10"
+                ]
+            },
+            mining: {
+                title: "Equipment Maintenance - Mining Company",
+                tag: "Chemical Supply",
+                image: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=800&h=600&fit=crop",
+                client: "PT Tambang Emas Nusantara",
+                location: "Tembagapura, Papua",
+                duration: "Contract Tahunan",
+                value: "Rp 4 Miliar/tahun",
+                description: "Penyediaan chemical maintenance lengkap untuk peralatan tambang di lokasi terpencil. Termasuk heavy duty lubricant, corrosion inhibitor, degreaser, dan rust remover untuk memastikan operasional peralatan yang andal dan efisien.",
+                scope: [
+                    "Supply heavy duty lubricant untuk excavator, dump truck, dan bulldozer",
+                    "Corrosion inhibitor untuk closed cooling systems pada peralatan berat",
+                    "Industrial degreaser untuk cleaning rutin peralatan tambang",
+                    "Rust remover untuk preventive maintenance",
+                    "Technical support dan training untuk tim maintenance di lokasi",
+                    "Regular site visits dan performance reviews"
+                ],
+                challenges: "Lokasi tambang yang terpencil dengan kondisi lingkungan yang keras memerlukan logistik dan supply chain yang handal. Chemical harus tahan terhadap suhu ekstrem dan kelembaban tinggi.",
+                results: [
+                    "Equipment uptime meningkat dari 80% ke 90%",
+                    "Maintenance cost turun 15% year-on-year",
+                    "Peningkatan umur peralatan hingga 20%",
+                    "Contract diperpanjang untuk 5 tahun berikutnya"
+                ]
+            },
+
+        };
+        // Function to open portfolio modal
+        function openPortfolioModal(key) {
+            const data = portfolioData[key];
+            document.getElementById('modalImage').src = data.image;
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalTag').innerText = data.tag;
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = `
+                <div class="portfolio-detail-section">
+                    <h3>Deskripsi Proyek</h3>
+                    <p>${data.description}</p>
+                </div>
+                <div class="portfolio-detail-section">
+                    <h3>Ruang Lingkup Pekerjaan</h3>
+                    <ul class="portfolio-detail-list">
+                        ${data.scope.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                </div>
+                <div class="portfolio-detail-section">
+                    <h3>Tantangan Proyek</h3>
+                    <p>${data.challenges}</p>
+                </div>
+                <div class="portfolio-detail-section">
+                    <h3>Hasil & Pencapaian</h3>
+                    <ul class="portfolio-detail-list">
+                        ${data.results.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                </div>
+                <div class="portfolio-specs">
+                    <div class="portfolio-spec-item">
+                        <div class="portfolio-spec-label">Client</div>
+                        <div class="portfolio-spec-value">${data.client}</div>
+                    </div>
+                    <div class="portfolio-spec-item">
+                        <div class="portfolio-spec-label">Lokasi</div>
+                        <div class="portfolio-spec-value">${data.location}</div>
+                    </div>
+                    <div class="portfolio-spec-item">
+                        <div class="portfolio-spec-label">Durasi</div>
+                        <div class="portfolio-spec-value">${data.duration}</div>
+                    </div>
+                    <div class="portfolio-spec-item">
+                        <div class="portfolio-spec-label">Nilai Proyek</div>
+                        <div class="portfolio-spec-value">${data.value}</div>
+                    </div>
+                </div>
+                <div class="portfolio-cta-modal">
+                    <h4>Tertarik Bekerja Sama dengan Kami?</h4>
+                    <p>Hubungi kami untuk diskusi lebih lanjut tentang kebutuhan proyek Anda.</p>
+                    <a href="kontak.html" class="portfolio-cta-button">Hubungi Kami</a>
+                </div>
+            `;
+            document.getElementById('portfolioModal').style.display = 'block';
+        }
+        // Function to close portfolio modal
+        function closePortfolioModal() {
+            document.getElementById('portfolioModal').style.display = 'none';
+        }
+    </script>
+</body>

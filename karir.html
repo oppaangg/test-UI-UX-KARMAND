@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karir - Karmand Industrial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo"><img src="logo-karmand.png" alt="Karmand Industrial" class="logo-img"></a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Beranda</a></li>
+                <li class="dropdown-menu">
+                    <a href="#" class="dropdown-toggle">Katalog Produk</a>
+                    <ul class="dropdown">
+                        <li><a href="produk-cold-galvanize.html">Cold Galvanize & Coating</a></li>
+                        <li><a href="produk-chemical-maintenance.html">Chemical Maintenance</a></li>
+                        <li><a href="produk-water-treatment.html">Chemical Water Treatment</a></li>
+                        <li><a href="produk-fabrikasi-frp.html">Fabrikasi FRP & Rubber Lining</a></li>
+                        <li><a href="produk-chemical-auxiliaries.html">Chemical Auxiliaries</a></li>
+                    </ul>
+                </li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="karir.html" class="active">Karir</a></li>
+                <li><a href="kontak.html">Hubungi Kami</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Career Section -->
+    <section class="career-page page-section">
+        <div class="section-container">
+            <h2 class="section-title">Bergabung Bersama Kami</h2>
+            <p class="section-subtitle">Bangun Karir Anda di Industri Kimia</p>
+            
+            <!-- Why Join Us -->
+            <div class="why-join-section">
+                <h3>Mengapa Bekerja di Karmand Industrial?</h3>
+                <p>Kami adalah perusahaan yang sedang berkembang pesat di industri kimia dengan komitmen kuat terhadap inovasi, keberlanjutan, dan pengembangan karyawan. Bergabunglah dengan tim profesional kami dan kembangkan karir Anda di lingkungan yang dinamis dan supportif.</p>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💰</div>
+                        <h4>Kompensasi Kompetitif</h4>
+                        <p>Gaji yang kompetitif dengan benefit menarik dan bonus performa</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📚</div>
+                        <h4>Pengembangan Karir</h4>
+                        <p>Program training dan pengembangan skill berkelanjutan</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🏥</div>
+                        <h4>Asuransi Kesehatan</h4>
+                        <p>Asuransi kesehatan komprehensif untuk karyawan dan keluarga</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">⚖️</div>
+                        <h4>Work-Life Balance</h4>
+                        <p>Lingkungan kerja yang sehat dengan work-life balance</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🎯</div>
+                        <h4>Proyek Menantang</h4>
+                        <p>Kesempatan bekerja di proyek-proyek besar dan menantang</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🤝</div>
+                        <h4>Tim Solid</h4>
+                        <p>Bekerja dengan tim profesional yang supportif dan kolaboratif</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Job Openings -->
+            <div class="job-openings-section">
+                <h3>Lowongan Tersedia</h3>
+                <p class="job-intro">Temukan posisi yang sesuai dengan keahlian dan passion Anda</p>
+
+                <!-- Job Filter -->
+                <div class="job-filter">
+                    <button class="filter-btn active" data-department="all">Semua Posisi</button>
+                    <button class="filter-btn" data-department="sales">Sales & Marketing</button>
+                    <button class="filter-btn" data-department="technical">Technical</button>
+                    <button class="filter-btn" data-department="operations">Operations</button>
+                    <button class="filter-btn" data-department="admin">Admin & Finance</button>
+                </div>
+
+                <!-- Job Listings -->
+                <div class="jobs-grid">
+                    <!-- Job 1 -->
+                    <div class="job-card" data-department="sales">
+                        <div class="job-header">
+                            <div class="job-badge">Sales & Marketing</div>
+                            <div class="job-type">Full Time</div>
+                        </div>
+                        <h4>Sales Engineer - Chemical Products</h4>
+                        <div class="job-location">📍 Jakarta / Surabaya</div>
+                        <p class="job-description">Mencari sales engineer berpengalaman untuk menangani penjualan produk kimia industri. Kandidat ideal memiliki technical knowledge di bidang coating atau water treatment.</p>
+                        <div class="job-requirements">
+                            <strong>Requirements:</strong>
+                            <ul>
+                                <li>Minimal S1 Teknik Kimia/Mesin atau setara</li>
+                                <li>Pengalaman 2+ tahun di sales industrial chemical</li>
+                                <li>Memiliki SIM A dan kendaraan</li>
+                                <li>Kemampuan komunikasi dan presentasi excellent</li>
+                            </ul>
+                        </div>
+                        <button class="apply-btn" onclick="openApplicationModal('Sales Engineer - Chemical Products')">Lamar Sekarang</button>
+                    </div>
+
+                    <!-- Job 2 -->
+                    <div class="job-card" data-department="technical">
+                        <div class="job-header">
+                            <div class="job-badge">Technical</div>
+                            <div class="job-type">Full Time</div>
+                        </div>
+                        <h4>Technical Service Engineer</h4>
+                        <div class="job-location">📍 Jakarta</div>
+                        <p class="job-description">Bertanggung jawab memberikan technical support kepada customer, troubleshooting, dan aplikasi produk water treatment dan coating di lapangan.</p>
+                        <div class="job-requirements">
+                            <strong>Requirements:</strong>
+                            <ul>
+                                <li>S1 Teknik Kimia/Lingkungan</li>
+                                <li>Memahami water treatment dan coating application</li>
+                                <li>Bersedia melakukan perjalanan dinas</li>
+                                <li>Problem solving dan analytical thinking kuat</li>
+                            </ul>
+                        </div>
+                        <button class="apply-btn" onclick="openApplicationModal('Technical Service Engineer')">Lamar Sekarang</button>
+                    </div>
+
+                    <!-- Job 3 -->
+                    <div class="job-card" data-department="technical">
+                        <div class="job-header">
+                            <div class="job-badge">Technical</div>
+                            <div class="job-type">Full Time</div>
+                        </div>
+                        <h4>Quality Control Chemist</h4>
+                        <div class="job-location">📍 Jakarta</div>
+                        <p class="job-description">Melakukan quality control dan testing produk kimia, memastikan produk memenuhi spesifikasi dan standar kualitas yang ditetapkan.</p>
+                        <div class="job-requirements">
+                            <strong>Requirements:</strong>
+                            <ul>
+                                <li>S1 Kimia/Teknik Kimia</li>
+                                <li>Pengalaman di laboratorium kimia industri</li>
+                                <li>Familiar dengan analytical instruments</li>
+                                <li>Detail oriented dan teliti</li>
+                            </ul>
+                        </div>
+                        <button class="apply-btn" onclick="openApplicationModal('Quality Control Chemist')">Lamar Sekarang</button>
+                    </div>
+
+                    <!-- Job 4 -->
+                    <div class="job-card" data-department="operations">
+                        <div class="job-header">
+                            <div class="job-badge">Operations</div>
+                            <div class="job-type">Full Time</div>
+                        </div>
+                        <h4>Warehouse & Logistics Supervisor</h4>
+                        <div class="job-location">📍 Jakarta</div>
+                        <p class="job-description">Mengelola operasional gudang, inventory management, dan koordinasi pengiriman produk chemical untuk memastikan kelancaran supply chain.</p>
+                        <div class="job-requirements">
+                            <strong>Requirements:</strong>
+                            <ul>
+                                <li>D3/S1 semua jurusan</li>
+                                <li>Pengalaman 3+ tahun di warehouse management</li>
+                                <li>Memahami K3 dan chemical handling</li>
+                                <li>Leadership dan organizational skills</li>
+                            </ul>
+                        </div>
+                        <button class="apply-btn" onclick="openApplicationModal('Warehouse & Logistics Supervisor')">Lamar Sekarang</button>
+                    </div>
+
+                    <!-- Job 5 -->
+                    <div class="job-card" data-department="sales">
+                        <div class="job-header">
+                            <div class="job-badge">Sales & Marketing</div>
+                            <div class="job-type">Full Time</div>
+                        </div>
+                        <h4>Marketing Manager</h4>
+                        <div class="job-location">📍 Jakarta</div>
+                        <p class="job-description">Mengembangkan dan mengimplementasikan strategi marketing, branding, dan digital marketing untuk meningkatkan market presence perusahaan.</p>
+                        <div class="job-requirements">
+                            <strong>Requirements:</strong>
+                            <ul>
+                                <li>S1 Marketing/Communication/Business</li>
+                                <li>Pengalaman 5+ tahun di marketing B2B</li>
+                                <li>Strong digital marketing knowledge</li>
+                                <li>Strategic thinking dan creative</li>
+                            </ul>
+                        </div>
+                        <button class="apply-btn" onclick="openApplicationModal('Marketing Manager')">Lamar Sekarang</button>
+                    </div>
+
+                    <!-- Job 6 -->
+                    <div class="job-card" data-department="admin">
+                        <div class="job-header">
+                            <div class="job-badge">Admin & Finance</div>
+                            <div class="job-type">Full Time</div>
+                        </div>
+                        <h4>Accounting Staff</h4>
+                        <div class="job-location">📍 Jakarta</div>
+                        <p class="job-description">Menangani proses accounting, laporan keuangan, dan administrasi keuangan perusahaan dengan sistem yang terstruktur dan akurat.</p>
+                        <div class="job-requirements">
+                            <strong>Requirements:</strong>
+                            <ul>
+                                <li>S1 Akuntansi/Finance</li>
+                                <li>Familiar dengan software accounting</li>
+                                <li>Memahami perpajakan</li>
+                                <li>Teliti dan detail oriented</li>
+                            </ul>
+                        </div>
+                        <button class="apply-btn" onclick="openApplicationModal('Accounting Staff')">Lamar Sekarang</button>
+                    </div>
+
+                    <!-- Job 7 -->
+                    <div class="job-card" data-department="technical">
+                        <div class="job-header">
+                            <div class="job-badge">Technical</div>
+                            <div class="job-type">Full Time</div>
+                        </div>
+                        <h4>R&D Chemist</h4>
+                        <div class="job-location">📍 Jakarta</div>
+                        <p class="job-description">Melakukan riset dan pengembangan produk kimia baru, improvement formula existing products, dan testing performance produk.</p>
+                        <div class="job-requirements">
+                            <strong>Requirements:</strong>
+                            <ul>
+                                <li>S1/S2 Kimia/Teknik Kimia</li>
+                                <li>Pengalaman di R&D chemical products</li>
+                                <li>Analytical dan research skills</li>
+                                <li>Innovative dan detail oriented</li>
+                            </ul>
+                        </div>
+                        <button class="apply-btn" onclick="openApplicationModal('R&D Chemist')">Lamar Sekarang</button>
+                    </div>
+
+                    <!-- Job 8 -->
+                    <div class="job-card" data-department="operations">
+                        <div class="job-header">
+                            <div class="job-badge">Operations</div>
+                            <div class="job-type">Full Time</div>
+                        </div>
+                        <h4>Production Supervisor</h4>
+                        <div class="job-location">📍 Jakarta</div>
+                        <p class="job-description">Mengawasi proses produksi chemical products, memastikan safety procedures, quality control, dan target produksi tercapai.</p>
+                        <div class="job-requirements">
+                            <strong>Requirements:</strong>
+                            <ul>
+                                <li>S1 Teknik Kimia/Industri</li>
+                                <li>Pengalaman 3+ tahun di chemical production</li>
+                                <li>Memahami GMP dan K3</li>
+                                <li>Leadership dan problem solving skills</li>
+                            </ul>
+                        </div>
+                        <button class="apply-btn" onclick="openApplicationModal('Production Supervisor')">Lamar Sekarang</button>
+                    </div>
+
+                    <!-- Job 9 -->
+                    <div class="job-card" data-department="sales">
+                        <div class="job-header">
+                            <div class="job-badge">Sales & Marketing</div>
+                            <div class="job-type">Full Time</div>
+                        </div>
+                        <h4>Business Development Manager</h4>
+                        <div class="job-location">📍 Jakarta / Surabaya</div>
+                        <p class="job-description">Mengidentifikasi peluang bisnis baru, mengembangkan strategic partnerships, dan expanding market share di industri kimia.</p>
+                        <div class="job-requirements">
+                            <strong>Requirements:</strong>
+                            <ul>
+                                <li>S1 semua jurusan, preferably technical background</li>
+                                <li>Pengalaman 5+ tahun di business development</li>
+                                <li>Strong networking dan negotiation skills</li>
+                                <li>Strategic thinking dan market knowledge</li>
+                            </ul>
+                        </div>
+                        <button class="apply-btn" onclick="openApplicationModal('Business Development Manager')">Lamar Sekarang</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Application Call to Action -->
+            <div class="career-cta">
+                <h3>Tidak Menemukan Posisi yang Sesuai?</h3>
+                <p>Kirimkan CV dan surat lamaran Anda ke email kami. Kami akan menghubungi Anda jika ada posisi yang sesuai dengan kualifikasi Anda.</p>
+                <a href="mailto:career@karmandindustrial.com" class="cta-button">Kirim Lamaran Umum</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Modal -->
+    <div id="applicationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Lamar Posisi: <span id="positionName"></span></h3>
+            <form id="applicationForm" class="application-form">
+                <div class="form-group">
+                    <label for="fullName">Nama Lengkap *</label>
+                    <input type="text" id="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Nomor Telepon *</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="education">Pendidikan Terakhir *</label>
+                    <select id="education" required>
+                        <option value="">Pilih Pendidikan</option>
+                        <option value="D3">D3</option>
+                        <option value="S1">S1</option>
+                        <option value="S2">S2</option>
+                        <option value="S3">S3</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="experience">Pengalaman Kerja (tahun) *</label>
+                    <input type="number" id="experience" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="coverLetter">Cover Letter / Motivasi *</label>
+                    <textarea id="coverLetter" rows="5" required placeholder="Ceritakan mengapa Anda tertarik dengan posisi ini..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="cv">Upload CV (PDF/DOC, max 5MB) *</label>
+                    <input type="file" id="cv" accept=".pdf,.doc,.docx" required>
+                </div>
+                <button type="submit" class="submit-button">Kirim Lamaran</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">Karmand<span> Industrial</span></div>
+                    <p class="footer-description">Solusi kimia inovatif untuk masa depan industri Anda. Kami berkomitmen memberikan produk berkualitas tinggi dan layanan profesional.</p>
+                    <div class="footer-contact">
+                        <p><strong>Email:</strong> karmandandalan.com</p>
+                        <p><strong>Telepon:</strong> +62 813-5346-8612</p>
+                        <p><strong>Alamat:</strong> Jl. Jemursari II No.8, Jemur Wonosari, Kec. Wonocolo, Surabaya, Jawa Timur 60237</p>
+                    </div>
+                </div>
+                
+                <div class="footer-map">
+                    <h4>Lokasi Kami</h4>
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.298770611649!2d112.7452629!3d-7.3202979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb00acfb4ce1%3A0x9047767f9cfb265d!2sPT%20Karmand%20Mitra%20Andalan!5e0!3m2!1sid!2sid!4v1767950973684!5m2!1sid!2sid" 
+                            width="100%" 
+                            height="250" 
+                            style="border:0; border-radius: 10px;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-text">© 2026 Karmand Industrial. All rights reserved.</div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook">FB</a>
+                    <a href="#" aria-label="Twitter">TW</a>
+                    <a href="#" aria-label="Instagram">IG</a>
+                    <a href="#" aria-label="LinkedIn">LI</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

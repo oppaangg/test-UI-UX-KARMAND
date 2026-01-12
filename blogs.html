@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs - Karmand Industrial</title>
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .blog-modal-content {
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 0;
+        }
+
+        .blog-modal-header {
+            padding: 3rem 3rem 2rem;
+            border-bottom: 2px solid rgba(2, 206, 203, 0.2);
+            background: linear-gradient(135deg, rgba(5, 55, 78, 0.05), rgba(2, 206, 203, 0.05));
+        }
+
+        .blog-modal-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .blog-modal-category {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(2, 206, 203, 0.2);
+            color: var(--accent);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .blog-modal-date {
+            font-size: 0.9rem;
+            color: #6c757d;
+            font-weight: 600;
+        }
+
+        .blog-modal-read-time {
+            font-size: 0.9rem;
+            color: #6c757d;
+            font-weight: 600;
+        }
+
+        .blog-modal-header h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #05374e;
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .blog-modal-body {
+            padding: 3rem;
+            color: #1a1a1a;
+            line-height: 1.8;
+        }
+
+        .blog-modal-body h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #05374e;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-modal-body h4 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .blog-modal-body p {
+            font-size: 1.05rem;
+            margin-bottom: 1.2rem;
+            color: #333;
+        }
+
+        .blog-modal-body ul,
+        .blog-modal-body ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .blog-modal-body li {
+            font-size: 1.05rem;
+            margin-bottom: 0.8rem;
+            color: #333;
+        }
+
+        .blog-modal-body strong {
+            color: #05374e;
+            font-weight: 700;
+        }
+
+        .blog-modal-body .highlight-box {
+            padding: 1.5rem;
+            background: rgba(2, 206, 203, 0.1);
+            border-left: 4px solid var(--accent);
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .blog-modal-body .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: #05374e;
+        }
+
+        .blog-modal-footer {
+            padding: 2rem 3rem 3rem;
+            border-top: 2px solid rgba(2, 206, 203, 0.2);
+            background: rgba(5, 55, 78, 0.02);
+        }
+
+        .blog-share h4 {
+            font-size: 1.2rem;
+            color: #05374e;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .share-btn span {
+            font-size: 1.2rem;
+        }
+
+        .share-btn.whatsapp {
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            border: 2px solid #25d366;
+        }
+
+        .share-btn.whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .share-btn.facebook {
+            background: linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%);
+            border: 2px solid #1877f2;
+        }
+
+        .share-btn.facebook:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(24, 119, 242, 0.4);
+        }
+
+        .share-btn.twitter {
+            background: linear-gradient(135deg, #1da1f2 0%, #0c85d0 100%);
+            border: 2px solid #1da1f2;
+        }
+
+        .share-btn.twitter:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(29, 161, 242, 0.4);
+        }
+
+        .share-btn.linkedin {
+            background: linear-gradient(135deg, #0077b5 0%, #005885 100%);
+            border: 2px solid #0077b5;
+        }
+
+        .share-btn.linkedin:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 119, 181, 0.4);
+        }
+
+        /* Responsive Blog Modal */
+        @media (max-width: 768px) {
+            .blog-modal-content {
+                width: 95%;
+                margin: 5% auto;
+            }
+
+            .blog-modal-header {
+                padding: 2rem 1.5rem 1.5rem;
+            }
+
+            .blog-modal-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .blog-modal-body {
+                padding: 2rem 1.5rem;
+            }
+
+            .blog-modal-body h3 {
+                font-size: 1.5rem;
+            }
+
+            .blog-modal-body h4 {
+                font-size: 1.2rem;
+            }
+
+            .blog-modal-body p,
+            .blog-modal-body li {
+                font-size: 1rem;
+            }
+
+            .blog-modal-footer {
+                padding: 1.5rem;
+            }
+
+            .share-buttons {
+                flex-direction: column;
+            }
+
+            .share-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo"><img src="logo-karmand.png" alt="Karmand Industrial" class="logo-img"></a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Beranda</a></li>
+                <li class="dropdown-menu">
+                    <a href="#" class="dropdown-toggle">Katalog Produk</a>
+                    <ul class="dropdown">
+                        <li><a href="produk-cold-galvanize.html">Cold Galvanize & Coating</a></li>
+                        <li><a href="produk-chemical-maintenance.html">Chemical Maintenance</a></li>
+                        <li><a href="produk-water-treatment.html">Chemical Water Treatment</a></li>
+                        <li><a href="produk-fabrikasi-frp.html">Fabrikasi FRP & Rubber Lining</a></li>
+                        <li><a href="produk-chemical-auxiliaries.html">Chemical Auxiliaries</a></li>
+                    </ul>
+                </li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blogs.html" class="active">Blogs</a></li>
+                <li><a href="karir.html">Karir</a></li>
+                <li><a href="kontak.html">Hubungi Kami</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Blogs Section -->
+    <section class="blogs-page page-section">
+        <div class="section-container">
+            <h2 class="section-title">Blog & Artikel</h2>
+            <p class="section-subtitle">Wawasan dan Pengetahuan Industri Kimia</p>
+
+            <div class="blog-intro">
+                <p>Dapatkan informasi terbaru, tips praktis, dan wawasan mendalam tentang industri kimia, teknologi
+                    coating, water treatment, dan berbagai topik terkait solusi industrial.</p>
+            </div>
+
+            <!-- Blog Categories Filter -->
+            <div class="blog-categories">
+                <button class="category-btn active" data-category="all">Semua Artikel</button>
+                <button class="category-btn" data-category="coating">Coating & Corrosion</button>
+                <button class="category-btn" data-category="water-treatment">Water Treatment</button>
+                <button class="category-btn" data-category="maintenance">Maintenance</button>
+                <button class="category-btn" data-category="industry-news">Industry News</button>
+            </div>
+
+            <!-- Blog Grid -->
+            <div class="blogs-grid">
+                <!-- Blog Post 1 -->
+                <article class="blog-card" data-category="coating">
+                    <div class="blog-image">
+                        <div class="blog-date">15 Des 2025</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Coating & Corrosion</span>
+                            <span class="blog-read-time">5 min read</span>
+                        </div>
+                        <h3>Memilih Cold Galvanizing yang Tepat untuk Proyek Anda</h3>
+                        <p>Panduan lengkap dalam memilih produk cold galvanizing yang sesuai dengan kebutuhan aplikasi
+                            industri Anda. Pelajari perbedaan zinc content, aplikasi method, dan tips pemilihan coating
+                            yang optimal.</p>
+                        <a href="#" class="read-more" onclick="openBlogModal('blog1'); return false;">Baca Selengkapnya
+                            →</a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 2 -->
+                <article class="blog-card" data-category="water-treatment">
+                    <div class="blog-image">
+                        <div class="blog-date">10 Des 2025</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Water Treatment</span>
+                            <span class="blog-read-time">7 min read</span>
+                        </div>
+                        <h3>Optimasi Cooling Tower Performance dengan Chemical Treatment</h3>
+                        <p>Strategi efektif untuk meningkatkan efisiensi cooling tower melalui program chemical
+                            treatment yang tepat. Cara mengurangi scale, korosi, dan pertumbuhan mikroba untuk performa
+                            maksimal.</p>
+                        <a href="#" class="read-more" onclick="openBlogModal('blog2'); return false;">Baca Selengkapnya
+                            →</a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 3 -->
+                <article class="blog-card" data-category="maintenance">
+                    <div class="blog-image">
+                        <div class="blog-date">05 Des 2025</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Maintenance</span>
+                            <span class="blog-read-time">6 min read</span>
+                        </div>
+                        <h3>Best Practice Preventive Maintenance untuk Industrial Equipment</h3>
+                        <p>Tips dan trik dalam melakukan preventive maintenance yang efektif menggunakan chemical
+                            maintenance products. Perpanjang umur equipment dan hindari downtime yang mahal.</p>
+                        <a href="#" class="read-more" onclick="openBlogModal('blog3'); return false;">Baca Selengkapnya
+                            →</a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 4 -->
+                <article class="blog-card" data-category="coating">
+                    <div class="blog-image">
+                        <div class="blog-date">01 Des 2025</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Coating & Corrosion</span>
+                            <span class="blog-read-time">8 min read</span>
+                        </div>
+                        <h3>Epoxy Coating vs Polyurethane: Mana yang Lebih Baik?</h3>
+                        <p>Analisis mendalam tentang perbedaan, kelebihan, dan kekurangan dari epoxy coating dan
+                            polyurethane coating. Panduan memilih coating system yang tepat untuk aplikasi spesifik
+                            Anda.</p>
+                        <a href="#" class="read-more" onclick="openBlogModal('blog4'); return false;">Baca Selengkapnya
+                            →</a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 5 -->
+                <article class="blog-card" data-category="water-treatment">
+                    <div class="blog-image">
+                        <div class="blog-date">28 Nov 2025</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Water Treatment</span>
+                            <span class="blog-read-time">6 min read</span>
+                        </div>
+                        <h3>Mengatasi Scale Problem di Boiler System</h3>
+                        <p>Solusi praktis untuk menangani masalah scale di boiler system. Memahami penyebab scale
+                            formation dan cara efektif mengatasinya dengan chemical treatment yang tepat.</p>
+                        <a href="#" class="read-more" onclick="openBlogModal('blog5'); return false;">Baca Selengkapnya
+                            →</a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 6 -->
+                <article class="blog-card" data-category="industry-news">
+                    <div class="blog-image">
+                        <div class="blog-date">25 Nov 2025</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Industry News</span>
+                            <span class="blog-read-time">5 min read</span>
+                        </div>
+                        <h3>Tren Industri Kimia Indonesia 2026</h3>
+                        <p>Outlook industri kimia Indonesia untuk tahun 2026. Analisis pertumbuhan sektor, regulasi
+                            terbaru, dan peluang pengembangan bisnis di industri kimia dalam negeri.</p>
+                        <a href="#" class="read-more" onclick="openBlogModal('blog6'); return false;">Baca Selengkapnya
+                            →</a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 7 -->
+                <article class="blog-card" data-category="coating">
+                    <div class="blog-image">
+                        <div class="blog-date">20 Nov 2025</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Coating & Corrosion</span>
+                            <span class="blog-read-time">7 min read</span>
+                        </div>
+                        <h3>Surface Preparation: Kunci Sukses Coating Application</h3>
+                        <p>Pentingnya surface preparation yang proper dalam aplikasi coating. Teknik-teknik persiapan
+                            permukaan yang benar untuk hasil coating yang optimal dan tahan lama.</p>
+                        <a href="#" class="read-more" onclick="openBlogModal('blog7'); return false;">Baca Selengkapnya
+                            →</a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 8 -->
+                <article class="blog-card" data-category="maintenance">
+                    <div class="blog-image">
+                        <div class="blog-date">15 Nov 2025</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Maintenance</span>
+                            <span class="blog-read-time">6 min read</span>
+                        </div>
+                        <h3>Rust Prevention Strategies untuk Industrial Assets</h3>
+                        <p>Strategi komprehensif dalam mencegah karat dan korosi pada aset industrial. Kombinasi
+                            protective coating, inhibitor, dan maintenance practice yang efektif.</p>
+                        <a href="#" class="read-more" onclick="openBlogModal('blog8'); return false;">Baca Selengkapnya
+                            →</a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 9 -->
+                <article class="blog-card" data-category="water-treatment">
+                    <div class="blog-image">
+                        <div class="blog-date">10 Nov 2025</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Water Treatment</span>
+                            <span class="blog-read-time">8 min read</span>
+                        </div>
+                        <h3>RO Membrane Care: Tips Memperpanjang Umur Membran</h3>
+                        <p>Panduan lengkap perawatan membran RO untuk menjaga performa optimal dan memperpanjang
+                            lifetime. Chemical treatment, cleaning procedure, dan best practices untuk RO system.</p>
+                        <a href="#" class="read-more" onclick="openBlogModal('blog9'); return false;">Baca Selengkapnya
+                            →</a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 10 -->
+                <article class="blog-card" data-category="industry-news">
+                    <div class="blog-image">
+                        <div class="blog-date">05 Nov 2025</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Industry News</span>
+                            <span class="blog-read-time">5 min read</span>
+                        </div>
+                        <h3>Sustainability dalam Industri Coating dan Kimia</h3>
+                        <p>Bagaimana industri coating dan kimia bergerak menuju sustainability. Inovasi produk ramah
+                            lingkungan, regulasi environmental, dan komitmen terhadap green chemistry.</p>
+                        <a href="#" class="read-more" onclick="openBlogModal('blog10'); return false;">Baca Selengkapnya
+                            →</a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 11 -->
+                <article class="blog-card" data-category="coating">
+                    <div class="blog-image">
+                        <div class="blog-date">01 Nov 2025</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Coating & Corrosion</span>
+                            <span class="blog-read-time">7 min read</span>
+                        </div>
+                        <h3>Heat Resistant Coating untuk High Temperature Applications</h3>
+                        <p>Memahami teknologi heat resistant coating dan aplikasinya. Jenis-jenis high temperature
+                            coating, temperature rating, dan cara memilih produk yang tepat untuk aplikasi thermal.</p>
+                        <a href="#" class="read-more" onclick="openBlogModal('blog11'); return false;">Baca Selengkapnya
+                            →</a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 12 -->
+                <article class="blog-card" data-category="maintenance">
+                    <div class="blog-image">
+                        <div class="blog-date">28 Okt 2025</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Maintenance</span>
+                            <span class="blog-read-time">6 min read</span>
+                        </div>
+                        <h3>Industrial Cleaning: Memilih Degreaser yang Tepat</h3>
+                        <p>Panduan memilih industrial degreaser yang sesuai dengan jenis kontaminan dan material yang
+                            akan dibersihkan. Safety considerations dan best practice dalam industrial cleaning.</p>
+                        <a href="#" class="read-more" onclick="openBlogModal('blog12'); return false;">Baca Selengkapnya
+                            →</a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Newsletter Subscription -->
+            <div class="newsletter-section">
+                <h3>Berlangganan Newsletter Kami</h3>
+                <p>Dapatkan artikel terbaru, tips industri, dan update produk langsung ke email Anda</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Masukkan email Anda" required>
+                    <button type="submit" class="cta-button">Berlangganan</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Article Modal -->
+    <div id="blogModal" class="modal">
+        <div class="modal-content blog-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="blog-modal-header">
+                <div class="blog-modal-meta">
+                    <span class="blog-modal-category" id="modalBlogCategory"></span>
+                    <span class="blog-modal-date" id="modalBlogDate"></span>
+                    <span class="blog-modal-read-time" id="modalBlogReadTime"></span>
+                </div>
+                <h2 id="modalBlogTitle"></h2>
+            </div>
+            <div class="blog-modal-body" id="modalBlogContent">
+                <!-- Content will be dynamically loaded here -->
+            </div>
+            <div class="blog-modal-footer">
+                <div class="blog-share">
+                    <h4>Bagikan Artikel:</h4>
+                    <div class="share-buttons">
+                        <a href="#" class="share-btn whatsapp" onclick="shareBlog('whatsapp'); return false;">
+                            <span>📱</span> WhatsApp
+                        </a>
+                        <a href="#" class="share-btn facebook" onclick="shareBlog('facebook'); return false;">
+                            <span>👍</span> Facebook
+                        </a>
+                        <a href="#" class="share-btn twitter" onclick="shareBlog('twitter'); return false;">
+                            <span>🐦</span> Twitter
+                        </a>
+                        <a href="#" class="share-btn linkedin" onclick="shareBlog('linkedin'); return false;">
+                            <span>💼</span> LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">Karmand<span> Industrial</span></div>
+                    <p class="footer-description">Solusi kimia inovatif untuk masa depan industri Anda. Kami berkomitmen
+                        memberikan produk berkualitas tinggi dan layanan profesional.</p>
+                    <div class="footer-contact">
+                        <p><strong>Email:</strong> karmandandalan.com</p>
+                        <p><strong>Telepon:</strong> +62 813-5346-8612</p>
+                        <p><strong>Alamat:</strong> Jl. Jemursari II No.8, Jemur Wonosari, Kec. Wonocolo, Surabaya, Jawa
+                            Timur 60237</p>
+                    </div>
+                </div>
+
+                <div class="footer-map">
+                    <h4>Lokasi Kami</h4>
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.298770611649!2d112.7452629!3d-7.3202979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb00acfb4ce1%3A0x9047767f9cfb265d!2sPT%20Karmand%20Mitra%20Andalan!5e0!3m2!1sid!2sid!4v1767950973684!5m2!1sid!2sid"
+                            width="100%" height="250" style="border:0; border-radius: 10px;" allowfullscreen=""
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-text">© 2026 Karmand Industrial. All rights reserved.</div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook">FB</a>
+                    <a href="#" aria-label="Twitter">TW</a>
+                    <a href="#" aria-label="Instagram">IG</a>
+                    <a href="#" aria-label="LinkedIn">LI</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        const blogContents = {
+            blog1: {
+                category: "Coating & Corrosion",
+                date: "15 Des 2025",
+                readTime: "5 min read",
+                title: "Memilih Cold Galvanizing yang Tepat untuk Proyek Anda",
+                content: `
+            <p>Cold galvanizing adalah metode proteksi korosi yang sangat efektif dan praktis untuk struktur baja. Berbeda dengan hot-dip galvanizing yang memerlukan proses pencelupan pada temperatur tinggi, cold galvanizing dapat diaplikasikan seperti cat biasa, membuatnya lebih fleksibel dan ekonomis untuk berbagai proyek.</p>
+
+            <h3>Apa itu Cold Galvanizing?</h3>
+            <p>Cold galvanizing, atau zinc-rich coating, adalah lapisan pelindung yang mengandung partikel zinc dalam konsentrasi tinggi (biasanya 92-96% zinc content). Ketika diaplikasikan pada permukaan baja, coating ini memberikan proteksi katodik yang mirip dengan hot-dip galvanizing.</p>
+
+            <h4>Keunggulan Cold Galvanizing</h4>
+            <ul>
+                <li><strong>Fleksibilitas Aplikasi:</strong> Dapat diaplikasikan dengan brush, roller, atau spray pada berbagai ukuran dan bentuk struktur</li>
+                <li><strong>Efisiensi Waktu:</strong> Tidak perlu menunggu proses hot-dip, aplikasi bisa dilakukan on-site</li>
+                <li><strong>Cost-Effective:</strong> Lebih ekonomis untuk proyek skala kecil hingga menengah</li>
+                <li><strong>Touch-up Capability:</strong> Mudah untuk perbaikan area yang rusak atau tergores</li>
+                <li><strong>Proteksi Katodik:</strong> Memberikan perlindungan elektrokimia seperti zinc coating tradisional</li>
+            </ul>
+
+            <h3>Faktor-Faktor dalam Memilih Cold Galvanizing</h3>
+
+            <h4>1. Zinc Content</h4>
+            <p>Kandungan zinc adalah faktor terpenting. Produk berkualitas tinggi memiliki zinc content 92-96%. Semakin tinggi kandungan zinc, semakin baik proteksi yang diberikan. Periksa spesifikasi produk dan pastikan memenuhi standar industri seperti ASTM A780.</p>
+
+            <h4>2. Metode Aplikasi</h4>
+            <p>Pilih produk yang sesuai dengan metode aplikasi Anda:</p>
+            <ul>
+                <li><strong>Brush Application:</strong> Untuk area kecil dan touch-up</li>
+                <li><strong>Roller Application:</strong> Untuk permukaan datar yang luas</li>
+                <li><strong>Spray Application:</strong> Untuk proyek besar dengan permukaan kompleks</li>
+            </ul>
+
+            <h4>3. Kondisi Lingkungan</h4>
+            <p>Pertimbangkan tingkat korosi di lokasi proyek:</p>
+            <ul>
+                <li><strong>Lingkungan Ringan:</strong> Indoor, kelembaban rendah - zinc content 85-90% sudah cukup</li>
+                <li><strong>Lingkungan Sedang:</strong> Outdoor umum - gunakan zinc content 92-94%</li>
+                <li><strong>Lingkungan Berat:</strong> Coastal, industrial, chemical - pilih zinc content 95-96%</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>Tips Pro:</strong> Untuk hasil optimal, pastikan surface preparation yang tepat. Bersihkan permukaan dari karat, scale, dan kontaminan. Idealnya, lakukan sandblasting hingga mencapai Sa 2.5 untuk adhesion maksimal.</p>
+            </div>
+
+            <h3>Application Best Practices</h3>
+            
+            <h4>Surface Preparation</h4>
+            <p>Kunci sukses cold galvanizing adalah persiapan permukaan yang tepat:</p>
+            <ol>
+                <li>Bersihkan dari minyak, grease, dan kontaminan dengan degreaser</li>
+                <li>Hilangkan karat dan scale dengan wire brush atau sandblasting</li>
+                <li>Pastikan permukaan kering sebelum aplikasi</li>
+                <li>Gunakan zinc phosphate primer jika diperlukan</li>
+            </ol>
+
+            <h4>Aplikasi</h4>
+            <ul>
+                <li>Aplikasikan pada temperatur 10-35°C dengan kelembaban relatif di bawah 85%</li>
+                <li>Aduk produk secara menyeluruh sebelum aplikasi</li>
+                <li>Aplikasikan dalam lapisan tipis dan merata (DFT 50-75 micron per coat)</li>
+                <li>Biarkan kering sempurna antar lapisan (biasanya 4-6 jam)</li>
+                <li>Aplikasikan minimal 2 coat untuk proteksi optimal</li>
+            </ul>
+
+            <h3>Maintenance dan Lifecycle</h3>
+            <p>Cold galvanizing yang diaplikasikan dengan benar dapat bertahan 5-15 tahun tergantung kondisi lingkungan. Lakukan inspeksi rutin setiap 6-12 bulan dan lakukan touch-up pada area yang mengalami kerusakan untuk mempertahankan proteksi.</p>
+
+            <h3>Kesimpulan</h3>
+            <p>Memilih cold galvanizing yang tepat memerlukan pertimbangan zinc content, metode aplikasi, dan kondisi lingkungan proyek Anda. Dengan pemilihan produk yang tepat dan aplikasi yang benar, cold galvanizing memberikan proteksi korosi yang excellent dengan biaya yang efisien.</p>
+            
+            <p>Untuk konsultasi lebih lanjut mengenai produk cold galvanizing yang sesuai dengan kebutuhan proyek Anda, jangan ragu untuk menghubungi tim teknis kami.</p>
+        `
+            },
+            blog2: {
+                category: "Water Treatment",
+                date: "10 Des 2025",
+                readTime: "7 min read",
+                title: "Optimasi Cooling Tower Performance dengan Chemical Treatment",
+                content: `
+            <p>Cooling tower adalah komponen kritis dalam sistem pendingin industrial. Performa cooling tower yang optimal sangat penting untuk efisiensi operasional dan umur equipment. Chemical treatment yang tepat adalah kunci untuk mempertahankan performa maksimal dan mencegah masalah operasional.</p>
+
+            <h3>Masalah Umum pada Cooling Tower</h3>
+            
+            <h4>1. Scale Formation</h4>
+            <p>Scale terbentuk ketika mineral dalam air mengendap pada permukaan heat exchanger dan piping. Scale mengurangi efisiensi heat transfer dan mempersempit aliran air, menyebabkan:</p>
+            <ul>
+                <li>Penurunan efisiensi pendinginan hingga 30-40%</li>
+                <li>Peningkatan konsumsi energi</li>
+                <li>Kerusakan equipment prematur</li>
+                <li>Biaya maintenance yang tinggi</li>
+            </ul>
+
+            <h4>2. Corrosion</h4>
+            <p>Korosi pada sistem cooling tower dapat menyebabkan kebocoran, kontaminasi produk, dan kegagalan equipment. Faktor-faktor yang mempengaruhi korosi:</p>
+            <ul>
+                <li>pH air yang tidak stabil</li>
+                <li>Konsentrasi oksigen terlarut yang tinggi</li>
+                <li>Kontaminasi dari process streams</li>
+                <li>Galvanic corrosion dari material yang berbeda</li>
+            </ul>
+
+            <h4>3. Microbiological Growth</h4>
+            <p>Pertumbuhan mikroba (bakteri, alga, fungi) dapat menyebabkan:</p>
+            <ul>
+                <li>Biofouling yang mengurangi heat transfer</li>
+                <li>Microbiologically Influenced Corrosion (MIC)</li>
+                <li>Penyumbatan pada nozzle dan filter</li>
+                <li>Risiko kesehatan (Legionella)</li>
+            </ul>
+
+            <h3>Program Chemical Treatment Komprehensif</h3>
+
+            <h4>Scale Inhibitor Program</h4>
+            <p>Untuk mencegah scale formation, gunakan kombinasi chemical treatment berikut:</p>
+            
+            <p><strong>1. Dispersant/Antiscalant</strong></p>
+            <ul>
+                <li>Mencegah kristalisasi dan presipitasi mineral</li>
+                <li>Dispersi partikel untuk menghindari deposisi</li>
+                <li>Dosage: 10-30 ppm tergantung water chemistry</li>
+                <li>Monitoring: Alkalinity, hardness, silica levels</li>
+            </ul>
+
+            <p><strong>2. pH Control</strong></p>
+            <ul>
+                <li>Maintain pH 7.5-8.5 untuk balance antara scale dan corrosion</li>
+                <li>Gunakan acid feeding (sulfuric atau phosphoric) untuk pH adjustment</li>
+                <li>Monitor pH continuously untuk kontrol optimal</li>
+            </ul>
+
+            <h4>Corrosion Inhibitor Program</h4>
+            <p><strong>Molybdate-based Inhibitor:</strong></p>
+            <ul>
+                <li>Excellent corrosion protection untuk multi-metal systems</li>
+                <li>Environmentally friendly</li>
+                <li>Dosage: 6-12 ppm molybdenum</li>
+                <li>Compatible dengan scale inhibitor programs</li>
+            </ul>
+
+            <p><strong>Azole-based Inhibitor:</strong></p>
+            <ul>
+                <li>Spesifik untuk copper and copper alloys</li>
+                <li>Membentuk protective film</li>
+                <li>Dosage: 1-5 ppm</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>Best Practice:</strong> Implementasikan program monitoring yang comprehensive dengan testing regular untuk pH, conductivity, alkalinity, hardness, dan inhibitor residuals. Automatic dosing system dengan feedback control memberikan hasil terbaik.</p>
+            </div>
+
+            <h4>Microbiocide Program</h4>
+            <p><strong>Oxidizing Biocides:</strong></p>
+            <ul>
+                <li><strong>Chlorine/Hypochlorite:</strong> Cost-effective, broad spectrum. Dosage: 1-3 ppm free residual</li>
+                <li><strong>Bromine:</strong> Efektif pada pH tinggi. Dosage: 1-2 ppm residual</li>
+                <li><strong>Chlorine Dioxide:</strong> Tidak membentuk halogenated organics. Dosage: 0.2-0.5 ppm</li>
+            </ul>
+
+            <p><strong>Non-Oxidizing Biocides:</strong></p>
+            <ul>
+                <li>Untuk shock treatment dan biofilm control</li>
+                <li>Rotasi produk untuk mencegah bacterial resistance</li>
+                <li>Slug feed 1-2 kali per minggu</li>
+            </ul>
+
+            <h3>System Optimization Strategies</h3>
+
+            <h4>1. Water Chemistry Management</h4>
+            <p>Kunci optimasi adalah maintain water chemistry yang tepat:</p>
+            <ul>
+                <li><strong>Cycles of Concentration (COC):</strong> Optimize untuk balance antara water conservation dan scale risk</li>
+                <li><strong>Blowdown Control:</strong> Automatic blowdown based on conductivity</li>
+                <li><strong>Makeup Water Quality:</strong> Pre-treatment jika diperlukan</li>
+            </ul>
+
+            <h4>2. Monitoring & Control</h4>
+            <p>Implement comprehensive monitoring program:</p>
+            <ul>
+                <li>Online monitoring: pH, conductivity, ORP, chlorine residual</li>
+                <li>Laboratory testing: Weekly water analysis lengkap</li>
+                <li>Microbiological testing: Planktonic & sessile bacteria counts</li>
+                <li>Equipment inspection: Quarterly visual inspection</li>
+            </ul>
+
+            <h4>3. Cleaning Procedures</h4>
+            <p>Regular cleaning maintenance:</p>
+            <ul>
+                <li><strong>Online Cleaning:</strong> Continuous chemical treatment untuk mencegah fouling</li>
+                <li><strong>Offline Cleaning:</strong> Periodic shutdown cleaning untuk remove heavy deposits</li>
+                <li><strong>Fill Cleaning:</strong> Annual cleaning untuk remove biofilm dan mineral deposits</li>
+            </ul>
+
+            <h3>Performance Monitoring</h3>
+            <p>Track key performance indicators:</p>
+            <ul>
+                <li><strong>Heat Transfer Efficiency:</strong> Monitor approach temperature</li>
+                <li><strong>Energy Consumption:</strong> Track pump power dan fan operation</li>
+                <li><strong>Water Usage:</strong> Monitor makeup water dan blowdown rates</li>
+                <li><strong>Chemical Costs:</strong> Track chemical consumption</li>
+            </ul>
+
+            <h3>Benefits of Optimized Treatment</h3>
+            <ul>
+                <li>Efisiensi pendinginan meningkat 15-25%</li>
+                <li>Pengurangan konsumsi energi 10-20%</li>
+                <li>Extended equipment life hingga 50%</li>
+                <li>Reduced maintenance costs 30-40%</li>
+                <li>Improved system reliability</li>
+                <li>Water conservation melalui higher COC</li>
+            </ul>
+
+            <h3>Kesimpulan</h3>
+            <p>Program chemical treatment yang comprehensive dan well-managed adalah investasi yang memberikan ROI significant melalui improved efficiency, reduced costs, dan extended equipment life. Kunci sukses adalah monitoring consistent, chemical program yang tepat, dan professional support.</p>
+        `
+            },
+            blog3: {
+                category: "Maintenance",
+                date: "05 Des 2025",
+                readTime: "6 min read",
+                title: "Best Practice Preventive Maintenance untuk Industrial Equipment",
+                content: `
+            <p>Preventive maintenance adalah strategi proaktif yang essential untuk menjaga reliability dan performance industrial equipment. Dengan program preventive maintenance yang tepat, perusahaan dapat mengurangi downtime tidak terduga hingga 75% dan memperpanjang umur equipment secara signifikan.</p>
+
+            <h3>Mengapa Preventive Maintenance Penting?</h3>
+            
+            <h4>Cost Impact Analysis</h4>
+            <ul>
+                <li><strong>Unplanned Downtime:</strong> Biaya rata-rata $260,000 per jam untuk industri automotive, $5 million per jam untuk oil & gas</li>
+                <li><strong>Emergency Repairs:</strong> 3-5x lebih mahal dibanding planned maintenance</li>
+                <li><strong>Production Loss:</strong> Lost opportunity cost yang signifikan</li>
+                <li><strong>Safety Incidents:</strong> Increased risk of accidents dan injuries</li>
+            </ul>
+
+            <h3>Komponen Program Preventive Maintenance</h3>
+
+            <h4>1. Equipment Inventory & Criticality Assessment</h4>
+            <p>Langkah pertama adalah mengidentifikasi dan mengklasifikasikan equipment:</p>
+            <ul>
+                <li><strong>Critical Equipment:</strong> High-frequency inspection & maintenance</li>
+                <li><strong>Essential Equipment:</strong> Standard maintenance schedule</li>
+                <li><strong>Non-Critical Equipment:</strong> Basic maintenance atau run-to-failure</li>
+            </ul>
+
+            <h4>2. Maintenance Schedule Development</h4>
+            <p>Buat comprehensive maintenance calendar berdasarkan:</p>
+            <ul>
+                <li>Manufacturer recommendations</li>
+                <li>Operating conditions dan environment</li>
+                <li>Historical failure data</li>
+                <li>Regulatory requirements</li>
+            </ul>
+
+            <h3>Chemical Maintenance Products Essential</h3>
+
+            <h4>Lubrication Program</h4>
+            <p><strong>Industrial Lubricants:</strong></p>
+            <ul>
+                <li><strong>Motor Oils:</strong> Untuk rotating equipment, pilih viscosity yang tepat sesuai operating temperature</li>
+                <li><strong>Gear Oils:</strong> High pressure additives untuk gearboxes</li>
+                <li><strong>Hydraulic Oils:</strong> Anti-wear properties untuk hydraulic systems</li>
+                <li><strong>Greases:</strong> Untuk bearings dan sliding surfaces</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>Pro Tip:</strong> Implement oil analysis program untuk monitor kondisi lubricant dan detect early warning signs of equipment problems. Regular oil sampling dapat prevent catastrophic failures.</p>
+            </div>
+
+            <h4>Cleaning & Degreasing</h4>
+            <p><strong>Industrial Degreasers:</strong></p>
+            <ul>
+                <li><strong>Solvent-Based:</strong> Untuk heavy oil dan grease removal</li>
+                <li><strong>Water-Based:</strong> Environmentally friendly, safe untuk regular cleaning</li>
+                <li><strong>Alkaline Cleaners:</strong> Untuk carbon deposits dan burnt-on residues</li>
+            </ul>
+
+            <p><strong>Applications:</strong></p>
+            <ul>
+                <li>Engine cleaning</li>
+                <li>Equipment overhaul</li>
+                <li>Parts cleaning sebelum inspection</li>
+                <li>Preventive cleaning untuk heat exchangers</li>
+            </ul>
+
+            <h4>Corrosion Prevention</h4>
+            <p><strong>Rust Preventive Compounds:</strong></p>
+            <ul>
+                <li><strong>Oil-Based:</strong> Long-term protection untuk storage</li>
+                <li><strong>Water-Displacing:</strong> Untuk wet environments</li>
+                <li><strong>Vapor Phase Inhibitors:</strong> Untuk enclosed spaces</li>
+            </ul>
+
+            <p><strong>Rust Converters:</strong></p>
+            <ul>
+                <li>Convert existing rust to stable compound</li>
+                <li>Primer untuk coating application</li>
+                <li>Cost-effective repair solution</li>
+            </ul>
+
+            <h3>Inspection & Monitoring Techniques</h3>
+
+            <h4>Visual Inspection</h4>
+            <p>Daily walkthrough inspections untuk detect:</p>
+            <ul>
+                <li>Unusual noises atau vibration</li>
+                <li>Leaks (oil, coolant, hydraulic fluid)</li>
+                <li>Corrosion atau physical damage</li>
+                <li>Overheating (discoloration, smoke)</li>
+                <li>Loose bolts atau connections</li>
+            </ul>
+
+            <h4>Predictive Maintenance Technologies</h4>
+            <ul>
+                <li><strong>Vibration Analysis:</strong> Detect bearing failures, misalignment, imbalance</li>
+                <li><strong>Thermography:</strong> Identify electrical issues, insulation problems</li>
+                <li><strong>Ultrasonic Testing:</strong> Detect leaks, electrical arcing</li>
+                <li><strong>Oil Analysis:</strong> Monitor wear particles, contamination, degradation</li>
+            </ul>
+
+            <h3>Documentation & Record Keeping</h3>
+
+            <h4>Essential Records</h4>
+            <ul>
+                <li><strong>Maintenance Logs:</strong> Date, work performed, parts replaced, technician</li>
+                <li><strong>Inspection Records:</strong> Findings, measurements, recommendations</li>
+                <li><strong>Failure History:</strong> Root cause analysis, corrective actions</li>
+                <li><strong>Spare Parts Inventory:</strong> Critical spares tracking</li>
+                <li><strong>Cost Tracking:</strong> Maintenance costs per equipment</li>
+            </ul>
+
+            <h4>Digital CMMS (Computerized Maintenance Management System)</h4>
+            <p>Benefits of implementing CMMS:</p>
+            <ul>
+                <li>Automated work order generation</li>
+                <li>Schedule optimization</li>
+                <li>Spare parts management</li>
+                <li>Historical data analysis</li>
+                <li>Mobile access untuk technicians</li>
+                <li>KPI tracking & reporting</li>
+            </ul>
+
+            <h3>Best Practices Implementation</h3>
+
+            <h4>1. Start with Critical Equipment</h4>
+            <p>Focus pada high-impact equipment terlebih dahulu untuk quick wins dan build momentum untuk program expansion.</p>
+
+            <h4>2. Standardize Procedures</h4>
+            <p>Develop standard operating procedures (SOPs) untuk:</p>
+            <ul>
+                <li>Inspection checklists</li>
+                <li>Lubrication procedures</li>
+                <li>Cleaning protocols</li>
+                <li>Safety requirements</li>
+            </ul>
+
+            <h4>3. Train Your Team</h4>
+            <ul>
+                <li>Technical training on equipment specifics</li>
+                <li>Safety training</li>
+                <li>Chemical handling procedures</li>
+                <li>Documentation requirements</li>
+            </ul>
+
+            <h4>4. Measure & Improve</h4>
+            <p>Key Performance Indicators (KPIs) untuk track:</p>
+            <ul>
+                <li>Mean Time Between Failures (MTBF)</li>
+                <li>Mean Time To Repair (MTTR)</li>
+                <li>Overall Equipment Effectiveness (OEE)</li>
+                <li>Planned vs Unplanned Maintenance Ratio</li>
+                <li>Maintenance Cost as % of Replacement Asset Value</li>
+            </ul>
+
+            <h3>Common Pitfalls to Avoid</h3>
+            <ul>
+                <li><strong>Over-maintenance:</strong> Wasting resources pada unnecessary maintenance</li>
+                <li><strong>Poor Documentation:</strong> Missing valuable historical data</li>
+                <li><strong>Inadequate Planning:</strong> Reactive instead of proactive approach</li>
+                <li><strong>Wrong Products:</strong> Using incompatible atau substandard chemical products</li>
+                <li><strong>Skipping Training:</strong> Untrained personnel melakukan maintenance incorrectly</li>
+            </ul>
+
+            <h3>ROI of Preventive Maintenance</h3>
+            <p>Studies menunjukkan bahwa comprehensive preventive maintenance program dapat menghasilkan:</p>
+            <ul>
+                <li>12-18% reduction in maintenance costs</li>
+                <li>70-75% reduction in breakdowns</li>
+                <li>25-30% reduction in downtime</li>
+                <li>20-25% extension in equipment life</li>
+                <li>10-15% improvement in production output</li>
+            </ul>
+
+            <h3>Kesimpulan</h3>
+            <p>Preventive maintenance bukan expense, tetapi investment yang memberikan significant returns. Dengan menggunakan chemical maintenance products yang tepat, implementing structured procedures, dan consistent monitoring, perusahaan dapat achieve reliability excellence dan maximize equipment value.</p>
+        `
+            },
+            // Tambahkan konten untuk blog lainnya sesuai kebutuhan
+            blog4: {
+                category: "Coating & Corrosion",
+                date: "01 Des 2025",
+                readTime: "8 min read",
+                title: "Epoxy Coating vs Polyurethane: Mana yang Lebih Baik?",
+                content: `
+            <p>Dalam dunia protective coatings, epoxy dan polyurethane adalah dua pilihan paling populer. Masing-masing memiliki karakteristik unik yang membuatnya cocok untuk aplikasi tertentu. Artikel ini akan membantu Anda memahami perbedaan fundamental dan memilih coating yang tepat untuk proyek Anda.</p>
+
+            <h3>Epoxy Coating: Overview</h3>
+            <p>Epoxy coating adalah sistem dua komponen (resin dan hardener) yang menghasilkan film yang sangat keras dan durable ketika tercampur dan cured. Dikenal dengan adhesion yang excellent dan chemical resistance yang superior.</p>
+
+            <h4>Keunggulan Epoxy Coating</h4>
+            <ul>
+                <li><strong>Superior Adhesion:</strong> Bonding yang excellent ke berbagai substrate</li>
+                <li><strong>Chemical Resistance:</strong> Tahan terhadap acids, alkalis, solvents, dan chemicals</li>
+                <li><strong>Mechanical Strength:</strong> Hardness dan abrasion resistance yang tinggi</li>
+                <li><strong>Moisture Resistance:</strong> Barrier properties yang excellent</li>
+                <li><strong>Cost-Effective:</strong> Generally lebih economical dibanding polyurethane</li>
+            </ul>
+            
+            <p>Konten lengkap untuk blog ini dapat Anda kembangkan lebih lanjut...</p>
+        `
+            }
+        };
+
+        // Function to open blog modal
+        function openBlogModal(blogId) {
+            const blog = blogContents[blogId];
+            if (!blog) {
+                console.error('Blog not found:', blogId);
+                return;
+            }
+
+            const modal = document.getElementById('blogModal');
+            document.getElementById('modalBlogCategory').textContent = blog.category;
+            document.getElementById('modalBlogDate').textContent = blog.date;
+            document.getElementById('modalBlogReadTime').textContent = blog.readTime;
+            document.getElementById('modalBlogTitle').textContent = blog.title;
+            document.getElementById('modalBlogContent').innerHTML = blog.content;
+
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+
+            // Store current blog for sharing
+            window.currentBlogTitle = blog.title;
+            window.currentBlogUrl = window.location.href + '#' + blogId;
+        }
+
+        // Function to close blog modal
+        function closeBlogModal() {
+            const modal = document.getElementById('blogModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Function to share blog
+        function shareBlog(platform) {
+            const title = encodeURIComponent(window.currentBlogTitle || 'Artikel Menarik dari Karmand Industrial');
+            const url = encodeURIComponent(window.currentBlogUrl || window.location.href);
+            const text = encodeURIComponent('Baca artikel menarik ini: ' + (window.currentBlogTitle || ''));
+
+            let shareUrl = '';
+
+            switch (platform) {
+                case 'whatsapp':
+                    shareUrl = `https://wa.me/?text=${text}%20${url}`;
+                    break;
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+                    break;
+                case 'linkedin':
+                    shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+                    break;
+            }
+
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'width=600,height=400');
+            }
+        }
+
+        // Setup close button functionality when DOM is ready
+        document.addEventListener('DOMContentLoaded', function () {
+            // Setup close button
+            const closeButtons = document.querySelectorAll('.close-modal');
+            closeButtons.forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    closeBlogModal();
+                });
+            });
+
+            // Check for hash in URL to auto-open blog
+            const hash = window.location.hash.substring(1);
+            if (hash && blogContents[hash]) {
+                openBlogModal(hash);
+            }
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function (event) {
+            const blogModal = document.getElementById('blogModal');
+            if (event.target == blogModal) {
+                closeBlogModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                closeBlogModal();
+            }
+        });
+    </script>
+</body>
+
+</html>
