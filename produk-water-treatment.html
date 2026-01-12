@@ -9,6 +9,147 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Physical Properties Modern Styling */
+        .physical-props-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .prop-item {
+            background: linear-gradient(135deg, rgba(2, 206, 203, 0.08), rgba(5, 55, 78, 0.05));
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(2, 206, 203, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prop-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .prop-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(2, 206, 203, 0.2);
+            border-color: var(--accent);
+        }
+
+        .prop-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .prop-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .prop-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.3rem;
+        }
+
+        .prop-value {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #05374e;
+            line-height: 1.3;
+        }
+
+        .prop-highlight {
+            background: linear-gradient(135deg, rgba(2, 206, 203, 0.15), rgba(5, 55, 78, 0.08));
+            border: 2px solid rgba(2, 206, 203, 0.4);
+        }
+
+        .props-section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(2, 206, 203, 0.2);
+        }
+
+        .props-section-header h4 {
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin: 0;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .props-section-icon {
+            font-size: 1.3rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--accent);
+            margin: 1rem 0 0.5rem 0;
+            padding: 0.8rem 1.2rem;
+            background: linear-gradient(135deg, rgba(2, 206, 203, 0.1), rgba(5, 55, 78, 0.05));
+            border-radius: 12px;
+            border: 2px solid rgba(2, 206, 203, 0.3);
+            text-align: center;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-price::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(2, 206, 203, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .product-card-compact:hover .product-price::before {
+            left: 100%;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .physical-props-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 0.8rem;
+            }
+
+            .prop-item {
+                padding: 0.8rem;
+            }
+
+            .prop-value {
+                font-size: 0.9rem;
+            }
+
+            .product-price {
+                font-size: 1.3rem;
+                padding: 0.6rem 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -53,155 +194,81 @@
 
             <div class="products-grid">
                 <div class="product-card-compact" onclick="openProductModal(
-                    'Karmand Cooling Tower Chemical CTC-3000', 
-                    'Program kimia lengkap untuk cooling tower yang mencegah scale, korosi, dan pertumbuhan mikroba secara efektif. Formula all-in-one yang mengoptimalkan cycle of concentration dan mengurangi blowdown.',
-                    'Scale inhibitor (phosphonate based), corrosion inhibitor (organic film forming), biocide & algaecide, dispersant',
-                    'Bentuk: Cairan | Warna: Amber | pH Concentrate: 10-11 | Specific Gravity: 1,15-1,20 | Solid Content: 30-35% | Compatibility: Multi-metal',
-                    'Dosis awal: 200-400 ppm. Maintenance: 50-100 ppm atau sesuai water analysis. Feed kontinyu melalui dosing pump. Monitor cycle of concentration 3-5x. Test TDS, pH, dan conductivity secara rutin. Blowdown sesuai calculation.',
-                    'Cooling tower system, evaporative condenser, spray pond, open recirculating systems',
+                    'Karmand Boiler Scale Preventif K-301 BP 30L', 
+                    'Karmand–K.301 BP berfungsi mencegah pembentukan kerak pada ketel dengan mengendapkan kesadahan kalsium sebagai lumpur lunak, bukan kerak keras. Kandungan fosfat dan sequestrant menghambat pembentukan kristal garam kesadahan, sehingga menjaga permukaan logam tetap bersih dan efisiensi perpindahan panas ketel tetap optimal.',
+                    'Suatu kombinasi phosphate, squestrant dan ispersant.',
+                    '<div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🔬</span><h4>Sifat Fisik</h4></div><div class=\'physical-props-grid\'><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>💧</span><div class=\'prop-label\'>Bentuk</div><div class=\'prop-value\'>Cairan</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🎨</span><div class=\'prop-label\'>Warna</div><div class=\'prop-value\'>Jernih</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>📊</span><div class=\'prop-label\'>pH Concentrate</div><div class=\'prop-value\'>12,5 – 13,5</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>⚖️</span><div class=\'prop-label\'>Specific Gravity</div><div class=\'prop-value\'>± 1,14</div></div><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>💉</span><div class=\'prop-label\'>Konsentrasi</div><div class=\'prop-value\'>13-15%</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🌊</span><div class=\'prop-label\'>Kelarutan dalam air Konsentrasi</div><div class=\'prop-value\'>Larut sempurna : 13–15%</div></div></div></div>',
+                    'Karmand–K.301 BP diumpankan melalui jalur pengumpanan bahan kimia secara langsung ke steam drum atau ke pre-boiler dengan dosis pengumpanan yang disarankan sebesar 50–200 ppm atau disesuaikan dengan kebutuhan.',
+                    'Open recirculating cooling tower, closed loop cooling, HVAC chilled water system, process cooling water',
                     'Jerigen 25L, Drum 200L, IBC 1000L',
-                    'https://tokopedia.link/karmand-ctc3000', 
-                    'https://shopee.co.id/karmand-ctc3000',
+                    'https://tokopedia.link/karmand-ctt1000', 
+                    'https://shopee.co.id/karmand-ctt1000',
                     null)">
-                    <div class="product-icon">💧</div>
-                    <h3>Karmand Cooling Tower Chemical CTC-3000</h3>
-                    <p>Program kimia lengkap untuk cooling tower dengan proteksi menyeluruh.</p>
+                    <div class="product-image-wrapper">
+                        <img src="Karmand-Scale-Remover-JS-5050.png" alt="Karmand-Boiler-Scale-Preventif-K-311-HPB"
+                            class="product-image">
+                        <div class="product-icon-fallback" style="display:none;">🧪</div>
+                    </div>
+                    <h3>Karmand Boiler Scale Preventif K-301 BP 30L</h3>
+                    <p>Karmand–K.301 BP mencegah kerak ketel dan menjaga efisiensi perpindahan panas.</p>
+                    <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20*Karmand%20Boiler%20Scale%20Preventif%20K-301%20BP*.%20Bisa%20tolong%20berikan%20informasi%20harga%20dan%20detail%20lebih%20lanjut%3F"
+                        target="_blank" class="product-price"
+                        style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(18, 140, 126, 0.05)); border-color: rgba(37, 211, 102, 0.3); color: #25d366; text-decoration: none; display: block; cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.3)'";
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">💬 Chat For The
+                        Price</a>
                     <div class="click-info">Klik untuk detail →</div>
                 </div>
 
                 <div class="product-card-compact" onclick="openProductModal(
-                    'Karmand Boiler Water Treatment BWT-2500', 
-                    'Kimia boiler komprehensif yang melindungi sistem dari scale, korosi, dan carryover untuk operasi optimal. Internal treatment program dengan oxygen scavenger terintegrasi.',
-                    'Alkalinity booster, phosphate, polymer dispersant, oxygen scavenger (DEHA/hydrazine alternative)',
-                    'Bentuk: Cairan | Warna: Coklat | pH Concentrate: 12-13 | Dosage: 50-200 ppm | Feed Point: Feedwater tank | Max Pressure: Up to 40 bar',
-                    'Dosis awal: 150-200 ppm. Maintenance: 50-100 ppm ke feedwater. Target pH boiler water: 10,5-11,5. Phosphate residual: 20-40 ppm untuk low pressure, 5-15 ppm untuk medium pressure. Blowdown sesuai TDS control. Monitor sulfite/oxygen scavenger residual.',
-                    'Low to medium pressure boiler, steam generator, industrial boiler, package boiler, fire tube & water tube boiler',
+                    'Karmand Boiler Scale Preventif K-311 HPB 30L', 
+                    'Karmand–K.311 HPB dirancang untuk mencegah kerak pada boiler bertekanan tinggi dengan mengendapkan kesadahan kalsium sebagai lumpur lunak melalui kontrol parameter air boiler yang cermat.',
+                    'Tri Sodium Phosphate High Grade',
+                    '<div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🔬</span><h4>Sifat Fisik</h4></div><div class=\'physical-props-grid\'><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>💧</span><div class=\'prop-label\'>Bentuk</div><div class=\'prop-value\'>Cairan</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🎨</span><div class=\'prop-label\'>Warna</div><div class=\'prop-value\'>Jernih</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>📊</span><div class=\'prop-label\'>pH Concentrate</div><div class=\'prop-value\'>12,5 – 13,5</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>⚖️</span><div class=\'prop-label\'>Specific Gravity</div><div class=\'prop-value\'>± 1,14</div></div><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>💉</span><div class=\'prop-label\'>Konsentrasi</div><div class=\'prop-value\'>13-15%</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🌊</span><div class=\'prop-label\'>Kelarutan dalam air Konsentrasi</div><div class=\'prop-value\'>Larut sempurna : 13–15%</div></div></div></div>',
+                    'Karmand–K.311 HPB diumpankan melalui jalur pengumpanan bahan kimia secara langsung ke steam drum atau ke pre-boiler dengan dosis pengumpanan yang disarankan sebesar 50–200 ppm atau disesuaikan dengan kebutuhan.',
+                    'Open recirculating cooling tower, closed loop cooling, HVAC chilled water system, process cooling water',
                     'Jerigen 25L, Drum 200L, IBC 1000L',
-                    'https://tokopedia.link/karmand-bwt2500', 
-                    'https://shopee.co.id/karmand-bwt2500',
+                    'https://tokopedia.link/karmand-ctt1000', 
+                    'https://shopee.co.id/karmand-ctt1000',
                     null)">
-                    <div class="product-icon">🔥</div>
-                    <h3>Karmand Boiler Water Treatment BWT-2500</h3>
-                    <p>Program treatment boiler lengkap untuk proteksi optimal sistem steam.</p>
+                    <div class="product-image-wrapper">
+                        <img src="Karmand-Scale-Remover-JS-5050.png" alt="Karmand-Boiler-Scale-Preventif-K-311-HPB"
+                            class="product-image">
+                        <div class="product-icon-fallback" style="display:none;">🧪</div>
+                    </div>
+                    <h3>Karmand Boiler Scale Preventif K-311 HPB 30L</h3>
+                    <p>Karmand–K.311 HPB mencegah kerak pada boiler bertekanan tinggi.</p>
+                    <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20*Karmand%20Boiler%20Scale%20Preventif%20K-311%20HPB*.%20Bisa%20tolong%20berikan%20informasi%20harga%20dan%20detail%20lebih%20lanjut%3F"
+                        target="_blank" class="product-price"
+                        style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(18, 140, 126, 0.05)); border-color: rgba(37, 211, 102, 0.3); color: #25d366; text-decoration: none; display: block; cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.3)'";
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">💬 Chat For The
+                        Price</a>
                     <div class="click-info">Klik untuk detail →</div>
                 </div>
 
                 <div class="product-card-compact" onclick="openProductModal(
-                    'Karmand RO Antiscalant AS-RO100', 
-                    'Antiscalant khusus untuk sistem reverse osmosis yang mencegah scaling dan fouling pada membran RO. Formula threshold inhibitor yang efektif pada range pH dan hardness luas.',
-                    'Phosphonate, polyacrylate, dispersant, threshold scale inhibitor',
-                    'Bentuk: Cairan | Warna: Bening-kuning | pH: 3-5 | Dosage: 2-5 ppm | Compatibility: All membrane types | LSI: Effective up to +2,5',
-                    'Inject ke feedwater sebelum cartridge filter dengan dosing pump. Dosis standard: 3-4 ppm. Adjust berdasarkan feedwater quality dan membrane manufacturer recommendation. Calculate dengan RO design software untuk dosis optimal. Monitor SDI dan recovery rate.',
-                    'RO system industrial & commercial, brackish water RO, seawater RO pre-treatment, UF & NF membrane systems',
+                    'Karmand Alkali & Sludge Conditioner K-302 AL', 
+                    'Karmand–K.302 AL adalah aditif phosphate cycle untuk menyediakan alkalinitas hidroksida, mencegah kerak pada ketel bertekanan rendah–menengah, serta mendispersikan lumpur agar mudah terbuang melalui blowdown. Produk ini juga dapat digunakan untuk menetralisir sisa asam setelah acid cleaning.',
+                    'Kombinasi basa pekat dan polymer jenis anionik.',
+                    '<div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🔬</span><h4>Sifat Fisik</h4></div><div class=\'physical-props-grid\'><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>💧</span><div class=\'prop-label\'>Bentuk</div><div class=\'prop-value\'>Cairan</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🎨</span><div class=\'prop-label\'>Warna</div><div class=\'prop-value\'>Bening</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>⚖️</span><div class=\'prop-label\'>Specific Gravity</div><div class=\'prop-value\'>1,25 - 1,30</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🌊</span><div class=\'prop-label\'>Kelarutan dalam air Konsentrasi</div><div class=\'prop-value\'>Larut sempurna</div></div></div></div>',
                     'Jerigen 25L, Drum 200L, IBC 1000L',
-                    'https://tokopedia.link/karmand-asro100', 
-                    'https://shopee.co.id/karmand-asro100',
+                    'https://tokopedia.link/karmand-ctt1000', 
+                    'https://shopee.co.id/karmand-ctt1000',
                     null)">
-                    <div class="product-icon">🧬</div>
-                    <h3>Karmand RO Antiscalant AS-RO100</h3>
-                    <p>Antiscalant efektif untuk proteksi membran RO dari scaling.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div>
-
-                <div class="product-card-compact" onclick="openProductModal(
-                    'Karmand RO Membrane Cleaner MC-RO200', 
-                    'Pembersih membran RO yang efektif menghilangkan scale, organic fouling, dan biological fouling. Tersedia formula alkaline untuk organic/biological dan acid untuk inorganic scaling.',
-                    'Alkaline: Surfactant, chelating agent, dispersant, pH adjuster | Acid: Mineral acid, organic acid, chelating agent',
-                    'Alkaline pH: 11-12 | Acid pH: 2-3 | Temperature: 30-40°C | Circulation Time: 2-4 hours | Concentration: 1-3%',
-                    'CIP Procedure: Flush membrane dengan permeate. Prepare cleaning solution 1-3% pada 30-40°C. Recirculate 1 jam. Soak 1-2 jam. Recirculate 1 jam. Flush dengan permeate hingga pH netral. Untuk fouling berat: clean dengan alkaline dulu, lalu acid.',
-                    'RO membrane cleaning (CIP), UF membrane, NF membrane, spiral wound & hollow fiber membrane',
-                    'Pail 10kg, Drum 25kg (powder), Jerigen 20L (liquid)',
-                    'https://tokopedia.link/karmand-mcro200', 
-                    'https://shopee.co.id/karmand-mcro200',
-                    null)">
-                    <div class="product-icon">🔬</div>
-                    <h3>Karmand RO Membrane Cleaner MC-RO200</h3>
-                    <p>Pembersih membran RO untuk mengembalikan performa optimal.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div>
-
-                <div class="product-card-compact" onclick="openProductModal(
-                    'Karmand Polyaluminium Chloride PAC-30', 
-                    'Koagulan PAC (Polyaluminium Chloride) dengan efisiensi tinggi untuk treatment air limbah dan proses klarifikasi air. Wide pH range operation dan fast floc formation.',
-                    'Polyaluminium Chloride (Al2O3: 30%), water',
-                    'Bentuk: Cairan kental | Warna: Kuning kecoklatan | Al2O3 Content: 30% min | Basicity: 40-90% | pH 1% solution: 3,5-5,0 | Specific Gravity: 1,3-1,4',
-                    'Dosis typical: 20-200 ppm tergantung aplikasi dan kualitas air. Dilute 5-10x sebelum dosing untuk distribusi merata. Inject dengan high shear mixing. Optimum pH: 6,0-9,0 (paling efektif 7,0-8,0). Adjust pH jika perlu. Test jar test untuk dosis optimal.',
-                    'Wastewater treatment, drinking water clarification, industrial water treatment, sludge dewatering',
-                    'Jerigen 30L, Drum 250L, IBC 1000L',
-                    'https://tokopedia.link/karmand-pac30', 
-                    'https://shopee.co.id/karmand-pac30',
-                    null)">
-                    <div class="product-icon">🌊</div>
-                    <h3>Karmand Polyaluminium Chloride PAC-30</h3>
-                    <p>Koagulan PAC efisiensi tinggi untuk water treatment.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div>
-
-                <div class="product-card-compact" onclick="openProductModal(
-                    'Karmand Polymer Flocculant PF-500', 
-                    'Flokulan polimer anionik/kationik untuk settling dan dewatering yang efektif. High molecular weight untuk floc strength maksimal dan clarity superior.',
-                    'Polyacrylamide polymer (anionic/cationic/nonionic), water',
-                    'Bentuk: Emulsi atau powder | Ionic Charge: Anionic/Cationic/Nonionic | Molecular Weight: High-Very High | Active Content: 30-50% (emulsion), 90% (powder)',
-                    'Powder: Dissolve 0,1-0,5% dalam air dengan slow stirring 30-60 menit. Emulsion: Dilute 0,05-0,2% dengan mixing. Dosis: 0,5-10 ppm untuk clarification, 1-20 kg/ton solid untuk dewatering. Inject after coagulant dengan gentle mixing. Optimize dengan jar test.',
-                    'Clarification & settling, sludge dewatering, mining water treatment, thickening process, DAF systems',
-                    'Pail 25kg (powder), Drum 200kg (emulsion), IBC 1000kg',
-                    'https://tokopedia.link/karmand-pf500', 
-                    'https://shopee.co.id/karmand-pf500',
-                    null)">
-                    <div class="product-icon">💎</div>
-                    <h3>Karmand Polymer Flocculant PF-500</h3>
-                    <p>Flokulan polimer untuk settling dan dewatering efektif.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div>
-
-                <div class="product-card-compact" onclick="openProductModal(
-                    'Karmand pH Control Chemicals - Caustic Soda', 
-                    'Caustic soda (Sodium Hydroxide) untuk pH adjustment dan alkalinity control. Tersedia dalam bentuk liquid 50% dan flake 99%.',
-                    'Sodium Hydroxide (NaOH)',
-                    'Liquid: Concentration 50% | Flake: Purity 99% min | Molecular Weight: 40 | Specific Gravity: 1,52 (50%) | Appearance: Clear liquid/White flake',
-                    'Untuk pH adjustment: Dosis tergantung volume dan pH target. Calculate dengan alkalinity calculation. Inject dengan dilusi untuk distribusi merata. Safety: Highly corrosive, gunakan PPE lengkap. Storage: Kontainer HDPE/PP, hindari aluminium.',
-                    'pH neutralization, alkalinity adjustment, chemical manufacturing, water treatment, pulp & paper',
-                    'Jerigen 30L, Drum 250L, IBC 1200L (liquid) | Sack 25kg (flake)',
-                    'https://tokopedia.link/karmand-naoh', 
-                    'https://shopee.co.id/karmand-naoh',
-                    null)">
-                    <div class="product-icon">⚗️</div>
-                    <h3>Karmand Caustic Soda (NaOH)</h3>
-                    <p>Caustic soda untuk pH control dan alkalinity adjustment.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div>
-
-                <div class="product-card-compact" onclick="openProductModal(
-                    'Karmand Non-Oxidizing Biocide NOB-250', 
-                    'Biocide non-oxidizing broad spectrum untuk kontrol mikrobiologi yang efektif tanpa merusak sistem. Efektif terhadap bakteri, fungi, dan alga termasuk biofilm.',
-                    'Isothiazolinone blend, stabilizer, solvent',
-                    'Bentuk: Cairan | Warna: Kuning | Active Content: 14% | pH Stability: 2-10 | Biodegradable: Yes | MIC: Low ppm effective',
-                    'Dosis shock: 50-200 ppm, maintain: 10-50 ppm. Untuk cooling tower: inject 2-3x per week. Untuk biofouling control: kontinyu atau intermittent dosing. Dapat dikombinasi dengan oxidizing biocide untuk efficacy maksimal. Rotate dengan biocide lain untuk avoid resistance.',
-                    'Cooling water, process water, oil field water, metalworking fluid preservation, paper mill, biofilm control',
-                    'Jerigen 20L, Drum 200L, IBC 1000L',
-                    'https://tokopedia.link/karmand-nob250', 
-                    'https://shopee.co.id/karmand-nob250',
-                    null)">
-                    <div class="product-icon">🦠</div>
-                    <h3>Karmand Non-Oxidizing Biocide NOB-250</h3>
-                    <p>Biocide non-oxidizing untuk kontrol mikrobiologi efektif.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div>
-
-                <div class="product-card-compact" onclick="openProductModal(
-                    'Karmand Heavy Metal Precipitant HMP-100', 
-                    'Kimia untuk pengendapan dan removal logam berat dari air limbah industri. Organosulfide based precipitant yang efektif pada pH range luas.',
-                    'Organosulfide compound, dispersant, pH buffer',
-                    'Bentuk: Cairan | Warna: Coklat gelap | pH: 11-12 | Active Content: 25% | Effective pH Range: 6-10',
-                    'Adjust pH limbah ke 8-10 untuk efisiensi optimal. Dosis: 100-500 ppm tergantung konsentrasi metal. Mixing time: 15-30 menit. Tambahkan koagulan/flokulan untuk settling. Monitor effluent metal concentration untuk memastikan compliance dengan baku mutu. Sludge dewatering diperlukan.',
-                    'Metal finishing wastewater, electroplating, mining wastewater, battery manufacturing, electronics industry',
-                    'Jerigen 25L, Drum 200L, IBC 1000L',
-                    'https://tokopedia.link/karmand-hmp100', 
-                    'https://shopee.co.id/karmand-hmp100',
-                    null)">
-                    <div class="product-icon">🧪</div>
-                    <h3>Karmand Heavy Metal Precipitant HMP-100</h3>
-                    <p>Precipitant untuk removal logam berat dari wastewater.</p>
+                    <div class="product-image-wrapper">
+                        <img src="Karmand-Scale-Remover-JS-5050.png" alt="Karmand-Boiler-Scale-Preventif-K-311-HPB"
+                            class="product-image">
+                        <div class="product-icon-fallback" style="display:none;">🧪</div>
+                    </div>
+                    <h3>Karmand Alkali & Sludge Conditioner K-302 AL</h3>
+                    <p>Karmand–K.302 AL adalah aditif phosphate cycle untuk mencegah kerak dan membantu pembuangan lumpur pada ketel.</p>
+                    <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20*Karmand%20Alkali%20%26%20Sludge%20Conditioner%20K-302%20AL*.%20Bisa%20tolong%20berikan%20informasi%20harga%20dan%20detail%20lebih%20lanjut%3F"
+                        target="_blank" class="product-price"
+                        style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(18, 140, 126, 0.05)); border-color: rgba(37, 211, 102, 0.3); color: #25d366; text-decoration: none; display: block; cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.3)'";
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">💬 Chat For The
+                        Price</a>
                     <div class="click-info">Klik untuk detail →</div>
                 </div>
             </div>
@@ -225,10 +292,7 @@
                             <p id="modalComposition">Composition goes here...</p>
                         </div>
                         
-                        <div class="modal-section">
-                            <h4>Sifat Fisik</h4>
-                            <p id="modalPhysicalProperties">Physical properties go here...</p>
-                        </div>
+                        <div id="modalPhysicalPropertiesContainer"></div>
                         
                         <div class="modal-section">
                             <h4>Penggunaan & Dosis</h4>
@@ -302,7 +366,6 @@
             </div>
         </div>
     </footer>
-
     <script src="script.js"></script>
 </body>
 </html>

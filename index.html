@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,352 @@
     <link rel="icon" href="logo.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Partnership Slider Section */
+        .partnership-section {
+            margin: 5rem 0;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(2, 206, 203, 0.05), rgba(5, 55, 78, 0.02));
+            border-radius: 25px;
+            border: 2px solid rgba(2, 206, 203, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partnership-section::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle,
+                    rgba(2, 206, 203, 0.08) 0%,
+                    transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        .partnership-section h3 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-align: center;
+            color: #05374e;
+            margin-bottom: 0.8rem;
+            letter-spacing: -1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .partnership-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Partnership Slider Container */
+        .partnership-slider-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 60px;
+            z-index: 1;
+        }
+
+        .partnership-slider-wrapper {
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .partnership-slider-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            gap: 2rem;
+        }
+
+        .partner-slide {
+            flex: 0 0 calc(25% - 1.5rem);
+            min-width: calc(25% - 1.5rem);
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: #ffffff;
+            border-radius: 15px;
+            border: 2px solid rgba(5, 55, 78, 0.08);
+            box-shadow: 0 5px 20px rgba(5, 55, 78, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partner-slide::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-2);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        .partner-slide:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: var(--accent);
+            box-shadow: 0 15px 40px rgba(2, 206, 203, 0.25);
+        }
+
+        .partner-slide:hover::before {
+            opacity: 0.08;
+        }
+
+        .partner-logo {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            filter: grayscale(100%) opacity(0.7);
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .partner-slide:hover .partner-logo {
+            filter: grayscale(0%) opacity(1);
+            transform: scale(1.1);
+        }
+
+        /* Navigation Buttons */
+        .partner-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--accent);
+            border: 2px solid rgba(2, 206, 203, 0.3);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 4px 15px rgba(5, 55, 78, 0.15);
+        }
+
+        .partner-nav:hover {
+            transform: translateY(-50%) scale(1.1);
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+            box-shadow: 0 8px 25px rgba(2, 206, 203, 0.3);
+        }
+
+        .partner-nav:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .partner-prev {
+            left: 0;
+        }
+
+        .partner-next {
+            right: 0;
+        }
+
+        /* Dots Indicator */
+        .partnership-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 2.5rem;
+            z-index: 1;
+            position: relative;
+        }
+
+        .partnership-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(5, 55, 78, 0.2);
+            border: 2px solid rgba(5, 55, 78, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .partnership-dot.active {
+            background: var(--accent);
+            box-shadow: 0 0 12px rgba(2, 206, 203, 0.6);
+            border-color: rgba(2, 206, 203, 0.4);
+            transform: scale(1.2);
+        }
+
+        .partnership-dot:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .partner-slide {
+                flex: 0 0 calc(33.333% - 1.33rem);
+                min-width: calc(33.333% - 1.33rem);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .partnership-section h3 {
+                font-size: 2rem;
+            }
+
+            .partnership-slider-container {
+                padding: 0 50px;
+            }
+
+            .partner-slide {
+                flex: 0 0 calc(33.333% - 1.33rem);
+                min-width: calc(33.333% - 1.33rem);
+                height: 120px;
+            }
+
+            .partner-nav {
+                width: 42px;
+                height: 42px;
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .partnership-section {
+                padding: 3rem 1.5rem;
+                margin: 3rem 0;
+            }
+
+            .partnership-subtitle {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .partnership-slider-container {
+                padding: 0 45px;
+            }
+
+            .partnership-slider-track {
+                gap: 1rem;
+            }
+
+            .partner-slide {
+                flex: 0 0 calc(50% - 0.5rem);
+                min-width: calc(50% - 0.5rem);
+                height: 100px;
+                padding: 1rem;
+            }
+
+            .partnership-section h3 {
+                font-size: 1.8rem;
+            }
+
+            .partner-nav {
+                width: 38px;
+                height: 38px;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .partnership-slider-container {
+                padding: 0 40px;
+            }
+
+            .partner-slide {
+                flex: 0 0 100%;
+                min-width: 100%;
+                height: 100px;
+            }
+
+            .partnership-slider-track {
+                gap: 0.8rem;
+            }
+
+            .partner-nav {
+                width: 35px;
+                height: 35px;
+                font-size: 1.2rem;
+            }
+
+            .partnership-dots {
+                margin-top: 2rem;
+            }
+
+            .partnership-dot {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
+        /* Animation for initial load */
+        @keyframes slideInPartner {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .partner-slide {
+            animation: slideInPartner 0.6s ease backwards;
+        }
+
+        .partner-slide:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .partner-slide:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .partner-slide:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .partner-slide:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        /* Disable animations after initial load */
+        .partnership-slider-track.animated .partner-slide {
+            animation: none;
+        }
+
+        /* Touch/Swipe support indicator */
+        @media (hover: none) and (pointer: coarse) {
+            .partnership-slider-wrapper {
+                cursor: grab;
+            }
+
+            .partnership-slider-wrapper:active {
+                cursor: grabbing;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar">
@@ -34,7 +378,7 @@
                 </li>
                 <li><a href="portfolio.html">Portfolio</a></li>
                 <li><a href="blogs.html">Blogs</a></li>
-                <li><a href="karir.html">Karir</a></li>
+                <li><a href="karir.html">Karir</html">Karir</a></li>
                 <li><a href="kontak.html">Hubungi Kami</a></li>
                 <li><a href="tentang.html">Tentang Kami</a></li>
             </ul>
@@ -48,7 +392,8 @@
                 <div class="hero-content">
                     <div class="hero-card">
                         <h1>Solusi Kimia Inovatif<br>untuk <span class="highlight">Masa Depan Industri</span></h1>
-                        <p>Kami menghadirkan produk dan layanan kimia berkualitas tinggi untuk mendukung pertumbuhan bisnis Anda melalui inovasi, keahlian profesional, dan komitmen berkelanjutan.</p>
+                        <p>Kami menghadirkan produk dan layanan kimia berkualitas tinggi untuk mendukung pertumbuhan
+                            bisnis Anda melalui inovasi, keahlian profesional, dan komitmen berkelanjutan.</p>
                         <a href="kontak.html" class="cta-button">Mulai Sekarang</a>
                     </div>
                 </div>
@@ -57,8 +402,10 @@
             <div class="slide" data-index="1" aria-hidden="true" data-bg="/gambar1.jpg">
                 <div class="hero-content">
                     <div class="hero-card">
-                        <h1>Produk Unggulan<span class="highlight">Cold Galvanize <br>1kg,5kg,20kg pail, spray 350gram</span></h1>
-                        <p>Optimalisasi proses dengan produk dan layanan kami yang dirancang untuk performa dan keselamatan industri.</p>
+                        <h1>Produk Unggulan<span class="highlight">Cold Galvanize 1kg,5kg,20kg pail, spray
+                                350gram</span></h1>
+                        <p>Optimalisasi proses dengan produk dan layanan kami yang dirancang untuk performa dan
+                            keselamatan industri.</p>
                         <a href="produk-cold-galvanize.html" class="cta-button">Jelajahi Produk</a>
                     </div>
                 </div>
@@ -68,7 +415,8 @@
                 <div class="hero-content">
                     <div class="hero-card">
                         <h1>Partner Anda dalam<br><span class="highlight">Solusi Berkelanjutan</span></h1>
-                        <p>Kami membantu perusahaan menerapkan praktik yang lebih ramah lingkungan tanpa mengorbankan kinerja.</p>
+                        <p>Kami membantu perusahaan menerapkan praktik yang lebih ramah lingkungan tanpa mengorbankan
+                            kinerja.</p>
                         <a href="kontak.html" class="cta-button">Konsultasi Gratis</a>
                     </div>
                 </div>
@@ -89,10 +437,15 @@
             <div class="about-content">
                 <div class="about-text">
                     <h3>PT KARMAND MITRA ANDALAN</h3>
-                    <p>Merupakan perusahaan swasta nasional yang bergerak di bidang CHEMICAL dan berdiri sejak tahun 1988 yang merupakan kelanjutan dari CV KARYA MANDIRI.</p>
-                    <p>Untuk memberikan yang terbaik kepada pelanggan PT KARMAND MITRA ANDALAN terus melakukan riset guna meningkatkan kualitas produk maupun pelayanannya dengan menempatkan tenaga ahli yang profesional.</p>
+                    <p>Merupakan perusahaan swasta nasional yang bergerak di bidang CHEMICAL dan berdiri sejak tahun
+                        1988 yang merupakan kelanjutan dari CV KARYA MANDIRI.</p>
+                    <p>Untuk memberikan yang terbaik kepada pelanggan PT KARMAND MITRA ANDALAN terus melakukan riset
+                        guna meningkatkan kualitas produk maupun pelayanannya dengan menempatkan tenaga ahli yang
+                        profesional.</p>
                     <p>
-                    Dengan produk dan jasa ; Cold Galvanize & Coating for Industry, Chemical Maintenance, Chemical Water Treatment, Fabrikasi FRP & Rubber Lining, Probiotic Product, Reverse Osmosis Chemical Treatment</p>
+                        Dengan produk dan jasa ; Cold Galvanize & Coating for Industry, Chemical Maintenance, Chemical
+                        Water Treatment, Fabrikasi FRP & Rubber Lining, Probiotic Product, Reverse Osmosis Chemical
+                        Treatment</p>
                 </div>
                 <div class="stats">
                     <div class="stat-item">
@@ -114,14 +467,55 @@
                 </div>
             </div>
 
+            <!-- Partnership Slider Section -->
+            <div class="partnership-section">
+                <h3>Partner Terpercaya Kami</h3>
+                <p class="partnership-subtitle">Dipercaya oleh perusahaan-perusahaan terkemuka di Indonesia</p>
+
+                <div class="partnership-slider-container">
+                    <button class="partner-nav partner-prev" aria-label="Previous partners">‹</button>
+
+                    <div class="partnership-slider-wrapper">
+                        <div class="partnership-slider-track">
+                            <!-- Partner Items - tambahkan lebih banyak sesuai kebutuhan -->
+                            <div class="partner-slide">
+                                <img src="/partnership/PJB.png" alt="PJB" class="partner-logo">
+                            </div>
+                            <div class="partner-slide">
+                                <img src="/partnership/Semen-Gresik.png" alt="Semen Gresik" class="partner-logo">
+                            </div>
+                            <div class="partner-slide">
+                                <img src="/partnership/PTPN9.png" alt="PTPN9" class="partner-logo">
+                            </div>
+                            <div class="partner-slide">
+                                <img src="/partnership/Petrokimia-Gresik.png" alt="Petrokimia Gresik" class="partner-logo">
+                            </div>
+                            <div class="partner-slide">
+                                <img src="/partnership/Waskita-Karya.png" alt="Waskita Karya" class="partner-logo">
+                            </div>
+                            <div class="partner-slide">
+                                <img src="/partnership/cj.webp" alt="CJ" class="partner-logo">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="partner-nav partner-next" aria-label="Next partners">›</button>
+                </div>
+
+                <!-- Dots indicator -->
+                <div class="partnership-dots"></div>
+            </div>
+
             <div class="mission-vision">
                 <div class="mission-card">
                     <h3>Misi Kami</h3>
-                    <p>Menyediakan produk dan layanan kimia industri terbaik yang mendorong efisiensi, produktivitas, dan keberlanjutan operasional klien kami.</p>
+                    <p>Menyediakan produk dan layanan kimia industri terbaik yang mendorong efisiensi, produktivitas,
+                        dan keberlanjutan operasional klien kami.</p>
                 </div>
                 <div class="vision-card">
                     <h3>Visi Kami</h3>
-                    <p>Menjadi pemimpin penyedia solusi kimia industri yang diakui secara nasional untuk keunggulan produk, inovasi, dan layanan pelanggan kami.</p>
+                    <p>Menjadi pemimpin penyedia solusi kimia industri yang diakui secara nasional untuk keunggulan
+                        produk, inovasi, dan layanan pelanggan kami.</p>
                 </div>
             </div>
         </div>
@@ -133,30 +527,28 @@
             <div class="footer-content">
                 <div class="footer-info">
                     <div class="footer-logo">Karmand<span> Industrial</span></div>
-                    <p class="footer-description">Solusi kimia inovatif untuk masa depan industri Anda. Kami berkomitmen memberikan produk berkualitas tinggi dan layanan profesional.</p>
+                    <p class="footer-description">Solusi kimia inovatif untuk masa depan industri Anda. Kami berkomitmen
+                        memberikan produk berkualitas tinggi dan layanan profesional.</p>
                     <div class="footer-contact">
                         <p><strong>Email:</strong> karmandandalan.com</p>
                         <p><strong>Telepon:</strong> +62 813-5346-8612</p>
-                        <p><strong>Alamat:</strong> Jl. Jemursari II No.8, Jemur Wonosari, Kec. Wonocolo, Surabaya, Jawa Timur 60237</p>
+                        <p><strong>Alamat:</strong> Jl. Jemursari II No.8, Jemur Wonosari, Kec. Wonocolo, Surabaya, Jawa
+                            Timur 60237</p>
                     </div>
                 </div>
-                
+
                 <div class="footer-map">
                     <h4>Lokasi Kami</h4>
                     <div class="map-container">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.298770611649!2d112.7452629!3d-7.3202979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb00acfb4ce1%3A0x9047767f9cfb265d!2sPT%20Karmand%20Mitra%20Andalan!5e0!3m2!1sid!2sid!4v1767950973684!5m2!1sid!2sid" 
-                            width="100%" 
-                            height="250" 
-                            style="border:0; border-radius: 10px;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.298770611649!2d112.7452629!3d-7.3202979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb00acfb4ce1%3A0x9047767f9cfb265d!2sPT%20Karmand%20Mitra%20Andalan!5e0!3m2!1sid!2sid!4v1767950973684!5m2!1sid!2sid"
+                            width="100%" height="250" style="border:0; border-radius: 10px;" allowfullscreen=""
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <div class="footer-text">© 2026 Karmand Industrial. All rights reserved.</div>
                 <div class="social-links">
@@ -170,5 +562,319 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Partnership Slider Functionality
+        document.addEventListener("DOMContentLoaded", () => {
+            const sliderContainer = document.querySelector(".partnership-slider-container");
+
+            if (!sliderContainer) return;
+
+            const track = sliderContainer.querySelector(".partnership-slider-track");
+            const slides = Array.from(track.querySelectorAll(".partner-slide"));
+            const prevBtn = sliderContainer.querySelector(".partner-prev");
+            const nextBtn = sliderContainer.querySelector(".partner-next");
+            const dotsContainer = document.querySelector(".partnership-dots");
+
+            if (!track || slides.length === 0) return;
+
+            let currentIndex = 0;
+            let slidesToShow = 4;
+            let slideWidth = 0;
+            let totalSlides = slides.length;
+            let maxIndex = 0;
+            let autoplayInterval = null;
+            const autoplayDelay = 5000;
+
+            // Touch/Swipe variables
+            let touchStartX = 0;
+            let touchEndX = 0;
+            let isDragging = false;
+            let startPos = 0;
+            let currentTranslate = 0;
+            let prevTranslate = 0;
+
+            // Calculate slides to show based on viewport
+            function calculateSlidesToShow() {
+                const width = window.innerWidth;
+                if (width <= 480) {
+                    slidesToShow = 1;
+                } else if (width <= 768) {
+                    slidesToShow = 2;
+                } else if (width <= 1200) {
+                    slidesToShow = 3;
+                } else {
+                    slidesToShow = 4;
+                }
+                maxIndex = Math.max(0, totalSlides - slidesToShow);
+            }
+
+            // Calculate slide width
+            function calculateSlideWidth() {
+                const containerWidth = track.parentElement.offsetWidth;
+                const gap = parseFloat(getComputedStyle(track).gap) || 0;
+                slideWidth = (containerWidth + gap) / slidesToShow;
+            }
+
+            // Create dots
+            function createDots() {
+                if (!dotsContainer) return;
+                dotsContainer.innerHTML = "";
+
+                const dotsCount = maxIndex + 1;
+                for (let i = 0; i <= maxIndex; i++) {
+                    const dot = document.createElement("button");
+                    dot.className = "partnership-dot";
+                    dot.setAttribute("aria-label", `Go to slide ${i + 1}`);
+                    dot.addEventListener("click", () => goToSlide(i));
+                    dotsContainer.appendChild(dot);
+                }
+                updateDots();
+            }
+
+            // Update dots active state
+            function updateDots() {
+                if (!dotsContainer) return;
+                const dots = dotsContainer.querySelectorAll(".partnership-dot");
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle("active", index === currentIndex);
+                });
+            }
+
+            // Go to specific slide
+            function goToSlide(index) {
+                currentIndex = Math.max(0, Math.min(index, maxIndex));
+                updateSliderPosition();
+                updateDots();
+                resetAutoplay();
+            }
+
+            // Update slider position
+            function updateSliderPosition(animate = true) {
+                const translateX = -(currentIndex * slideWidth);
+
+                if (animate) {
+                    track.style.transition = "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)";
+                } else {
+                    track.style.transition = "none";
+                }
+
+                track.style.transform = `translateX(${translateX}px)`;
+                prevTranslate = translateX;
+
+                // Update button states
+                updateButtonStates();
+            }
+
+            // Update button disabled states
+            function updateButtonStates() {
+                if (prevBtn) {
+                    prevBtn.style.opacity = currentIndex === 0 ? "0.5" : "1";
+                    prevBtn.style.cursor = currentIndex === 0 ? "not-allowed" : "pointer";
+                    prevBtn.disabled = currentIndex === 0;
+                }
+
+                if (nextBtn) {
+                    nextBtn.style.opacity = currentIndex >= maxIndex ? "0.5" : "1";
+                    nextBtn.style.cursor = currentIndex >= maxIndex ? "not-allowed" : "pointer";
+                    nextBtn.disabled = currentIndex >= maxIndex;
+                }
+            }
+
+            // Next slide
+            function nextSlide() {
+                if (currentIndex < maxIndex) {
+                    goToSlide(currentIndex + 1);
+                }
+            }
+
+            // Previous slide
+            function prevSlide() {
+                if (currentIndex > 0) {
+                    goToSlide(currentIndex - 1);
+                }
+            }
+
+            // Autoplay
+            function startAutoplay() {
+                autoplayInterval = setInterval(() => {
+                    if (currentIndex >= maxIndex) {
+                        goToSlide(0);
+                    } else {
+                        nextSlide();
+                    }
+                }, autoplayDelay);
+            }
+
+            function stopAutoplay() {
+                if (autoplayInterval) {
+                    clearInterval(autoplayInterval);
+                    autoplayInterval = null;
+                }
+            }
+
+            function resetAutoplay() {
+                stopAutoplay();
+                startAutoplay();
+            }
+
+            // Touch/Swipe handlers
+            function touchStart(e) {
+                touchStartX = e.type.includes("mouse") ? e.pageX : e.touches[0].clientX;
+                isDragging = true;
+                startPos = touchStartX;
+
+                track.style.transition = "none";
+                sliderContainer.style.cursor = "grabbing";
+            }
+
+            function touchMove(e) {
+                if (!isDragging) return;
+
+                e.preventDefault();
+                const currentPosition = e.type.includes("mouse") ? e.pageX : e.touches[0].clientX;
+                currentTranslate = prevTranslate + currentPosition - startPos;
+
+                // Add resistance at boundaries
+                if (currentIndex === 0 && currentTranslate > 0) {
+                    currentTranslate = currentTranslate * 0.3;
+                } else if (currentIndex >= maxIndex && currentTranslate < prevTranslate) {
+                    currentTranslate = prevTranslate + (currentTranslate - prevTranslate) * 0.3;
+                }
+
+                track.style.transform = `translateX(${currentTranslate}px)`;
+            }
+
+            function touchEnd(e) {
+                if (!isDragging) return;
+
+                isDragging = false;
+                touchEndX = e.type.includes("mouse") ? e.pageX : e.changedTouches[0].clientX;
+                sliderContainer.style.cursor = "grab";
+
+                const movedBy = touchStartX - touchEndX;
+                const threshold = slideWidth * 0.2; // 20% of slide width
+
+                if (Math.abs(movedBy) > threshold) {
+                    if (movedBy > 0 && currentIndex < maxIndex) {
+                        nextSlide();
+                    } else if (movedBy < 0 && currentIndex > 0) {
+                        prevSlide();
+                    } else {
+                        updateSliderPosition();
+                    }
+                } else {
+                    updateSliderPosition();
+                }
+            }
+
+            // Initialize slider
+            function init() {
+                calculateSlidesToShow();
+                calculateSlideWidth();
+                createDots();
+                updateSliderPosition(false);
+
+                // Mark as animated to disable initial animations
+                setTimeout(() => {
+                    track.classList.add("animated");
+                }, 1000);
+
+                // Start autoplay
+                startAutoplay();
+            }
+
+            // Event listeners
+            if (prevBtn) {
+                prevBtn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    prevSlide();
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    nextSlide();
+                });
+            }
+
+            // Touch events
+            track.addEventListener("touchstart", touchStart, { passive: false });
+            track.addEventListener("touchmove", touchMove, { passive: false });
+            track.addEventListener("touchend", touchEnd);
+
+            // Mouse events for desktop drag
+            track.addEventListener("mousedown", touchStart);
+            track.addEventListener("mousemove", touchMove);
+            track.addEventListener("mouseup", touchEnd);
+            track.addEventListener("mouseleave", () => {
+                if (isDragging) {
+                    isDragging = false;
+                    updateSliderPosition();
+                }
+            });
+
+            // Prevent context menu on long press
+            track.addEventListener("contextmenu", (e) => {
+                if (isDragging) {
+                    e.preventDefault();
+                }
+            });
+
+            // Stop autoplay on user interaction
+            sliderContainer.addEventListener("mouseenter", stopAutoplay);
+            sliderContainer.addEventListener("mouseleave", startAutoplay);
+            sliderContainer.addEventListener("touchstart", stopAutoplay);
+
+            // Keyboard navigation
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "ArrowLeft") {
+                    prevSlide();
+                } else if (e.key === "ArrowRight") {
+                    nextSlide();
+                }
+            });
+
+            // Handle window resize
+            let resizeTimeout;
+            window.addEventListener("resize", () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    calculateSlidesToShow();
+                    calculateSlideWidth();
+
+                    // Reset to valid index
+                    if (currentIndex > maxIndex) {
+                        currentIndex = maxIndex;
+                    }
+
+                    createDots();
+                    updateSliderPosition(false);
+                }, 250);
+            });
+
+            // Initialize
+            init();
+
+            // Intersection Observer for performance (pause when not visible)
+            if ("IntersectionObserver" in window) {
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                startAutoplay();
+                            } else {
+                                stopAutoplay();
+                            }
+                        });
+                    },
+                    { threshold: 0.5 }
+                );
+
+                observer.observe(sliderContainer);
+            }
+        });
+    </script>
 </body>
+
 </html>

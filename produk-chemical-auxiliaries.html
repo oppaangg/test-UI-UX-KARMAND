@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,158 @@
     <link rel="icon" href="logo.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Physical Properties Modern Styling */
+        .physical-props-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .prop-item {
+            background: linear-gradient(135deg, rgba(2, 206, 203, 0.08), rgba(5, 55, 78, 0.05));
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(2, 206, 203, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prop-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .prop-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(2, 206, 203, 0.2);
+            border-color: var(--accent);
+        }
+
+        .prop-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .prop-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .prop-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.3rem;
+        }
+
+        .prop-value {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #05374e;
+            line-height: 1.3;
+        }
+
+        .prop-highlight {
+            background: linear-gradient(135deg, rgba(2, 206, 203, 0.15), rgba(5, 55, 78, 0.08));
+            border: 2px solid rgba(2, 206, 203, 0.4);
+        }
+
+        .props-section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(2, 206, 203, 0.2);
+        }
+
+        .props-section-header h4 {
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin: 0;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .props-section-icon {
+            font-size: 1.3rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--accent);
+            margin: 1rem 0 0.5rem 0;
+            padding: 0.8rem 1.2rem;
+            background: linear-gradient(135deg, rgba(2, 206, 203, 0.1), rgba(5, 55, 78, 0.05));
+            border-radius: 12px;
+            border: 2px solid rgba(2, 206, 203, 0.3);
+            text-align: center;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-price::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(2, 206, 203, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .product-card-compact:hover .product-price::before {
+            left: 100%;
+        }
+
+        .product-price::after {
+
+            margin-left: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .physical-props-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 0.8rem;
+            }
+
+            .prop-item {
+                padding: 0.8rem;
+            }
+
+            .prop-value {
+                font-size: 0.9rem;
+            }
+
+            .product-price {
+                font-size: 1.3rem;
+                padding: 0.6rem 1rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar">
@@ -46,218 +196,127 @@
         <div class="section-container">
             <h2 class="section-title">Chemical Auxiliaries for Industry</h2>
             <p class="section-subtitle">Bahan Kimia Pendukung untuk Berbagai Proses Industri</p>
-            
+
             <div class="product-intro">
-                <p>Kami menyediakan berbagai chemical auxiliaries berkualitas tinggi untuk mendukung proses industri Anda. Dari surfactant hingga specialty chemicals, produk kami membantu mengoptimalkan efisiensi proses dan kualitas produk akhir.</p>
+                <p>Kami menyediakan berbagai chemical auxiliaries berkualitas tinggi untuk mendukung proses industri
+                    Anda. Dari surfactant hingga specialty chemicals, produk kami membantu mengoptimalkan efisiensi
+                    proses dan kualitas produk akhir.</p>
             </div>
 
             <div class="products-grid">
-                <!-- <div class="product-card-compact" onclick="openProductModal(
-                    'Karmand Surfactant SN-01', 
+                <div class="product-card-compact" onclick="openProductModal(
+                        'Karmand Scale Remover JS-5050 25Kg', 
+                        'Karmand – JS.5050 adalah bahan aktif yang dengan mudah bereaksi dengan kerak pada sisi nira. Biasanya kerak yang terjadi adalah garam – garam komplek dari kapur, silicate, maupun oxalate yang keras.',
+                        'Polyurethane resin, UV stabilizer, pigment, solvent',
+                        '<div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🛡️</span><h4>Pencegahan Paparan</h4></div><div class=\'physical-props-grid\'><div class=\'prop-item\'><span class=\'prop-icon\'>👁️</span><div class=\'prop-label\'>Perlindungan Mata</div><div class=\'prop-value\'>Gunakan kaca mata pelindung.</div></div><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>😷</span><div class=\'prop-label\'>Perlindungan Pernapasan</div><div class=\'prop-value\'>Tidak diperlukan</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🧤</span><div class=\'prop-label\'>Perlindungan Tangan</div><div class=\'prop-value\'>Gunakan sarung tangan karet</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>👩🏻‍⚕️</span><div class=\'prop-label\'>Penanganan Pertama</div><div class=\'prop-value\'>Bila kena mata segera bilas dengan air bersih banyak – banyak dan segera ke dokter</div></div></div></div>',
+                        'Gunakan Karmand – JS.5050 dengan konsentrasi 0,5–5%, lalu panaskan hingga suhu 70–100°C selama 4–12 jam.',
+                        'Eksterior bangunan, struktur offshore, peralatan outdoor, automotive coating',
+                        'Set 5 kg, 20 kg',
+                        'https://tokopedia.link/karmand-pu', 
+                        'https://shopee.co.id/karmand-pu',
+                        null)">
+                    <div class="product-image-wrapper">
+                        <img src="Karmand-Scale-Remover-JS-5050.png" alt="Karmand-Scale-Remover-JS-5050"
+                            class="product-image">
+                        <div class="product-icon-fallback" style="display:none;">🧪</div>
+                    </div>
+                    <h3>Karmand Scale Remover JS-5050 25Kg</h3>
+                    <p>Karmand – JS.5050 adalah bahan aktif yang bereaksi efektif dengan kerak nira keras seperti garam
+                        kapur, silikat, dan oksalat.</p>
+                    <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20*Karmand%20Cat%20NC%205Kg*.%20Bisa%20tolong%20berikan%20informasi%20harga%20dan%20detail%20lebih%20lanjut%3F"
+                        target="_blank" class="product-price"
+                        style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(18, 140, 126, 0.05)); border-color: rgba(37, 211, 102, 0.3); color: #25d366; text-decoration: none; display: block; cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.3)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">💬 Chat For The
+                        Price</a>
+                    <div class="click-info" style="cursor: pointer;">Klik untuk detail →
+                    </div>
+                </div>
+
+                <div class="product-card-compact" onclick="openProductModal(
+                        'Karmand Scale Remover JS-9010 25Kg', 
+                        'Karmand – JS.9010 adalah bahan aktif yang dengan mudah bereaksi dengan kerak pada sisi nira. Biasanya kerak yang terjadi adalah garam – garam komplek dari kapur, silicate, maupun oxalate yang keras.',
+                        'Polyurethane resin, UV stabilizer, pigment, solvent',
+                        '<div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🛡️</span><h4>Pencegahan Paparan</h4></div><div class=\'physical-props-grid\'><div class=\'prop-item\'><span class=\'prop-icon\'>👁️</span><div class=\'prop-label\'>Perlindungan Mata</div><div class=\'prop-value\'>Gunakan kaca mata pelindung.</div></div><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>😷</span><div class=\'prop-label\'>Perlindungan Pernapasan</div><div class=\'prop-value\'>Tidak diperlukan</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🧤</span><div class=\'prop-label\'>Perlindungan Tangan</div><div class=\'prop-value\'>Gunakan sarung tangan karet</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>👩🏻‍⚕️</span><div class=\'prop-label\'>Penanganan Pertama</div><div class=\'prop-value\'>Bila kena mata segera bilas dengan air bersih banyak – banyak dan segera ke dokter</div></div></div></div>',
+                        'Gunakan Karmand – JS.9010 dengan konsentrasi 5–10%, lalu panaskan hingga suhu 70–100°C selama 4–12 jam.',
+                        'Eksterior bangunan, struktur offshore, peralatan outdoor, automotive coating',
+                        'Set 5 kg, 20 kg',
+                        'https://tokopedia.link/karmand-pu', 
+                        'https://shopee.co.id/karmand-pu',
+                        null)">
+                    <div class="product-image-wrapper">
+                        <img src="Karmand-Scale-Remover-JS-5050.png" alt="Karmand-Scale-Remover-JS-5050"
+                            class="product-image">
+                        <div class="product-icon-fallback" style="display:none;">🧪</div>
+                    </div>
+                    <h3>Karmand Scale Remover JS-9010 25Kg</h3>
+                    <p>Karmand – JS.5050 adalah bahan aktif yang bereaksi efektif dengan kerak nira keras seperti garam
+                        kapur, silikat, dan oksalat.</p>
+                    <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20*Karmand%20Cat%20NC%205Kg*.%20Bisa%20tolong%20berikan%20informasi%20harga%20dan%20detail%20lebih%20lanjut%3F"
+                        target="_blank" class="product-price"
+                        style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(18, 140, 126, 0.05)); border-color: rgba(37, 211, 102, 0.3); color: #25d366; text-decoration: none; display: block; cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.3)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">💬 Chat For The
+                        Price</a>
+                    <div class="click-info" style="cursor: pointer;">Klik untuk detail →
+                    </div>
+                </div>
+
+                <div class="product-card-compact" onclick="openProductModal(
+                    'Karmand Biocide SB 2055 25L', 
                     'Proses pemerasan nira pada gilingan sering belum maksimal karena ekstraksi nira dari ampas tebu kurang optimal. Proses imbibisi juga belum efektif akibat tingginya tegangan permukaan air, sehingga diperlukan bahan yang dapat menurunkannya agar air lebih mudah menembus serat ampas dan meningkatkan ekstraksi nira. Karmand-SN.01 diformulasikan khusus untuk mengatasi kendala penggilingan tanpa menimbulkan efek racun pada produk.', 
-                    'Kombinasi anionic surfactant, alkohol dan dispersant',
-                    'Bentuk: Cair | Warna: Jernih | Sg: 1,01 | Titik Nyala: Tidak ada (tidak terbakar) | pH Konsentrate: 8,0 – 9,0',
-                    'Dosis yang disarankan pada imbibisi antara 5 – 10 ppm. Karmand – SN.01 dapat juga berfungsi sebagai pereduksi kekentalan dengan dosis yang disarankan antara 1-10 ppm.',
+                    'Kombinasi bahan aktif biocide, surfactant dan dispersing agent.',
+                    '<div class=\'modal-section\'><h4>Kelebihan Produk</h4><ul style=\'list-style: none; padding: 0;\'><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>✓</span> Meminimalkan pertumbuhan microorganisme pemecah sukrosa.</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>✓</span>  Membantu proses ekstraksi pada pemerasan nira.</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>✓</span> Menurunkan viscositas, terutama pada klarifier dan pan masakan.</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>✓</span> Mengurangi bau yang tidak enak pada sanitasi stasiun gilingan.</li></ul></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🔬</span><h4>Sifat Fisik</h4></div><div class=\'physical-props-grid\'><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>💧</span><div class=\'prop-label\'>Bentuk</div><div class=\'prop-value\'>Cair</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🎨</span><div class=\'prop-label\'>Warna</div><div class=\'prop-value\'>Jernih</div></div><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>⚖️</span><div class=\'prop-label\'>Specific Gravity</div><div class=\'prop-value\'>0,99</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🔥</span><div class=\'prop-label\'>Titik Nyala</div><div class=\'prop-value\'>Tidak ada</div></div><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>🧪</span><div class=\'prop-label\'>pH Konsentrat</div><div class=\'prop-value\'>± 0,5 – 8,0</div></div></div></div>',         
+                    'Gunakan Karmand – SB.2055 pada dosis 10 – 15 ppm, Shock dosis 30 – 40 ppm selama 24 jam.',
                     'Industri gula (proses penggilingan tebu), Industri tekstil, Proses coating dan finishing',
                     'Jerigen 25 liter',
                     'https://tokopedia.link/karmand-sn01', 
                     'https://shopee.co.id/karmand-sn01',
                     '/surfactant_SN-01.png')">
                     <div class="product-image-wrapper">
-                        <img src="surfactant_SN-01.png" alt="Karmand Surfactant SN-01" class="product-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <img src="Karmand-Biocide-SB-2055.png" alt="Karmand Biocide SB 2055" class="product-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <div class="product-icon-fallback" style="display:none;">🧪</div>
                     </div>
-                    <h3>Karmand Surfactant SN-01</h3>
-                    <p>Surfactant khusus untuk proses imbibisi pada industri gula dan aplikasi industrial lainnya.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div> -->
-
-                <div class="product-card-compact" onclick="openProductModal(
-                    'Karmand Emulsifier EM-200', 
-                    'Emulsifier khusus untuk stabilisasi emulsi dalam berbagai aplikasi industri coating, paint, dan adhesive. Produk ini diformulasikan untuk memberikan stabilitas emulsi yang superior dengan HLB value yang optimal untuk aplikasi water-based systems.',
-                    'Kombinasi non-ionic emulsifier, co-emulsifier, dan stabilizer',
-                    'Bentuk: Cairan kental | Warna: Kuning muda | Viskositas: 200-500 cPs | pH: 6,5 – 7,5 | Kelarutan: Larut dalam air',
-                    'Dosis yang disarankan: 1-5% dari total formulasi tergantung aplikasi. Tambahkan pada fase air dengan pengadukan yang baik. Dapat dikombinasikan dengan dispersant untuk hasil optimal.',
-                    'Industri paint & coating (water-based), Adhesive, Cosmetic & personal care, Agrochemical formulation',
-                    'Drum 200 kg, IBC 1000 kg',
-                    'https://tokopedia.link/karmand-em200', 
-                    'https://shopee.co.id/karmand-em200',
-                    null)">
-                    <div class="product-icon">💧</div>
-                    <h3>Karmand Emulsifier EM-200</h3>
-                    <p>Emulsifier berkualitas tinggi untuk stabilisasi emulsi dalam aplikasi industrial.</p>
+                    <h3>Karmand Biocide SB 2055 25L</h3>
+                    <p>Karmand – SB.2055 adalah biocidal dan extractor yang mengurangi kehilangan sukrosa dan
+                        meningkatkan efisiensi ekstraksi pada penggilingan tebu.</p>
+                    <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20*Karmand%20Biocide%20SB%202055%2025L*.%20Bisa%20tolong%20berikan%20informasi%20harga%20dan%20detail%20lebih%20lanjut%3F"
+                        target="_blank" class="product-price"
+                        style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(18, 140, 126, 0.05)); border-color: rgba(37, 211, 102, 0.3); color: #25d366; text-decoration: none; display: block; cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.3)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">💬 Chat For The
+                        Price</a>
                     <div class="click-info">Klik untuk detail →</div>
                 </div>
 
                 <div class="product-card-compact" onclick="openProductModal(
-                    'Karmand Rheology Modifier RH-350', 
-                    'Rheology modifier yang dirancang untuk mengontrol viskositas dan memberikan thixotropic properties pada coating dan adhesive systems. Memberikan excellent sag resistance dan anti-settling properties.',
-                    'Polyurethane associative thickener modified',
-                    'Bentuk: Cairan | Warna: Putih susu | Solid Content: 25% | pH: 7,5 – 8,5 | Viskositas: Low viscosity liquid',
-                    'Dosis: 0,5-3% dari total formulasi. Tambahkan secara perlahan dengan pengadukan medium speed. pH adjustment mungkin diperlukan setelah penambahan untuk aktivasi optimal.',
-                    'Water-based coating, Latex paint, Adhesive & sealant, Printing ink',
-                    'Jerigen 25 kg, Drum 200 kg',
-                    'https://tokopedia.link/karmand-rh350', 
-                    'https://shopee.co.id/karmand-rh350',
-                    null)">
-                    <div class="product-icon">🎨</div>
-                    <h3>Karmand Rheology Modifier RH-350</h3>
-                    <p>Pengatur rheologi untuk kontrol viskositas dan thixotropic properties optimal.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div>
-
-                <div class="product-card-compact" onclick="openProductModal(
-                    'Karmand Defoamer DF-80', 
-                    'Anti-foaming agent yang efektif untuk mengatasi masalah foam dalam berbagai aplikasi water-based systems. Memberikan quick foam breaking dan long-term foam prevention tanpa mempengaruhi sifat fisik produk.',
-                    'Silicone-based defoamer dengan carrier modified',
-                    'Bentuk: Cairan | Warna: Putih | Specific Gravity: 0,98 | Active Content: 100% | Kompatibilitas: Excellent',
-                    'Dosis: 0,1-0,5% dari total formulasi. Dapat ditambahkan langsung atau pre-dispersi terlebih dahulu. Pengadukan berlebihan harus dihindari setelah penambahan defoamer.',
-                    'Water treatment plant, Coating & paint production, Pulp & paper industry, Fermentation process, Adhesive manufacturing',
-                    'Jerigen 20 kg, Drum 200 kg',
-                    'https://tokopedia.link/karmand-df80', 
-                    'https://shopee.co.id/karmand-df80',
-                    null)">
-                    <div class="product-icon">🛡️</div>
-                    <h3>Karmand Defoamer DF-80</h3>
-                    <p>Defoamer efektif untuk mencegah dan menghilangkan foam dalam proses industrial.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div>
-
-                <!-- Produk sisanya dengan icon -->
-                <div class="product-card-compact" onclick="openProductModal(
-                    'Karmand Pigment Dispersant PD-100', 
-                    'Dispersant khusus untuk pigmen dan dye dalam aplikasi coating dan paint. Memberikan dispersi yang stabil dan meningkatkan color strength.',
-                    'Polyacrylate polymer based dispersant',
-                    'Bentuk: Cairan | pH: 7-8 | Solid Content: 40% | Kompatibilitas: Universal',
-                    'Dosis: 5-20% terhadap berat pigmen. Tambahkan sebelum grinding process untuk hasil optimal.',
-                    'Paint & coating, Printing ink, Textile dyeing, Plastic coloring',
-                    'Drum 200 kg',
-                    'https://tokopedia.link/karmand-pd100', 
-                    'https://shopee.co.id/karmand-pd100',
-                    null)">
-                    <div class="product-icon">🌈</div>
-                    <h3>Karmand Pigment Dispersant PD-100</h3>
-                    <p>Dispersant untuk pigmen dan dye dengan color strength tinggi.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div>
-
-                <div class="product-card-compact" onclick="openProductModal(
-                    'Karmand Catalyst CT-50', 
-                    'Katalis untuk mempercepat proses curing pada coating dan resin systems. Memberikan pot life yang terkontrol dan curing time yang optimal.',
-                    'Organometallic catalyst compound',
-                    'Bentuk: Cairan | Warna: Kuning | Metal Content: 12% | Flash Point: >60°C',
-                    'Dosis: 0,1-1% dari berat resin. Tambahkan sebelum aplikasi dan gunakan dalam pot life time.',
-                    'Epoxy coating, Polyurethane systems, Unsaturated polyester, Composite fabrication',
-                    'Jerigen 25 kg',
-                    'https://tokopedia.link/karmand-ct50', 
-                    'https://shopee.co.id/karmand-ct50',
-                    null)">
-                    <div class="product-icon">⚡</div>
-                    <h3>Karmand Catalyst CT-50</h3>
-                    <p>Katalis untuk mempercepat curing process dengan pot life terkontrol.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div>
-
-                <div class="product-card-compact" onclick="openProductModal(
-                    'Karmand pH Buffer BF-700', 
-                    'Buffer system untuk menjaga pH stability dalam water-based formulations. Mencegah pH drift dan degradasi produk.',
-                    'Alkaline buffer system dengan stabilizer',
-                    'Bentuk: Cairan | pH Solution: 8-9 | Buffer Capacity: High | Compatibility: Excellent',
-                    'Dosis: 0,5-2% dari formulasi. Tambahkan pada fase akhir produksi.',
-                    'Cosmetic formulation, Water-based coating, Detergent & cleaning products, Personal care products',
-                    'Jerigen 30 kg, Drum 200 kg',
-                    'https://tokopedia.link/karmand-bf700', 
-                    'https://shopee.co.id/karmand-bf700',
-                    null)">
-                    <div class="product-icon">🔬</div>
-                    <h3>Karmand pH Buffer BF-700</h3>
-                    <p>Buffer system untuk menjaga pH stability dan mencegah degradasi.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div>
-
-                <div class="product-card-compact" onclick="openProductModal(
-                    'Karmand Chelating Agent CA-EDTA', 
-                    'Chelating agent berbasis EDTA untuk mengikat ion logam dalam formulasi. Meningkatkan stability dan mencegah degradasi oxidative.',
-                    'Tetrasodium EDTA solution',
-                    'Bentuk: Cairan jernih | Concentration: 39% | pH: 11-12 | Chelating Value: High',
-                    'Dosis: 0,1-0,5% dari formulasi total. Efektif untuk mengikat Ca, Mg, Fe, Cu.',
-                    'Detergent & cleaning, Textile processing, Water treatment, Personal care, Food processing',
-                    'Jerigen 25 kg, Drum 220 kg',
-                    'https://tokopedia.link/karmand-caedta', 
-                    'https://shopee.co.id/karmand-caedta',
-                    null)">
-                    <div class="product-icon">🧬</div>
-                    <h3>Karmand Chelating Agent CA-EDTA</h3>
-                    <p>Chelating agent untuk mengikat ion logam dan meningkatkan stability.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div>
-
-                <div class="product-card-compact" onclick="openProductModal(
-                    'Karmand Optical Brightener OB-360', 
-                    'Optical brightening agent untuk meningkatkan whiteness dan brightness pada textile dan paper. UV absorber dengan emission maksimal.',
-                    'Stilbene derivative optical brightener',
-                    'Bentuk: Powder | Warna: Yellow powder | Purity: >98% | Maximum Absorption: 360 nm',
-                    'Dosis textile: 0,1-0,5% owf. Dosis paper: 0,05-0,3% terhadap pulp. Aplikasi pada suhu 60-80°C.',
-                    'Textile dyeing & finishing, Paper industry, Detergent manufacturing, Plastic whitening',
-                    'Drum fiber 25 kg',
-                    'https://tokopedia.link/karmand-ob360', 
-                    'https://shopee.co.id/karmand-ob360',
-                    null)">
-                    <div class="product-icon">🌟</div>
-                    <h3>Karmand Optical Brightener OB-360</h3>
-                    <p>Optical brightener untuk whiteness dan brightness maksimal.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div>
-
-                <div class="product-card-compact" onclick="openProductModal(
-                    'Karmand Textile Softener TS-500', 
-                    'Softener untuk textile finishing yang memberikan soft hand feel dan smooth texture. Silicone based dengan excellent durability.',
-                    'Amino-modified silicone emulsion',
-                    'Bentuk: Emulsi putih | Solid Content: 30% | pH: 5-7 | Ionic Nature: Cationic',
-                    'Dosis: 20-50 g/L untuk pad application, 10-30 g/L untuk exhaust method. Aplikasi pada finishing bath.',
-                    'Textile finishing (cotton, polyester, blend), Garment washing, Home textile, Technical textile',
-                    'Drum 200 kg, IBC 1000 kg',
-                    'https://tokopedia.link/karmand-ts500', 
-                    'https://shopee.co.id/karmand-ts500',
-                    null)">
-                    <div class="product-icon">💎</div>
-                    <h3>Karmand Textile Softener TS-500</h3>
-                    <p>Softener berkualitas tinggi untuk soft hand feel dan smooth texture.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div>
-
-                <div class="product-card-compact" onclick="openProductModal(
-                    'Karmand Flame Retardant FR-250', 
-                    'Flame retardant untuk textile dan coating applications. Phosphorus-based system yang eco-friendly dengan fire resistance excellent.',
-                    'Organophosphorus flame retardant compound',
-                    'Bentuk: Cairan | Warna: Transparan | P Content: 25% | Halogen-free | pH: 6-7',
-                    'Dosis textile: 150-300 g/L. Dosis coating: 15-25% dari solid content. Aplikasi dengan pad-dry-cure method.',
-                    'Textile flame retardant treatment, Fire retardant coating, Plastic additive, Construction materials',
-                    'Drum 200 kg',
-                    'https://tokopedia.link/karmand-fr250', 
-                    'https://shopee.co.id/karmand-fr250',
-                    null)">
-                    <div class="product-icon">🔥</div>
-                    <h3>Karmand Flame Retardant FR-250</h3>
-                    <p>Flame retardant eco-friendly dengan fire resistance superior.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div>
-
-                <div class="product-card-compact" onclick="openProductModal(
-                    'Karmand Biocide & Preservative BP-400', 
-                    'Biocide dan preservative broad spectrum untuk melindungi water-based products dari mikroba, jamur, dan bakteri. Efektif pada pH range luas.',
-                    'Isothiazolinone based biocide',
-                    'Bentuk: Cairan | Warna: Kuning | Active: 14% | pH Stability: 2-11 | Spectrum: Broad',
-                    'Dosis: 0,05-0,2% dari formulasi total. Tambahkan pada suhu <40°C dengan pengadukan baik.',
-                    'Water-based coating & paint, Adhesive systems, Cosmetic & personal care, Detergent, Metalworking fluids',
-                    'Jerigen 25 kg, Drum 200 kg',
-                    'https://tokopedia.link/karmand-bp400', 
-                    'https://shopee.co.id/karmand-bp400',
-                    null)">
-                    <div class="product-icon">🌿</div>
-                    <h3>Karmand Biocide & Preservative BP-400</h3>
-                    <p>Biocide broad spectrum untuk proteksi maksimal dari mikroba.</p>
-                    <div class="click-info">Klik untuk detail →</div>
+                        'Karmand Scale Remover JS-4055 35Kg', 
+                        'Karmand – JS.4055 adalah bahan aktif yang dengan mudah bereaksi dengan kerak pada sisi nira. Biasanya kerak yang terjadi adalah garam – garam komplek dari kapur, silicate, maupun oxalate yang keras.',
+                        'Polyurethane resin, UV stabilizer, pigment, solvent',
+                        '<div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🛡️</span><h4>Pencegahan Paparan</h4></div><div class=\'physical-props-grid\'><div class=\'prop-item\'><span class=\'prop-icon\'>👁️</span><div class=\'prop-label\'>Perlindungan Mata</div><div class=\'prop-value\'>Gunakan kaca mata pelindung.</div></div><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>😷</span><div class=\'prop-label\'>Perlindungan Pernapasan</div><div class=\'prop-value\'>Tidak diperlukan</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🧤</span><div class=\'prop-label\'>Perlindungan Tangan</div><div class=\'prop-value\'>Gunakan sarung tangan karet</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>👩🏻‍⚕️</span><div class=\'prop-label\'>Penanganan Pertama</div><div class=\'prop-value\'>Bila kena mata segera bilas dengan air bersih banyak – banyak dan segera ke dokter</div></div></div></div>',
+                        'Gunakan Karmand – JS.4055 dengan konsentrasi 0,5–5%, lalu panaskan hingga suhu 70–100°C selama 4–12 jam.',
+                        'Eksterior bangunan, struktur offshore, peralatan outdoor, automotive coating',
+                        'Set 5 kg, 20 kg',
+                        'https://tokopedia.link/karmand-pu', 
+                        'https://shopee.co.id/karmand-pu',
+                        null)">
+                    <div class="product-image-wrapper">
+                        <img src="Karmand-Scale-Remover-JS-4055.png" alt="Karmand-Scale-Remover-JS-4055"
+                            class="product-image">
+                        <div class="product-icon-fallback" style="display:none;">🧪</div>
+                    </div>
+                    <h3>Karmand Scale Remover JS-4055 35Kg</h3>
+                    <p>Karmand – JS.4055 adalah bahan aktif yang bereaksi efektif dengan kerak nira keras seperti garam
+                        kapur, silikat, dan oksalat.</p>
+                    <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20*Karmand%20Cat%20NC%205Kg*.%20Bisa%20tolong%20berikan%20informasi%20harga%20dan%20detail%20lebih%20lanjut%3F"
+                        target="_blank" class="product-price"
+                        style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(18, 140, 126, 0.05)); border-color: rgba(37, 211, 102, 0.3); color: #25d366; text-decoration: none; display: block; cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.3)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">💬 Chat For The
+                        Price</a>
+                    <div class="click-info" style="cursor: pointer;">Klik untuk detail →
+                    </div>
                 </div>
             </div>
 
@@ -274,22 +333,19 @@
                             <h4>Deskripsi Produk</h4>
                             <p id="modalProductDescription">Product description goes here...</p>
                         </div>
-                        
-                        <div class="modal-section">
+
+                        <!-- <div class="modal-section">
                             <h4>Komposisi</h4>
                             <p id="modalComposition">Composition goes here...</p>
-                        </div>
-                        
-                        <div class="modal-section">
-                            <h4>Sifat Fisik</h4>
-                            <p id="modalPhysicalProperties">Physical properties go here...</p>
-                        </div>
-                        
+                        </div> -->
+
+                        <div id="modalPhysicalPropertiesContainer"></div>
+
                         <div class="modal-section">
                             <h4>Penggunaan & Dosis</h4>
                             <p id="modalUsage">Usage instructions go here...</p>
                         </div>
-                        
+
                         <!-- <div class="modal-section">
                             <h4>Aplikasi</h4>
                             <p id="modalApplications">Applications go here...</p>
@@ -299,7 +355,7 @@
                             <h4>Kemasan</h4>
                             <p id="modalPackaging">Packaging info goes here...</p>
                         </div> -->
-                        
+
                         <div class="modal-purchase">
                             <h4>Beli Produk Ini:</h4>
                             <div class="purchase-buttons">
@@ -327,35 +383,33 @@
     </section>
 
     <!-- Footer -->
-   <footer class="footer">
+    <footer class="footer">
         <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-info">
                     <div class="footer-logo">Karmand<span> Industrial</span></div>
-                    <p class="footer-description">Solusi kimia inovatif untuk masa depan industri Anda. Kami berkomitmen memberikan produk berkualitas tinggi dan layanan profesional.</p>
+                    <p class="footer-description">Solusi kimia inovatif untuk masa depan industri Anda. Kami berkomitmen
+                        memberikan produk berkualitas tinggi dan layanan profesional.</p>
                     <div class="footer-contact">
                         <p><strong>Email:</strong> karmandandalan.com</p>
                         <p><strong>Telepon:</strong> +62 813-5346-8612</p>
-                        <p><strong>Alamat:</strong> Jl. Jemursari II No.8, Jemur Wonosari, Kec. Wonocolo, Surabaya, Jawa Timur 60237</p>
+                        <p><strong>Alamat:</strong> Jl. Jemursari II No.8, Jemur Wonosari, Kec. Wonocolo, Surabaya, Jawa
+                            Timur 60237</p>
                     </div>
                 </div>
-                
+
                 <div class="footer-map">
                     <h4>Lokasi Kami</h4>
                     <div class="map-container">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.298770611649!2d112.7452629!3d-7.3202979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb00acfb4ce1%3A0x9047767f9cfb265d!2sPT%20Karmand%20Mitra%20Andalan!5e0!3m2!1sid!2sid!4v1767950973684!5m2!1sid!2sid" 
-                            width="100%" 
-                            height="250" 
-                            style="border:0; border-radius: 10px;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.298770611649!2d112.7452629!3d-7.3202979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb00acfb4ce1%3A0x9047767f9cfb265d!2sPT%20Karmand%20Mitra%20Andalan!5e0!3m2!1sid!2sid!4v1767950973684!5m2!1sid!2sid"
+                            width="100%" height="250" style="border:0; border-radius: 10px;" allowfullscreen=""
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <div class="footer-text">© 2026 Karmand Industrial. All rights reserved.</div>
                 <div class="social-links">
@@ -370,4 +424,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

@@ -259,7 +259,7 @@ if (applicationForm) {
   });
 }
 
-// Product Detail Modal Functions
+// Product Detail Modal Functions - UPDATED VERSION WITH HTML SUPPORT
 function openProductModal(
   name,
   description,
@@ -308,12 +308,38 @@ function openProductModal(
   // Set modal content
   document.getElementById("modalProductName").textContent = name;
   document.getElementById("modalProductDescription").textContent = description;
-  document.getElementById("modalComposition").textContent = composition;
-  document.getElementById("modalPhysicalProperties").textContent =
-    physicalProps;
-  document.getElementById("modalUsage").textContent = usage;
-  // document.getElementById('modalApplications').textContent = applications;
-  // document.getElementById('modalPackaging').textContent = packaging;
+  
+  // Handle composition - check if element exists
+  const compositionEl = document.getElementById("modalComposition");
+  if (compositionEl) {
+    compositionEl.textContent = composition;
+  }
+
+  // Handle physicalProps - can be HTML or text
+  // Check if modalPhysicalPropertiesContainer exists (for HTML support)
+  const physicalPropsContainer = document.getElementById("modalPhysicalPropertiesContainer");
+  if (physicalPropsContainer) {
+    // New format: supports HTML content
+    if (physicalProps.startsWith('<')) {
+      // It's HTML content
+      physicalPropsContainer.innerHTML = physicalProps;
+    } else {
+      // It's plain text - wrap in modal-section
+      physicalPropsContainer.innerHTML = `<div class="modal-section"><h4>Sifat Fisik</h4><p>${physicalProps}</p></div>`;
+    }
+  } else {
+    // Old format: plain text only
+    const physicalPropsEl = document.getElementById("modalPhysicalProperties");
+    if (physicalPropsEl) {
+      physicalPropsEl.textContent = physicalProps;
+    }
+  }
+
+  // Handle usage
+  const usageEl = document.getElementById("modalUsage");
+  if (usageEl) {
+    usageEl.textContent = usage;
+  }
 
   // Create WhatsApp message
   const waMessage = encodeURIComponent(
