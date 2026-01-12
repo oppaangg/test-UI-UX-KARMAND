@@ -11,25 +11,27 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// Mobile menu toggle
+// Mobile menu toggle - IMPROVED VERSION
 const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
 const navMenu = document.querySelector(".nav-menu");
 
-if (mobileMenuToggle) {
-  mobileMenuToggle.addEventListener("click", () => {
+if (mobileMenuToggle && navMenu) {
+  // Toggle menu function
+  const toggleMenu = () => {
     navMenu.classList.toggle("active");
-
-    // Animate hamburger icon
-    const spans = mobileMenuToggle.querySelectorAll("span");
+    mobileMenuToggle.classList.toggle("active");
+    
+    // Prevent body scroll when menu is open
     if (navMenu.classList.contains("active")) {
-      spans[0].style.transform = "rotate(45deg) translate(5px, 5px)";
-      spans[1].style.opacity = "0";
-      spans[2].style.transform = "rotate(-45deg) translate(7px, -6px)";
+      document.body.style.overflow = "hidden";
     } else {
-      spans[0].style.transform = "none";
-      spans[1].style.opacity = "1";
-      spans[2].style.transform = "none";
+      document.body.style.overflow = "auto";
     }
+  };
+
+  mobileMenuToggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleMenu();
   });
 }
 
@@ -40,6 +42,15 @@ dropdownMenus.forEach((menu) => {
   if (toggle && window.innerWidth <= 768) {
     toggle.addEventListener("click", (e) => {
       e.preventDefault();
+      e.stopPropagation();
+      
+      // Close other dropdowns
+      dropdownMenus.forEach((otherMenu) => {
+        if (otherMenu !== menu) {
+          otherMenu.classList.remove("active");
+        }
+      });
+      
       menu.classList.toggle("active");
     });
   }
@@ -50,11 +61,9 @@ document.addEventListener("click", (e) => {
   if (navMenu && mobileMenuToggle) {
     if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
       navMenu.classList.remove("active");
+      mobileMenuToggle.classList.remove("active");
       dropdownMenus.forEach((menu) => menu.classList.remove("active"));
-      const spans = mobileMenuToggle.querySelectorAll("span");
-      spans[0].style.transform = "none";
-      spans[1].style.opacity = "1";
-      spans[2].style.transform = "none";
+      document.body.style.overflow = "auto";
     }
   }
 });
@@ -67,13 +76,9 @@ navLinks.forEach((link) => {
       // Don't close menu if clicking on dropdown toggle
       if (!link.classList.contains("dropdown-toggle")) {
         navMenu.classList.remove("active");
+        mobileMenuToggle.classList.remove("active");
         dropdownMenus.forEach((menu) => menu.classList.remove("active"));
-        if (mobileMenuToggle) {
-          const spans = mobileMenuToggle.querySelectorAll("span");
-          spans[0].style.transform = "none";
-          spans[1].style.opacity = "1";
-          spans[2].style.transform = "none";
-        }
+        document.body.style.overflow = "auto";
       }
     }
   });
@@ -86,14 +91,24 @@ dropdownLinks.forEach((link) => {
     if (window.innerWidth <= 768) {
       dropdownMenus.forEach((menu) => menu.classList.remove("active"));
       navMenu.classList.remove("active");
-      if (mobileMenuToggle) {
-        const spans = mobileMenuToggle.querySelectorAll("span");
-        spans[0].style.transform = "none";
-        spans[1].style.opacity = "1";
-        spans[2].style.transform = "none";
-      }
+      mobileMenuToggle.classList.remove("active");
+      document.body.style.overflow = "auto";
     }
   });
+});
+
+// Handle window resize - reset menu state
+let resizeTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    if (window.innerWidth > 768) {
+      navMenu.classList.remove("active");
+      mobileMenuToggle.classList.remove("active");
+      dropdownMenus.forEach((menu) => menu.classList.remove("active"));
+      document.body.style.overflow = "auto";
+    }
+  }, 250);
 });
 
 // Form submission handling - Send to database via API
@@ -383,6 +398,13 @@ document.addEventListener("keydown", function (event) {
     const appModal = document.getElementById("applicationModal");
     if (appModal) {
       appModal.style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+    
+    // Also close mobile menu
+    if (navMenu && navMenu.classList.contains("active")) {
+      navMenu.classList.remove("active");
+      mobileMenuToggle.classList.remove("active");
       document.body.style.overflow = "auto";
     }
   }

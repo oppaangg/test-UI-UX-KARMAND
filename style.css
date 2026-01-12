@@ -204,9 +204,15 @@ body {
   position: relative;
 }
 
+.dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
 .dropdown-toggle::after {
-  content: " ▾";
-  font-size: 0.8rem;
+  content: "";
+  display: none;
 }
 
 .dropdown {
@@ -256,6 +262,19 @@ body {
 
 .dropdown a::after {
   display: none;
+}
+
+.dropdown-arrow {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.85rem;
+  transition: transform 0.3s ease;
+  vertical-align: middle;
+  margin-left: 0;
+}
+
+.dropdown-menu:hover .dropdown-arrow {
+  transform: rotate(180deg);
 }
 
 /* Hero Section */
@@ -2419,7 +2438,9 @@ body {
 
   .nav-menu > li > a {
     padding: 1.2rem 2rem;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 1rem;
     font-weight: 600;
     color: #05374e;
@@ -2429,7 +2450,6 @@ body {
   .nav-menu > li > a:hover {
     background: rgba(2, 206, 203, 0.08);
     color: var(--accent);
-    padding-left: 2.5rem;
   }
 
   .nav-menu.active {
@@ -2454,7 +2474,6 @@ body {
     background: rgba(2, 206, 203, 0.15);
     color: #00ffff;
     text-shadow: 0 0 10px rgba(2, 206, 203, 0.6);
-    padding-left: 2.5rem;
   }
 
   .dropdown {
@@ -2525,20 +2544,29 @@ body {
 
   .dropdown-toggle {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 100%;
     cursor: pointer;
+    padding: 0;
+    gap: 0.3rem;
   }
 
   .dropdown-toggle::after {
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: inline-block;
-    margin-left: auto;
-    font-size: 0.7rem;
+    display: none;
+  }
+
+  .dropdown-toggle .dropdown-arrow {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.75rem;
   }
 
   .dropdown-menu.active .dropdown-toggle::after {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-menu.active .dropdown-toggle .dropdown-arrow {
     transform: rotate(180deg);
   }
 
