@@ -1,26 +1,1141 @@
-<div class="product-card-compact" onclick="openProductModal(
-                    'Karmand Electric Contact Cleaner K. 111 CF', 
-                    'Karmand – K. 111 CF adalah bahan pembersih kontak listrik yang diformulasikan untuk membersihkan kontak listrik dari oksidasi, debu, dan kotoran lainnya. Bahan ini sangat efektif dalam menghilangkan kontaminasi yang menyebabkan resistansi tinggi dan kegagalan sistem listrik.',
-                    'Kombinasi pelarut, bahan aktif, dan zat pengemulsi.',
-                    '<div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>🔬</span><h4>Sifat Fisik</h4></div><div class=\'physical-props-grid\'><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>💧</span><div class=\'prop-label\'>Bentuk</div><div class=\'prop-value\'>Cair</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🎨</span><div class=\'prop-label\'>Warna</div><div class=\'prop-value\'>Jernih</div></div><div class=\'prop-item prop-highlight\'><span class=\'prop-icon\'>⚖️</span><div class=\'prop-label\'>Berat Jenis</div><div class=\'prop-value\'>±0,8</div></div><div class=\'prop-item\'><span class=\'prop-icon\'>🔥</span><div class=\'prop-label\'>Titik Nyala</div><div class=\'prop-value\'>5°C</div></div></div></div><br><div class=\'modal-section\'><div class=\'props-section-header\'><span class=\'props-section-icon\'>📋</span><h4>Petunjuk Pemakaian</h4></div><ul style=\'list-style: none; padding: 0;\'><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>1.</span> Kocok dengan baik sebelum digunakan.</li> <li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>2.</span> Jangan digunakan saat peralatan sedang beroperasi.</li><li style=\'padding: 0.5rem 0; padding-left: 1.5rem; position: relative;\'><span style=\'position: absolute; left: 0; color: var(--accent); font-weight: bold;\'>3.</span> Jangan digunakan di area panas, percikan api, atau nyala api.</li></ul></div>',
-                    'Tersedia dalam Kaleng aerosol 350 gr, 1 box = 12 kaleng.',
-                    'Konversi karat pada besi, persiapan permukaan sebelum coating, maintenance struktur baja, perbaikan tangki, peralatan industri',
-                    'Pail 30 Liter',
-                    'https://tokopedia.link/karmand-rustconverter', 
-                    'https://shopee.co.id/karmand-rustconverter',
-                    null)">
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabrikasi FRP & Rubber Lining - Karmand Industrial</title>
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #05374e;
+            --secondary: #0a5f7f;
+            --accent: #02ceCB;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--accent);
+        }
+
+        .dropdown-menu {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            min-width: 250px;
+            margin-top: 0.5rem;
+            padding: 0.5rem 0;
+            list-style: none;
+        }
+
+        .dropdown-menu:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown a {
+            color: var(--primary);
+            padding: 0.8rem 1.5rem;
+            display: block;
+        }
+
+        .dropdown a:hover {
+            background: linear-gradient(135deg, rgba(2, 206, 203, 0.1), rgba(5, 55, 78, 0.05));
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        /* Product Section */
+        .product-page {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+
+        .product-intro {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 3rem;
+            border-left: 5px solid var(--accent);
+        }
+
+        .product-intro p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card-compact {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .product-card-compact:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(2, 206, 203, 0.2);
+            border-color: var(--accent);
+        }
+
+        .product-image-wrapper {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-icon-fallback {
+            font-size: 4rem;
+        }
+
+        .product-card-compact h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .product-card-compact p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: #25d366;
+            margin: 1rem 0 0.5rem 0;
+            padding: 0.8rem 1.2rem;
+            background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(18, 140, 126, 0.05));
+            border-radius: 12px;
+            border: 2px solid rgba(37, 211, 102, 0.3);
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .product-price:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .click-info {
+            text-align: center;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            overflow-y: auto;
+            padding: 20px 0;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 900px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            color: white;
+            float: right;
+            font-size: 35px;
+            font-weight: bold;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal-product-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        .modal-product-icon {
+            font-size: 3rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        .modal-product-header h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            flex: 1;
+        }
+
+        .modal-product-body {
+            padding: 30px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .modal-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(2, 206, 203, 0.05), rgba(5, 55, 78, 0.02));
+            border-radius: 15px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .modal-section h4 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .modal-section p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Calculator Styles */
+        .calculator-section {
+            background: linear-gradient(135deg, rgba(2, 206, 203, 0.08), rgba(5, 55, 78, 0.05));
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 2px solid rgba(2, 206, 203, 0.3);
+        }
+
+        .calculator-section > h4 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        .calculator-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(2, 206, 203, 0.2);
+        }
+
+        .calculator-tab {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            color: #666;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            font-size: 1rem;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .calculator-tab.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .calculator-tab:hover {
+            color: var(--accent);
+        }
+
+        .calculator-content {
+            display: none;
+        }
+
+        .calculator-content.active {
+            display: block;
+        }
+
+        .calc-input-group {
+            margin-bottom: 20px;
+        }
+
+        .calc-input-group label {
+            display: block;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .calc-input-group input,
+        .calc-input-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid rgba(2, 206, 203, 0.3);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .calc-input-group input:focus,
+        .calc-input-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(2, 206, 203, 0.1);
+        }
+
+        .calc-button {
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .calc-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(2, 206, 203, 0.3);
+        }
+
+        .calc-result {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border: 2px solid var(--accent);
+            display: none;
+        }
+
+        .calc-result.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .calc-result h5 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .calc-result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .calc-result-item:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-top: 10px;
+            padding-top: 15px;
+            border-top: 2px solid var(--accent);
+        }
+
+        .calc-result-label {
+            color: #666;
+            font-weight: 600;
+        }
+
+        .calc-result-value {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Purchase Buttons */
+        .modal-purchase {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(2, 206, 203, 0.05), rgba(5, 55, 78, 0.02));
+            border-radius: 15px;
+        }
+
+        .modal-purchase h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .purchase-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .purchase-btn {
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .purchase-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: white;
+        }
+
+        .tokopedia-btn {
+            background: linear-gradient(135deg, #42b549, #2e7d32);
+            color: white;
+        }
+
+        .shopee-btn {
+            background: linear-gradient(135deg, #ee4d2d, #d73211);
+            color: white;
+        }
+
+        .product-cta {
+            text-align: center;
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .product-cta h3 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .product-cta p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            color: white;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(2, 206, 203, 0.3);
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo span {
+            color: var(--accent);
+        }
+
+        .footer-description {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .footer-contact p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .footer-map h4 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .map-container {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+            }
+
+            .modal-product-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .modal-product-header h3 {
+                font-size: 1.5rem;
+            }
+
+            .calculator-tabs {
+                flex-direction: column;
+            }
+
+            .calculator-tab {
+                border-bottom: 2px solid rgba(2, 206, 203, 0.2);
+                border-left: 3px solid transparent;
+                text-align: left;
+            }
+
+            .calculator-tab.active {
+                border-left-color: var(--accent);
+                border-bottom-color: transparent;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo"><img src="logo-karmand.png" alt="Karmand Industrial" class="logo-img"></a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Beranda</a></li>
+                <li class="dropdown-menu">
+                    <a href="#" class="dropdown-toggle active">
+                        Katalog Produk
+                        <span class="dropdown-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                            </svg>
+                        </span>
+                    </a>
+                    <ul class="dropdown">
+                        <li><a href="produk-cold-galvanize.html">Cold Galvanize & Coating</a></li>
+                        <li><a href="produk-chemical-maintenance.html">Chemical Maintenance</a></li>
+                        <li><a href="produk-water-treatment.html">Chemical Water Treatment</a></li>
+                        <li><a href="produk-fabrikasi-frp.html" class="active">Fabrikasi FRP & Rubber Lining</a></li>
+                        <li><a href="produk-chemical-auxiliaries.html">Chemical Auxiliaries</a></li>
+                    </ul>
+                </li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="karir.html">Karir</a></li>
+                <li><a href="kontak.html">Hubungi Kami</a></li>
+                <li><a href="tentang.html">Tentang Kami</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Product Section -->
+    <section class="product-page page-section">
+        <div class="section-container">
+            <h2 class="section-title">Fabrikasi FRP & Rubber Lining</h2>
+            <p class="section-subtitle">Solusi Perlindungan dan Fabrikasi Struktur Industrial</p>
+
+            <div class="product-intro">
+                <p>Kami menyediakan layanan fabrikasi FRP (Fiber Reinforced Plastic) dan rubber lining berkualitas
+                    tinggi untuk melindungi peralatan industri dari korosi, abrasi, dan kondisi kimia yang keras. Solusi
+                    kami custom-made sesuai kebutuhan spesifik aplikasi Anda.</p>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card-compact" onclick="openProductModal()">
                     <div class="product-image-wrapper">
-                        <img src="Karmand_K_103IC.png" alt="Karmand Rust Converter K. 413 CP" class="product-image">
-                        <div class="product-icon-fallback" style="display:none;">🧪</div>
+                        <div class="product-icon-fallback">🏗️</div>
                     </div>
-                    <h3>Karmand Electric Contact Cleaner K. 111 CF</h3>
-                    <p>Karmand – K. 111 CF adalah bahan pembersih kontak listrik yang diformulasikan untuk membersihkan kontak listrik dari oksidasi, debu, dan kotoran lainnya. Bahan ini sangat efektif dalam menghilangkan kontaminasi yang menyebabkan resistansi tinggi dan kegagalan sistem listrik.</p>
-                    <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20**Karmand%20Electric%20Contact%20Cleaner%20K.%20111%20CF**.%20Bisa%20tolong%20berikan%20informasi%20harga%20dan%20detail%20lebih%20lanjut%3F"
-                        target="_blank" class="product-price"
-                        style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(18, 140, 126, 0.05)); border-color: rgba(37, 211, 102, 0.3); color: #25d366; text-decoration: none; display: block; cursor: pointer; transition: all 0.3s ease;"
-                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.3)'"
-                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                        💬 Chat For The
+                    <h3>Karmand Fabrikasi FRP</h3>
+                    <p>Fabrikasi tangki FRP custom dengan ketahanan korosi superior.</p>
+                    <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20Karmand%20Fabrikasi%20FRP"
+                        target="_blank" class="product-price" onclick="event.stopPropagation()">💬 Chat For The
                         Price</a>
                     <div class="click-info">Klik untuk detail →</div>
                 </div>
+
+                <div class="product-card-compact" onclick="openProductModal()">
+                    <div class="product-image-wrapper">
+                        <div class="product-icon-fallback">🏗️</div>
+                    </div>
+                    <h3>Karmand Fabrikasi FRP</h3>
+                    <p>Fabrikasi tangki FRP custom dengan ketahanan korosi superior.</p>
+                    <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20Karmand%20Fabrikasi%20FRP"
+                        target="_blank" class="product-price" onclick="event.stopPropagation()">💬 Chat For The
+                        Price</a>
+                    <div class="click-info">Klik untuk detail →</div>
+                </div>
+
+                <div class="product-card-compact" onclick="openProductModal()">
+                    <div class="product-image-wrapper">
+                        <div class="product-icon-fallback">🏗️</div>
+                    </div>
+                    <h3>Karmand Fabrikasi FRP</h3>
+                    <p>Fabrikasi tangki FRP custom dengan ketahanan korosi superior.</p>
+                    <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20Karmand%20Fabrikasi%20FRP"
+                        target="_blank" class="product-price" onclick="event.stopPropagation()">💬 Chat For The
+                        Price</a>
+                    <div class="click-info">Klik untuk detail →</div>
+                </div>
+            </div>
+
+            <!-- Product Detail Modal -->
+            <div id="productModal" class="modal">
+                <div class="modal-content product-modal-content">
+                    <div class="modal-product-header">
+                        <span class="close-modal" onclick="closeProductModal()">&times;</span>
+                        <div class="modal-product-icon">🏗️</div>
+                        <h3>Karmand Fabrikasi FRP</h3>
+                    </div>
+                    <div class="modal-product-body">
+                        <div class="modal-section">
+                            <h4>Deskripsi Produk</h4>
+                            <p>Fabrikasi tangki FRP custom untuk penyimpanan kimia dengan ketahanan korosi superior dan
+                                umur pakai panjang. Menggunakan resin vinyl ester atau isophthalic polyester dengan
+                                fiberglass reinforcement. Design sesuai standar ASME RTP-1 atau BS4994.</p>
+                        </div>
+
+                        <div class="modal-section">
+                            <h4>Komposisi</h4>
+                            <p>Resin: Vinyl Ester/Isophthalic Polyester, Reinforcement: E-glass/C-glass Chopped Strand
+                                Mat & Woven Roving, Gelcoat</p>
+                        </div>
+
+                        <div class="modal-section">
+                            <h4>Sifat Fisik</h4>
+                            <p>Construction: Hand lay-up/Spray-up | Thickness: 6-25mm | Max Diameter: 6 meter | Max
+                                Height: 12 meter | Design Pressure: Atmospheric to 3 bar | Temperature Resistance: -40°C
+                                to 110°C</p>
+                        </div>
+
+                        <div class="modal-section">
+                            <h4>Penggunaan & Dosis</h4>
+                            <p>Proses: Survey & design → Shop drawing approval → Material procurement → Fabrication
+                                (gelcoat, lay-up, curing) → Quality inspection → Delivery & installation. Lead time: 4-8
+                                minggu tergantung ukuran. Includes: structural calculation, foundation design support.</p>
+                        </div>
+
+                        <!-- Calculator Section -->
+                        <div class="calculator-section">
+                            <h4>Kalkulator Produk</h4>
+
+                            <div class="calculator-tabs">
+                                <button class="calculator-tab active" onclick="switchCalculator('mixing')">
+                                    Liquid Mixing Probo DC-600
+                                </button>
+                                <button class="calculator-tab" onclick="switchCalculator('tank')">
+                                    Tangki FRP
+                                </button>
+                            </div>
+
+                            <!-- Liquid Mixing Calculator -->
+                            <div id="mixingCalculator" class="calculator-content active">
+                                <div class="calc-input-group">
+                                    <label for="mixVolume">Volume Cairan (Liter):</label>
+                                    <input type="number" id="mixVolume" placeholder="Masukkan volume cairan" min="0"
+                                        step="0.1">
+                                </div>
+                                <div class="calc-input-group">
+                                    <label for="mixDosage">Dosis Probo DC-600 (%):</label>
+                                    <input type="number" id="mixDosage" placeholder="Masukkan persentase dosis" min="0"
+                                        max="100" step="0.1">
+                                </div>
+                                <button class="calc-button" onclick="calculateMixing()">Hitung Kebutuhan</button>
+
+                                <div id="mixingResult" class="calc-result">
+                                    <h5>Hasil Perhitungan:</h5>
+                                    <div class="calc-result-item">
+                                        <span class="calc-result-label">Volume Cairan:</span>
+                                        <span class="calc-result-value" id="mixVolumeResult">-</span>
+                                    </div>
+                                    <div class="calc-result-item">
+                                        <span class="calc-result-label">Dosis yang Digunakan:</span>
+                                        <span class="calc-result-value" id="mixDosageResult">-</span>
+                                    </div>
+                                    <div class="calc-result-item">
+                                        <span class="calc-result-label">Kebutuhan Probo DC-600:</span>
+                                        <span class="calc-result-value" id="mixNeedResult">-</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tank FRP Calculator -->
+                            <div id="tankCalculator" class="calculator-content">
+                                <div class="calc-input-group">
+                                    <label for="tankSize">Ukuran Tangki (m³):</label>
+                                    <input type="number" id="tankSize" placeholder="Masukkan ukuran tangki" min="0"
+                                        step="0.1">
+                                </div>
+                                <div class="calc-input-group">
+                                    <label for="tankDesign">Desain Tangki (angka 3 untuk standar):</label>
+                                    <input type="number" id="tankDesign" value="3" min="0" step="0.1">
+                                </div>
+                                <div class="calc-input-group">
+                                    <label for="liquidType">Jenis Cairan (angka 1 untuk standar):</label>
+                                    <input type="number" id="liquidType" value="1" min="0" step="0.1">
+                                </div>
+                                <div class="calc-input-group">
+                                    <label for="transportType">Jenis Transportasi:</label>
+                                    <select id="transportType">
+                                        <option value="1">Small Vehicle (1)</option>
+                                        <option value="1.5">Medium Vehicle (1.5)</option>
+                                        <option value="3">Big Vehicle (3)</option>
+                                    </select>
+                                </div>
+                                <button class="calc-button" onclick="calculateTank()">Hitung Harga</button>
+
+                                <div id="tankResult" class="calc-result">
+                                    <h5>Hasil Perhitungan:</h5>
+                                    <div class="calc-result-item">
+                                        <span class="calc-result-label">Ukuran Tangki:</span>
+                                        <span class="calc-result-value" id="tankSizeResult">-</span>
+                                    </div>
+                                    <div class="calc-result-item">
+                                        <span class="calc-result-label">Biaya Desain:</span>
+                                        <span class="calc-result-value" id="tankDesignCost">-</span>
+                                    </div>
+                                    <div class="calc-result-item">
+                                        <span class="calc-result-label">Biaya Jenis Cairan:</span>
+                                        <span class="calc-result-value" id="tankLiquidCost">-</span>
+                                    </div>
+                                    <div class="calc-result-item">
+                                        <span class="calc-result-label">Biaya Transportasi:</span>
+                                        <span class="calc-result-value" id="tankTransportCost">-</span>
+                                    </div>
+                                    <div class="calc-result-item">
+                                        <span class="calc-result-label">Total Harga/km:</span>
+                                        <span class="calc-result-value" id="tankTotalResult">-</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-purchase">
+                            <h4>Beli Produk Ini:</h4>
+                            <div class="purchase-buttons">
+                                <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20Karmand%20Fabrikasi%20FRP"
+                                    target="_blank" class="purchase-btn whatsapp-btn">
+                                    <span>💬</span> WhatsApp
+                                </a>
+                                <a href="#" target="_blank" class="purchase-btn tokopedia-btn">
+                                    <span>🛒</span> Tokopedia
+                                </a>
+                                <a href="#" target="_blank" class="purchase-btn shopee-btn">
+                                    <span>🛍️</span> Shopee
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-cta">
+                <h3>Butuh Konsultasi Produk?</h3>
+                <p>Tim teknis kami siap membantu Anda memilih produk yang tepat untuk kebutuhan spesifik Anda.</p>
+                <a href="kontak.html" class="cta-button">Hubungi Kami</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">Karmand<span> Industrial</span></div>
+                    <p class="footer-description">Solusi kimia inovatif untuk masa depan industri Anda. Kami berkomitmen
+                        memberikan produk berkualitas tinggi dan layanan profesional.</p>
+                    <div class="footer-contact">
+                        <p><strong>Email:</strong> karmandandalan.com</p>
+                        <p><strong>Telepon:</strong> +62 813-5346-8612</p>
+                        <p><strong>Alamat:</strong> Jl. Jemursari II No.8, Jemur Wonosari, Kec. Wonocolo, Surabaya, Jawa
+                            Timur 60237</p>
+                    </div>
+                </div>
+
+                <div class="footer-map">
+                    <h4>Lokasi Kami</h4>
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.298770611649!2d112.7452629!3d-7.3202979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb00acfb4ce1%3A0x9047767f9cfb265d!2sPT%20Karmand%20Mitra%20Andalan!5e0!3m2!1sid!2sid!4v1767950973684!5m2!1sid!2sid"
+                            width="100%" height="250" style="border:0; border-radius: 10px;" allowfullscreen=""
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-text">© 2026 Karmand Industrial. All rights reserved.</div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-facebook" viewBox="0 0 16 16">
+                            <path
+                                d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-instagram" viewBox="0 0 16 16">
+                            <path
+                                d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function openProductModal() {
+            document.getElementById('productModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function switchCalculator(type) {
+            const tabs = document.querySelectorAll('.calculator-tab');
+            const contents = document.querySelectorAll('.calculator-content');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+
+            if (type === 'mixing') {
+                tabs[0].classList.add('active');
+                document.getElementById('mixingCalculator').classList.add('active');
+            } else {
+                tabs[1].classList.add('active');
+                document.getElementById('tankCalculator').classList.add('active');
+            }
+        }
+
+        function calculateMixing() {
+            const volume = parseFloat(document.getElementById('mixVolume').value);
+            const dosage = parseFloat(document.getElementById('mixDosage').value);
+
+            if (isNaN(volume) || isNaN(dosage) || volume <= 0 || dosage <= 0) {
+                alert('Mohon masukkan nilai yang valid untuk volume dan dosis!');
+                return;
+            }
+
+            const needed = (volume * dosage) / 100;
+
+            document.getElementById('mixVolumeResult').textContent = volume.toFixed(2) + ' L';
+            document.getElementById('mixDosageResult').textContent = dosage.toFixed(2) + ' %';
+            document.getElementById('mixNeedResult').textContent = needed.toFixed(2) + ' L';
+
+            document.getElementById('mixingResult').classList.add('show');
+        }
+
+        function calculateTank() {
+            const size = parseFloat(document.getElementById('tankSize').value);
+            const design = parseFloat(document.getElementById('tankDesign').value);
+            const liquid = parseFloat(document.getElementById('liquidType').value);
+            const transport = parseFloat(document.getElementById('transportType').value);
+
+            if (isNaN(size) || isNaN(design) || isNaN(liquid) || isNaN(transport) || size <= 0) {
+                alert('Mohon masukkan nilai yang valid untuk semua field!');
+                return;
+            }
+
+            const designCost = size * design;
+            const liquidCost = size * liquid;
+            const transportCost = size * transport;
+            const total = designCost + liquidCost + transportCost;
+
+            document.getElementById('tankSizeResult').textContent = size.toFixed(2) + ' m³';
+            document.getElementById('tankDesignCost').textContent = 'Rp ' + designCost.toLocaleString('id-ID');
+            document.getElementById('tankLiquidCost').textContent = 'Rp ' + liquidCost.toLocaleString('id-ID');
+            document.getElementById('tankTransportCost').textContent = 'Rp ' + transportCost.toLocaleString('id-ID');
+            document.getElementById('tankTotalResult').textContent = 'Rp ' + total.toLocaleString('id-ID') + '/km';
+
+            document.getElementById('tankResult').classList.add('show');
+        }
+
+        window.onclick = function (event) {
+            const modal = document.getElementById('productModal');
+            if (event.target == modal) {
+                closeProductModal();
+            }
+        }
+    </script>
+</body>
+
+</html>

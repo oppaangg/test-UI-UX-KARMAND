@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,56 @@
     <link rel="icon" href="logo.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--accent);
+            margin: 1rem 0 0.5rem 0;
+            padding: 0.8rem 1.2rem;
+            background: linear-gradient(135deg, rgba(2, 206, 203, 0.1), rgba(5, 55, 78, 0.05));
+            border-radius: 12px;
+            border: 2px solid rgba(2, 206, 203, 0.3);
+            text-align: center;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-price::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(2, 206, 203, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .product-card-compact:hover .product-price::before {
+            left: 100%;
+        }
+
+        
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            
+
+            .product-price {
+                font-size: 1.3rem;
+                padding: 0.6rem 1rem;
+            }
+        }
+
+
+    </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar">
@@ -53,14 +101,16 @@
         <div class="section-container">
             <h2 class="section-title">Fabrikasi FRP & Rubber Lining</h2>
             <p class="section-subtitle">Solusi Perlindungan dan Fabrikasi Struktur Industrial</p>
-            
+
             <div class="product-intro">
-                <p>Kami menyediakan layanan fabrikasi FRP (Fiber Reinforced Plastic) dan rubber lining berkualitas tinggi untuk melindungi peralatan industri dari korosi, abrasi, dan kondisi kimia yang keras. Solusi kami custom-made sesuai kebutuhan spesifik aplikasi Anda.</p>
+                <p>Kami menyediakan layanan fabrikasi FRP (Fiber Reinforced Plastic) dan rubber lining berkualitas
+                    tinggi untuk melindungi peralatan industri dari korosi, abrasi, dan kondisi kimia yang keras. Solusi
+                    kami custom-made sesuai kebutuhan spesifik aplikasi Anda.</p>
             </div>
 
             <div class="products-grid">
                 <div class="product-card-compact" onclick="openProductModal(
-                    'FRP Tank Fabrication Custom', 
+                    'Karmand Fabrikasi FRP', 
                     'Fabrikasi tangki FRP custom untuk penyimpanan kimia dengan ketahanan korosi superior dan umur pakai panjang. Menggunakan resin vinyl ester atau isophthalic polyester dengan fiberglass reinforcement. Design sesuai standar ASME RTP-1 atau BS4994.',
                     'Resin: Vinyl Ester/Isophthalic Polyester, Reinforcement: E-glass/C-glass Chopped Strand Mat & Woven Roving, Gelcoat',
                     'Construction: Hand lay-up/Spray-up | Thickness: 6-25mm | Max Diameter: 6 meter | Max Height: 12 meter | Design Pressure: Atmospheric to 3 bar | Temperature Resistance: -40°C to 110°C',
@@ -71,147 +121,70 @@
                     'https://shopee.co.id/karmand-frptank',
                     null)">
                     <div class="product-image-wrapper">
-                        <img src="gambar1.jpg" alt="Karmand Surfactant SN-01" class="product-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <img src="gambar1.jpg" alt="Karmand Fabrikasi FRP" class="product-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <div class="product-icon-fallback" style="display:none;">🧪</div>
                     </div>
-                    <h3>FRP Tank Fabrication Custom</h3>
+                    <h3>Karmand Fabrikasi FRP</h3>
                     <p>Fabrikasi tangki FRP custom dengan ketahanan korosi superior.</p>
+                    <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20**Karmand%20Fabrikasi%20FRP**.%20Bisa%20tolong%20berikan%20informasi%20harga%20dan%20detail%20lebih%20lanjut%3F"
+                        target="_blank" class="product-price"
+                        style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(18, 140, 126, 0.05)); border-color: rgba(37, 211, 102, 0.3); color: #25d366; text-decoration: none; display: block; cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.3)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">💬 Chat For The
+                        Price</a>
                     <div class="click-info">Klik untuk detail →</div>
                 </div>
-
                 <div class="product-card-compact" onclick="openProductModal(
-                    'FRP Ducting System', 
-                    'Sistem ducting FRP untuk exhaust dan ventilasi dengan ketahanan terhadap fumes korosif dan suhu tinggi. Smooth internal surface untuk airflow optimal dan easy maintenance. Modular system untuk instalasi cepat.',
-                    'Resin: Corrosion resistant grade polyester/vinyl ester, Fiberglass reinforcement, Internal surface mat',
-                    'Construction: Filament wound/Hand lay-up | Diameter: 150mm - 2000mm | Wall Thickness: 4-12mm | Max Temperature: 120°C | Joint: Flanged/Bell & spigot | Pressure Rating: Negative to 500 Pa',
-                    'Survey lokasi & measurement → Design ducting route & support → Fabrication duct sections & fittings → Surface preparation & painting → Installation & support mounting → Testing & commissioning. Includes: support design, expansion joint, access door.',
-                    'Fume exhaust system, ventilation system, scrubber ducting, chemical process exhaust, laboratory exhaust',
-                    'Custom fabrication - Rp 450.000 - 1.200.000 per meter',
-                    'https://tokopedia.link/karmand-frpduct', 
-                    'https://shopee.co.id/karmand-frpduct',
+                    'Karmand Fabrikasi FRP', 
+                    'Fabrikasi tangki FRP custom untuk penyimpanan kimia dengan ketahanan korosi superior dan umur pakai panjang. Menggunakan resin vinyl ester atau isophthalic polyester dengan fiberglass reinforcement. Design sesuai standar ASME RTP-1 atau BS4994.',
+                    'Resin: Vinyl Ester/Isophthalic Polyester, Reinforcement: E-glass/C-glass Chopped Strand Mat & Woven Roving, Gelcoat',
+                    'Construction: Hand lay-up/Spray-up | Thickness: 6-25mm | Max Diameter: 6 meter | Max Height: 12 meter | Design Pressure: Atmospheric to 3 bar | Temperature Resistance: -40°C to 110°C',
+                    'Proses: Survey & design → Shop drawing approval → Material procurement → Fabrication (gelcoat, lay-up, curing) → Quality inspection → Delivery & installation. Lead time: 4-8 minggu tergantung ukuran. Includes: structural calculation, foundation design support.',
+                    'Chemical storage tank, process tank, water treatment tank, pickling tank, electroplating tank',
+                    'Custom fabrication - Quote based on specification',
+                    'https://tokopedia.link/karmand-frptank', 
+                    'https://shopee.co.id/karmand-frptank',
                     null)">
-                    <div class="product-icon">⚙️</div>
-                    <h3>FRP Ducting System</h3>
-                    <p>Sistem ducting FRP tahan korosi untuk exhaust dan ventilasi industrial.</p>
+                    <div class="product-image-wrapper">
+                        <img src="gambar1.jpg" alt="Karmand Fabrikasi FRP" class="product-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="product-icon-fallback" style="display:none;">🧪</div>
+                    </div>
+                    <h3>Karmand Fabrikasi FRP</h3>
+                    <p>Fabrikasi tangki FRP custom dengan ketahanan korosi superior.</p>
+                    <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20*Karmand%20Cat%20NC%205Kg*.%20Bisa%20tolong%20berikan%20informasi%20harga%20dan%20detail%20lebih%20lanjut%3F"
+                        target="_blank" class="product-price"
+                        style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(18, 140, 126, 0.05)); border-color: rgba(37, 211, 102, 0.3); color: #25d366; text-decoration: none; display: block; cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.3)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">💬 Chat For The
+                        Price</a>
                     <div class="click-info">Klik untuk detail →</div>
                 </div>
-
                 <div class="product-card-compact" onclick="openProductModal(
-                    'FRP Grating & Platform', 
-                    'Grating dan platform FRP anti-slip dengan kekuatan struktural tinggi untuk aplikasi industri yang demanding. Molded grating atau pultruded profile dengan berbagai pattern dan load rating.',
-                    'Resin: Isophthalic polyester, Fiberglass roving & mat, Mineral filler, UV inhibitor, Fire retardant additives',
-                    'Type: Molded grating 25mm, 38mm, 50mm | Pultruded grating 25mm, 38mm | Panel Size: 1000x3000mm, 1220x3660mm | Load Rating: Light duty 240 kg/m² to Heavy duty 970 kg/m² | Surface: Grit top anti-slip',
-                    'Select grating type & size sesuai load requirement → Cut to size if needed → Install dengan saddle clip atau bolt down system → Support spacing max 600mm untuk heavy duty. Available accessories: nosing, toe plate, handrail system. Installation guide provided.',
-                    'Industrial walkway & platform, chemical plant, water treatment plant, offshore platform, trench cover, mezzanine floor',
-                    'Sheet 1000x3000mm: Rp 850.000 - 1.800.000/sheet',
-                    'https://tokopedia.link/karmand-frpgrating', 
-                    'https://shopee.co.id/karmand-frpgrating',
+                    'Karmand Fabrikasi FRP', 
+                    'Fabrikasi tangki FRP custom untuk penyimpanan kimia dengan ketahanan korosi superior dan umur pakai panjang. Menggunakan resin vinyl ester atau isophthalic polyester dengan fiberglass reinforcement. Design sesuai standar ASME RTP-1 atau BS4994.',
+                    'Resin: Vinyl Ester/Isophthalic Polyester, Reinforcement: E-glass/C-glass Chopped Strand Mat & Woven Roving, Gelcoat',
+                    'Construction: Hand lay-up/Spray-up | Thickness: 6-25mm | Max Diameter: 6 meter | Max Height: 12 meter | Design Pressure: Atmospheric to 3 bar | Temperature Resistance: -40°C to 110°C',
+                    'Proses: Survey & design → Shop drawing approval → Material procurement → Fabrication (gelcoat, lay-up, curing) → Quality inspection → Delivery & installation. Lead time: 4-8 minggu tergantung ukuran. Includes: structural calculation, foundation design support.',
+                    'Chemical storage tank, process tank, water treatment tank, pickling tank, electroplating tank',
+                    'Custom fabrication - Quote based on specification',
+                    'https://tokopedia.link/karmand-frptank', 
+                    'https://shopee.co.id/karmand-frptank',
                     null)">
-                    <div class="product-icon">🔩</div>
-                    <h3>FRP Grating & Platform</h3>
-                    <p>Grating dan platform FRP kuat dan anti-slip untuk aplikasi industri.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div>
-
-                <div class="product-card-compact" onclick="openProductModal(
-                    'Natural Rubber Lining - NR Grade', 
-                    'Rubber lining dari karet alam dengan ketahanan abrasi excellent untuk aplikasi heavy-duty. Soft rubber (50-60 Shore A) untuk impact resistance atau hard rubber (70-80 Shore A) untuk abrasion resistance maksimal.',
-                    'Natural Rubber (RSS/SMR), Carbon black, Sulfur cure system, Processing aids, Antioxidant',
-                    'Hardness: 50-60 Shore A (soft), 70-80 Shore A (hard) | Thickness: 6mm, 9mm, 12mm, 16mm | Tensile Strength: >18 MPa | Elongation: >400% | Temperature Range: -10°C to 70°C | Abrasion Resistance: Excellent',
-                    'Surface preparation: Sandblast to SA 2,5 atau grinding → Apply bonding cement → Cure cement → Apply rubber sheet dengan hot vulcanization 145-155°C atau cold bonding → Trim & finish → Spark test 15-20 kV. Curing time tergantung thickness. Post-cure sebelum chemical exposure.',
-                    'Slurry pipeline, hydrocyclone, chute lining, ball mill, mining equipment, tailing pipe',
-                    'Sheet NR 1200x6000mm x 6mm: Rp 520.000/sheet | Service: Rp 180.000 - 350.000/m² installed',
-                    'https://tokopedia.link/karmand-nrlining', 
-                    'https://shopee.co.id/karmand-nrlining',
-                    null)">
-                    <div class="product-icon">🛡️</div>
-                    <h3>Natural Rubber Lining - NR Grade</h3>
-                    <p>Rubber lining karet alam dengan ketahanan abrasi excellent.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div>
-
-                <div class="product-card-compact" onclick="openProductModal(
-                    'Acid Resistant Rubber Lining - Neoprene', 
-                    'Rubber lining berbasis Neoprene (Chloroprene) tahan asam untuk perlindungan optimal terhadap berbagai chemical korosif. Excellent resistance terhadap oxidizing acid, mineral acid, dan petroleum products.',
-                    'Chloroprene rubber (Neoprene), Plasticizer, Mineral filler, Sulfur cure, Antioxidant',
-                    'Hardness: 60-70 Shore A | Thickness: 3mm, 5mm, 6mm, 9mm | Chemical Resistance: Acid, alkali, oil | Temperature Range: -40°C to 100°C | Tensile Strength: >15 MPa | Color: Black',
-                    'Surface prep: Degrease & sandblast steel surface to SA 2,5 → Prime dengan chloroprene cement → Apply rubber dengan hot/cold bonding → Vulcanize dengan autoclave 150°C atau steam cure → Inspection & testing. Overlap joint: 50mm min. Edge seal dengan sealant.',
-                    'Pickling tank, acid storage tank, electroplating tank, chemical reactor lining, battery case',
-                    'Sheet 1000x10000mm x 5mm: Rp 750.000/sheet | Installation: Quote based on project',
-                    'https://tokopedia.link/karmand-neoprene', 
-                    'https://shopee.co.id/karmand-neoprene',
-                    null)">
-                    <div class="product-icon">⚗️</div>
-                    <h3>Acid Resistant Rubber Lining - Neoprene</h3>
-                    <p>Rubber lining Neoprene tahan asam dan chemical korosif.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div>
-
-                <div class="product-card-compact" onclick="openProductModal(
-                    'EPDM Rubber Lining', 
-                    'EPDM (Ethylene Propylene Diene Monomer) rubber lining dengan ketahanan terhadap oksidasi, ozone, dan suhu tinggi. Excellent untuk aplikasi hot water, steam, dan outdoor weathering.',
-                    'EPDM rubber, Carbon black, Peroxide cure system, Processing oil, UV stabilizer',
-                    'Hardness: 50-65 Shore A | Thickness: 3mm, 5mm, 6mm, 10mm | Temperature Range: -50°C to 130°C (peak 150°C) | Ozone Resistance: Excellent | Steam Resistance: Up to 150°C | Color: Black/Colored',
-                    'Steel preparation → Bonding primer application → EPDM sheet placement → Vulcanization dengan hot air atau autoclave → Post-cure → Testing. Bonding: Hot vulcanization 160-170°C recommended untuk permanent bonding. Cold bonding suitable untuk temporary atau low stress application.',
-                    'Hot water tank, steam vessel, water treatment equipment, outdoor weather exposure, automotive seals',
-                    'Roll 1400mm x 20m x 3mm: Rp 15.500.000/roll | Installation service available',
-                    'https://tokopedia.link/karmand-epdm', 
-                    'https://shopee.co.id/karmand-epdm',
-                    null)">
-                    <div class="product-icon">🌡️</div>
-                    <h3>EPDM Rubber Lining</h3>
-                    <p>EPDM rubber lining tahan suhu tinggi dan weather resistant.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div>
-
-                <div class="product-card-compact" onclick="openProductModal(
-                    'FRP Pipe & Fitting System', 
-                    'Sistem perpipaan FRP lengkap dengan fitting untuk aplikasi chemical dan water treatment. Filament wound atau centrifugal cast construction dengan pressure rating hingga PN16. Complete range fittings available.',
-                    'Resin: Vinyl ester/Isophthalic polyester, Continuous filament glass fiber, Inner liner resin rich layer',
-                    'Diameter: DN50 - DN2000 | Pressure Class: PN6, PN10, PN16 | Stiffness Class: SN2500, SN5000 | Joint Type: Adhesive bell & spigot, flanged, threaded | Length: 6m, 12m standard',
-                    'Design pipe routing & support → Material selection based on chemical → Fabrication/procurement pipe & fittings → Installation dengan proper support spacing → Joint assembly dengan adhesive/flange → Pressure test → Commissioning. Support spacing: berdasarkan pipe class & diameter.',
-                    'Chemical transfer piping, cooling water system, seawater piping, desalination plant, effluent piping',
-                    'DN100 PN10: Rp 285.000/meter | Fitting: Quote based on size',
-                    'https://tokopedia.link/karmand-frppipe', 
-                    'https://shopee.co.id/karmand-frppipe',
-                    null)">
-                    <div class="product-icon">💪</div>
-                    <h3>FRP Pipe & Fitting System</h3>
-                    <p>Sistem perpipaan FRP lengkap untuk chemical dan water treatment.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div>
-
-                <div class="product-card-compact" onclick="openProductModal(
-                    'Rubber Lining Services', 
-                    'Layanan rubber lining professional on-site dan workshop dengan tim berpengalaman dan quality assurance. Complete service dari surface preparation hingga testing & commissioning dengan warranty.',
-                    'Service includes: Surface preparation, primer application, rubber sheet/liquid application, vulcanization, testing & inspection',
-                    'Service Type: On-site atau workshop | Rubber Types: NR, Neoprene, EPDM, Nitrile, Butyl | Application Method: Sheet lining, liquid coating, spray lining | Testing: Visual, spark test, adhesion test',
-                    'Survey & assessment → Quotation → Surface preparation (sandblast/grinding) → Rubber application → Curing/vulcanization → Quality testing (holiday detection, adhesion, hardness) → Final inspection & handover. Includes warranty period. Repair service available.',
-                    'Tank lining, vessel lining, pipe lining, elbow lining, equipment repair & refurbishment, preventive maintenance',
-                    'Service rate: Rp 180.000 - 450.000/m² (material & labor) | Minimum charge applies',
-                    'https://tokopedia.link/karmand-rlservice', 
-                    'https://shopee.co.id/karmand-rlservice',
-                    null)">
-                    <div class="product-icon">🔧</div>
-                    <h3>Rubber Lining Services</h3>
-                    <p>Layanan rubber lining professional on-site dan workshop lengkap.</p>
-                    <div class="click-info">Klik untuk detail →</div>
-                </div>
-
-                <div class="product-card-compact" onclick="openProductModal(
-                    'FRP Scrubber System Complete', 
-                    'Sistem scrubber FRP lengkap untuk air pollution control dengan efisiensi tinggi. Custom design packed tower, venturi scrubber, atau spray tower sesuai pollutant type dan flow rate.',
-                    'Construction: FRP vessel body (vinyl ester resin), PP/PVC internals, FRP ducting, Pump & piping system, Instrumentation',
-                    'Type: Packed tower, Venturi, Spray tower | Capacity: 1000 - 50000 m³/h | Removal Efficiency: 90-99% | Pressure Drop: 50-300 Pa | Material: FRP body, PP/PVC internals',
-                    'Engineering: Pollutant analysis → Design calculation → 3D modeling & drawing approval → Fabrication & procurement → Factory assembly test → Site installation → Performance test → Training & handover. Includes: foundation design, electrical design, O&M manual.',
-                    'Chemical fume scrubbing, acid gas removal, ammonia scrubber, odor control, dust scrubbing',
-                    'System 5000 m³/h capacity: Rp 180 - 350 juta | Design & build project',
-                    'https://tokopedia.link/karmand-scrubber', 
-                    'https://shopee.co.id/karmand-scrubber',
-                    null)">
-                    <div class="product-icon">🎯</div>
-                    <h3>FRP Scrubber System Complete</h3>
-                    <p>Sistem scrubber FRP lengkap untuk air pollution control efisiensi tinggi.</p>
+                    <div class="product-image-wrapper">
+                        <img src="gambar1.jpg" alt="Karmand Fabrikasi FRP" class="product-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="product-icon-fallback" style="display:none;">🧪</div>
+                    </div>
+                    <h3>Karmand Fabrikasi FRP</h3>
+                    <p>Fabrikasi tangki FRP custom dengan ketahanan korosi superior.</p>
+                    <a href="https://wa.me/6281353468612?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20*Karmand%20Cat%20NC%205Kg*.%20Bisa%20tolong%20berikan%20informasi%20harga%20dan%20detail%20lebih%20lanjut%3F"
+                        target="_blank" class="product-price"
+                        style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(18, 140, 126, 0.05)); border-color: rgba(37, 211, 102, 0.3); color: #25d366; text-decoration: none; display: block; cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.3)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">💬 Chat For The
+                        Price</a>
                     <div class="click-info">Klik untuk detail →</div>
                 </div>
             </div>
@@ -229,22 +202,9 @@
                             <h4>Deskripsi Produk</h4>
                             <p id="modalProductDescription">Product description goes here...</p>
                         </div>
+
                         
-                        <div class="modal-section">
-                            <h4>Komposisi</h4>
-                            <p id="modalComposition">Composition goes here...</p>
-                        </div>
-                        
-                        <div class="modal-section">
-                            <h4>Sifat Fisik</h4>
-                            <p id="modalPhysicalProperties">Physical properties go here...</p>
-                        </div>
-                        
-                        <div class="modal-section">
-                            <h4>Penggunaan & Dosis</h4>
-                            <p id="modalUsage">Usage instructions go here...</p>
-                        </div>
-                        
+
                         <div class="modal-purchase">
                             <h4>Beli Produk Ini:</h4>
                             <div class="purchase-buttons">
@@ -277,30 +237,28 @@
             <div class="footer-content">
                 <div class="footer-info">
                     <div class="footer-logo">Karmand<span> Industrial</span></div>
-                    <p class="footer-description">Solusi kimia inovatif untuk masa depan industri Anda. Kami berkomitmen memberikan produk berkualitas tinggi dan layanan profesional.</p>
+                    <p class="footer-description">Solusi kimia inovatif untuk masa depan industri Anda. Kami
+                        menyediakan produk dan layanan berkualitas tinggi untuk berbagai sektor industri.</p>
                     <div class="footer-contact">
                         <p><strong>Email:</strong> karmandandalan.com</p>
                         <p><strong>Telepon:</strong> +62 813-5346-8612</p>
-                        <p><strong>Alamat:</strong> Jl. Jemursari II No.8, Jemur Wonosari, Kec. Wonocolo, Surabaya, Jawa Timur 60237</p>
+                        <p><strong>Alamat:</strong> Jl. Jemursari II No.8, Jemur Wonosari, Kec. Wonocolo, Surabaya, Jawa
+                            Timur 60237</p>
                     </div>
                 </div>
-                
+
                 <div class="footer-map">
                     <h4>Lokasi Kami</h4>
                     <div class="map-container">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.298770611649!2d112.7452629!3d-7.3202979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb00acfb4ce1%3A0x9047767f9cfb265d!2sPT%20Karmand%20Mitra%20Andalan!5e0!3m2!1sid!2sid!4v1767950973684!5m2!1sid!2sid" 
-                            width="100%" 
-                            height="250" 
-                            style="border:0; border-radius: 10px;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.298770611649!2d112.7452629!3d-7.3202979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb00acfb4ce1%3A0x9047767f9cfb265d!2sPT%20Karmand%20Mitra%20Andalan!5e0!3m2!1sid!2sid!4v1767950973684!5m2!1sid!2sid"
+                            width="100%" height="250" style="border:0; border-radius: 10px;" allowfullscreen=""
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <div class="footer-text">© 2026 Karmand Industrial. All rights reserved.</div>
                 <div class="social-links">
@@ -320,5 +278,7 @@
     </footer>
 
     <script src="script.js"></script>
+    
 </body>
+
 </html>
